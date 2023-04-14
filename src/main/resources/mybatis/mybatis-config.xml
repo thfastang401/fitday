@@ -6,6 +6,6 @@
         <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
     <typeAliases>
-<!--        <typeAlias type="com.starters.ityogurt.dto.KnowledgeDTO" alias="knowledgedto" />-->
+       <typeAlias type="com.fittrio.fitday.dto.CommentDTO" alias="commentdto" />
     </typeAliases>
 </configuration>
