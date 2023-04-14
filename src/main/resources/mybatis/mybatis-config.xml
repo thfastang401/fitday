@@ -7,5 +7,7 @@
     </settings>
     <typeAliases>
        <typeAlias type="com.fittrio.fitday.dto.CommentDTO" alias="commentdto" />
+       <typeAlias type="com.fittrio.fitday.dto.BoardDTO" alias="boarddto" />
+       <typeAlias type="com.fittrio.fitday.dto.UserDTO" alias="userdto" />
     </typeAliases>
 </configuration>
