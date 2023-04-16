@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FITDAY 커뮤니티 게시판</title>
+<style type="text/css">
+#listTbl {
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<div id="title">
+		<h2>커뮤니티 게시판</h2>
+	</div>
+	<div>질문|추천|공유</div>
+	<div id="list">
+		<table id="listTbl">
+			<tr>
+				<th>No.</th>
+				<th>제목</th>
+				<th>글쓴이</th>
+				<th>작성일</th>
+				<th>조회수</th>
+			</tr>
+			<c:forEach items="${boardList}" var="list">
+			<c:set var="i" value="${i+1}" />
+				<tr>
+					<td>${i}</td>
+					<td>[${list.category}]</td>
+					<td>${list.title}</td>
+					<td>${list.viewCount}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+</body>
+</html>
