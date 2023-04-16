@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fittrio.fitday.dao.BoardDAO">
+
+	<!-- 코멘트 등록 -->
+	<!-- <select id="insertComment" parameterType="commentdto"> insert into 
+		comment </select> -->
+
+	<select id="getAllBoardCnt" resultType="int">
+		select count(*) from board
+	</select>
+
+	<select id="getAllBoardList" resultType="boarddto">
+		select * from board
+	</select>
+</mapper>
