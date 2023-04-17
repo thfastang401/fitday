@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fittrio.fitday.dao.UserDAO">
+
+
+	<select id="getAllUserCnt" resultType="int">
+		select count(*) from user
+	</select>
+
+	<select id="getAllUserList" resultType="userdto">
+		select * from user
+	</select>
+	
+	<select id="findUserByEmail" parameterType="String" resultType="userdto">
+		select * from user where email=#{email}
+	</select>
+	
+	
+</mapper>
