@@ -4,12 +4,20 @@
 
 <mapper namespace="com.fittrio.fitday.dao.UserDAO">
 
-	<!-- 코멘트 등록 -->
-	<!-- <select id="insertComment" parameterType="commentdto"> insert into 
-		comment </select> -->
+	<select id="getAllUserCnt" resultType="int">
+		select count(*) from user
+	</select>
+
+	<select id="getAllUserList" resultType="userdto">
+		select * from user
+	</select>
+	
+	<select id="findUserByEmail" parameterType="String" resultType="userdto">
+		select * from user where email=#{email}
+	</select>
 
 	<select id="getNickNameByUserSeq" parameterType="int" resultType="String">
 		select nickname from user where user_seq=#{userSeq}
 	</select>
-	
+
 </mapper>
