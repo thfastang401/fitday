@@ -1,6 +1,6 @@
 package com.fittrio.fitday.serviceimpl;
 
-import com.fittrio.fitday.dao.UserDAO;
+import com.fittrio.fitday.dao.UserDAO;  
 import com.fittrio.fitday.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,4 +9,9 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO dao;
+
+	@Override
+	public String getNickNameByUserSeq(int userSeq) {
+		return dao.getNickNameByUserSeq(userSeq);
+	}
 }

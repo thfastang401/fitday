@@ -14,6 +14,8 @@ public interface BoardDAO {
 	int getAllBoardCnt();
 
 	List<BoardDTO> getAllBoardList();
+
+	BoardDTO getOneBoard(int boardSeq);
 	
 		
 }
