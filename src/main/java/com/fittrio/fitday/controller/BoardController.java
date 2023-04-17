@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fittrio.fitday.dto.BoardDTO;
+import com.fittrio.fitday.dto.CommentDTO;
 import com.fittrio.fitday.service.BoardService;
+import com.fittrio.fitday.service.CommentService;
 import com.fittrio.fitday.service.UserService;
 
 @Controller
@@ -24,6 +26,10 @@ public class BoardController {
     @Autowired
     @Qualifier("userService")
     UserService userService;
+    
+    @Autowired
+    @Qualifier("commentService")
+    CommentService commentService;
 
     //커뮤니티게시판 목록
     @GetMapping("/list")
@@ -43,7 +49,9 @@ public class BoardController {
     public ModelAndView detail(@PathVariable("boardSeq") int boardSeq) {
     	ModelAndView mv = new ModelAndView();
     	BoardDTO dto = boardService.getOneBoard(boardSeq);//게시글 내용 가져오기
-    	String nickName = userService.getNickNameByUserSeq(dto.getUserSeq());
+    	String nickName = userService.getNickNameByUserSeq(dto.getUserSeq());//작성자 닉네임 가져오기
+    	List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);
+    	mv.addObject("commentList",commentList);
     	mv.addObject("nickName",nickName);
     	mv.addObject("board", dto);
     	mv.setViewName("board/detail");
