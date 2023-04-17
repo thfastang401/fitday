@@ -9,6 +9,8 @@
 		insert into comment
 	</select> -->
 
-	
-	
+<select id="getCommentListByBoardSeq" parameterType="int" resultType="commentdto">
+	select * from comment where board_seq=#{boardSeq}
+</select>	
+
 </mapper>
