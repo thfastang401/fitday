@@ -24,6 +24,11 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDTO> getAllBoardList() {
 		return dao.getAllBoardList();
 	}
+
+	@Override
+	public BoardDTO getOneBoard(int boardSeq) {
+		return dao.getOneBoard(boardSeq);
+	}
 	
 	
 }

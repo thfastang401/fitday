@@ -9,6 +9,8 @@ public interface BoardService {
 	int getAllBoardCnt();
 
 	List<BoardDTO> getAllBoardList();
+
+	BoardDTO getOneBoard(int boardSeq);
     
 
 }

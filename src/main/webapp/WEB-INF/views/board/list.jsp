@@ -13,6 +13,9 @@
 </style>
 </head>
 <body>
+<%-- <jsp:include page="../header.jsp"> --%>
+<%--     <jsp:param value="false" name="login"/> --%>
+<%-- </jsp:include> --%>
 	<div id="title">
 		<h2>커뮤니티 게시판</h2>
 	</div>
@@ -31,7 +34,7 @@
 				<tr>
 					<td>${i}</td>
 					<td>[${list.category}]</td>
-					<td>${list.title}</td>
+					<td><a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>
 					<td>${list.viewCount}</td>
 				</tr>
 			</c:forEach>
