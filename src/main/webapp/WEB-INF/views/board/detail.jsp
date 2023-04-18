@@ -56,7 +56,7 @@
 			</tr>
 		</table>
 		<!-- 댓글창 -->
-		<form action="">
+		<form action="<%-- <%=request.getContextPath()%>/comment/ --%>">
 			<table>
 				<tr>
 					<td>
@@ -84,16 +84,17 @@
 		<!-- 댓글이 있을경우엔 댓글 리스트 출력/없으면 "댓글이 없습니다" 출력 -->
 	</div>
 <script type="text/javascript">
-// 	function goList(){
-// 	}
-
-function deleteBoard(){
-	
-	let check = confirm('삭제하시겠습니까?');
-	if(check==true){
-		//삭제 실행
+	//목록버튼
+	function goList(){
+		location.href="${pageContext.request.contextPath}/board/list";
 	}
-}
+	//삭제버튼
+	function deleteBoard(){
+		let check = confirm('삭제하시겠습니까?');
+		if(check==true){//예 누르면 삭제 실행
+			
+		}
+	}
 </script>
 </body>
 </html>

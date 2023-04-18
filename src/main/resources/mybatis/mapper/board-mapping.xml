@@ -19,4 +19,9 @@
 	<select id="getOneBoard" resultType="boarddto" parameterType="int">
 		select * from board where board_seq=#{boardSeq}
 	</select>
+	
+	<insert id="insertBoard" parameterType="boarddto">
+		insert into board(user_seq,category,title,content,DATE,board_type)
+			values(#{userSeq},#{category},#{title},#{content},now(),#{boardType})
+	</insert>
 </mapper>
