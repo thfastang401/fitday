@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,5 +63,32 @@ public class BoardController {
     public String form() {
     	return "board/form";
     }
+    
+    //글 작성
+    @PostMapping("/form")
+    public ModelAndView form(BoardDTO dto) {
+    	ModelAndView mv = new ModelAndView();
+    	boardService.insertBoard(dto);
+    	mv.setViewName("redirect:list");
+    	return mv;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

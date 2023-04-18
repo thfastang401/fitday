@@ -56,7 +56,7 @@
 			</tr>
 		</table>
 		<!-- 댓글창 -->
-		<form action="<%=request.getContextPath()%>/comment/">
+		<form action="<%-- <%=request.getContextPath()%>/comment/ --%>">
 			<table>
 				<tr>
 					<td>

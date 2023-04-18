@@ -11,6 +11,8 @@ public interface BoardService {
 	List<BoardDTO> getAllBoardList();
 
 	BoardDTO getOneBoard(int boardSeq);
+
+	void insertBoard(BoardDTO dto);
     
 
 }

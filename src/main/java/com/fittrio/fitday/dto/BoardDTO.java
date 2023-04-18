@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class BoardDTO { 
 	int boardSeq, userSeq, viewCount, secret;
-	String category, title, content, date, file;
+	String category, title, content, date, file, boardType;
 	public int getBoardSeq() {
 		return boardSeq;
 	}
@@ -61,6 +61,12 @@ public class BoardDTO {
 	}
 	public void setFile(String file) {
 		this.file = file;
+	}
+	public String getBoardType() {
+		return boardType;
+	}
+	public void setBoardType(String boardType) {
+		this.boardType = boardType;
 	}
 
 }
