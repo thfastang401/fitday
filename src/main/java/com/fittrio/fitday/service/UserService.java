@@ -7,5 +7,7 @@ public interface UserService {
 	String getNickNameByUserSeq(int userSeq);
 
 	UserDTO findUserByEmail(String email);
+  
 	int insertUser(UserDTO dto);
+
 }
