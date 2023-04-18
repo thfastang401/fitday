@@ -9,5 +9,8 @@
 <body>
 
 <h3>메인페이지 입니다.</h3>
+		<div>
+        	<button onclick="location.href='/logout'" class="btn btn-primary">로그 아웃</button>
+		</div>  
 </body>
 </html>
