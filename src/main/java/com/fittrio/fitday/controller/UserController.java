@@ -15,7 +15,7 @@ public class UserController {
     
     @GetMapping("/user/login")
     public String login() {
-        return "loginForm";
+        return "user/loginForm";
     }
     
 }
