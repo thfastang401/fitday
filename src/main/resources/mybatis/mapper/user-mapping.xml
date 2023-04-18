@@ -20,4 +20,10 @@
 		select nickname from user where user_seq=#{userSeq}
 	</select>
 
+	<insert id="insertUser" parameterType="userDto">
+		insert into user (email, password, nickname, fit_type, date, goal)
+		values(#{email}, #{password}, #{nickname}, #{fitType}, now(),#{goal})
+	</insert>
+
+
 </mapper>
