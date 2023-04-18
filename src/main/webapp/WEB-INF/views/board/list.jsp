@@ -39,6 +39,10 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<input type="button" value="글작성" onclick="location.href='/board/form'" id="formBtn">
 	</div>
+<script type="text/javascript">
+
+</script>	
 </body>
 </html>

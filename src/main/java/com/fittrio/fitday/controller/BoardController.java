@@ -58,7 +58,9 @@ public class BoardController {
     	return mv;
     }
     
-    
-    
+    @GetMapping("/form")
+    public String form() {
+    	return "board/form";
+    }
     
 }
