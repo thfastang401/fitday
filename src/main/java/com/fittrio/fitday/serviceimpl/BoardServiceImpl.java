@@ -44,4 +44,9 @@ public class BoardServiceImpl implements BoardService {
 		commentDao.deleteCommentByBoardSeq(boardSeq);
 		dao.deleteBoard(boardSeq);
 	}
+	
+	@Override
+	public void updateViewCount(int boardSeq) {
+		dao.updateViewCount(boardSeq);
+	}
 }

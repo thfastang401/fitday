@@ -56,6 +56,7 @@ public class BoardController {
     @GetMapping(value={"/detail/{boardSeq}"})
     public ModelAndView detail(@PathVariable("boardSeq") int boardSeq) {
     	ModelAndView mv = new ModelAndView();
+    	boardService.updateViewCount(boardSeq);
     	BoardDTO dto = boardService.getOneBoard(boardSeq);//게시글 내용 가져오기
     	String nickName = userService.getNickNameByUserSeq(dto.getUserSeq());//작성자 닉네임 가져오기
     	List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);
