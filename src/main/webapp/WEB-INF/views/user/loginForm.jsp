@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="../header.jsp"/>
 <div>
     <form action="/user/login" method="post">
         <div>
@@ -29,7 +29,7 @@
         <button type="submit" class="btn btn-primary">로그인</button>
     </form>
 		<div>
-        	<button onclick="location.href=''" class="btn btn-primary">회원 가입</button>
+        	<button onclick="location.href='/register'" class="btn btn-primary">회원 가입</button>
 		</div>    
 </div>
 
