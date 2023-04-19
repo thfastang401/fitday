@@ -1,5 +1,6 @@
 package com.fittrio.fitday.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
@@ -11,8 +12,8 @@ import com.fittrio.fitday.service.CommentService;
 @RequestMapping("/comment")
 public class CommentController {
 	
-	@AutoConfigureOrder
-	@Qualifier("commentservice")
+	@Autowired
+	@Qualifier("commentService")
 	CommentService commentService;
 	
 	//코멘트 등록
