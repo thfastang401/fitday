@@ -1,13 +1,23 @@
 package com.fittrio.fitday.dto;
 
-import lombok.Getter; 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class BoardDTO { 
 	int boardSeq, userSeq, viewCount, secret;
-	String category, title, content, date, file, boardType;
+	String category, date, file, boardType;
+	@NotNull(message = "제목을 입력하세요.")
+	@NotBlank(message = "공백 입력 불가")
+	String title;
+	
+	@NotNull(message = "내용을 입력하세요.")
+	String content;
+	
+	
 	public int getBoardSeq() {
 		return boardSeq;
 	}

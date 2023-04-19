@@ -56,17 +56,22 @@
 			</tr>
 		</table>
 		<!-- 댓글창 -->
-		<form action="<%-- <%=request.getContextPath()%>/comment/ --%>">
+		<form action="<%=request.getContextPath()%>/comment/insert" method="post">
 			<table>
 				<tr>
 					<td>
-						<input type="text" placeholder="댓글을 입력하세요." id="commentArea">&nbsp;<input type="submit" value="등록" id="commentSubmit"><br>
+						<input type="text" placeholder="댓글을 입력하세요." name="content">&nbsp;
+						<input type="submit" value="등록" id="commentSubmit"><br>
+						<input type="hidden" value=2 name="userSeq"><!-- 임시 댓글 유저 번호 -->
+						<input type="hidden" value="${board.boardSeq}" name="boardSeq">
 					</td>
 				</tr>
 				<!-- 댓글이 없을때 -->
 				<c:choose>
 					<c:when test="${fn:length(commentList) == 0}">
-						댓글이 없습니다.					
+						<tr>
+							<td>댓글이 없습니다.</td>
+						</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${commentList }" var="comment">
@@ -81,7 +86,6 @@
 				</c:choose>
 			</table>
 		</form>
-		<!-- 댓글이 있을경우엔 댓글 리스트 출력/없으면 "댓글이 없습니다" 출력 -->
 	</div>
 <script type="text/javascript">
 	//목록버튼
