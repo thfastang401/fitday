@@ -1,5 +1,7 @@
 package com.fittrio.fitday.service;
 
+import java.util.List;
+
 import com.fittrio.fitday.dto.UserDTO;
 
 public interface UserService {
@@ -9,5 +11,7 @@ public interface UserService {
 	UserDTO findUserByEmail(String email);
   
 	int insertUser(UserDTO dto);
+	
+	List<String> getCommentNickNameByBoardSeq(int boardSeq);
 
 }

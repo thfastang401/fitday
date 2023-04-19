@@ -74,14 +74,15 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${commentList }" var="comment">
-							<tr>
-								<td>닉네임 출력해야 함!!!!&nbsp;&nbsp;${comment.date }<br></td>
-							</tr>
-							<tr>
-								<td>${comment.content}<br><br></td>
-							</tr>
-						</c:forEach>
+						<c:forEach items="${commentList }" var="comment" varStatus="commentStatus">
+							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/>
+								<tr>
+									<td>${nickName}&nbsp;&nbsp;${comment.date }<br></td>
+								</tr>
+								<tr>
+									<td>${comment.content}<br><br></td>
+								</tr>
+							</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</table>
@@ -103,13 +104,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

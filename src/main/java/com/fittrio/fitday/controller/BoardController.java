@@ -58,10 +58,12 @@ public class BoardController {
     	ModelAndView mv = new ModelAndView();
     	boardService.updateViewCount(boardSeq);
     	BoardDTO dto = boardService.getOneBoard(boardSeq);//게시글 내용 가져오기
-    	String nickName = userService.getNickNameByUserSeq(dto.getUserSeq());//작성자 닉네임 가져오기
-    	List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);
+    	String boardNickName = userService.getNickNameByUserSeq(dto.getUserSeq());//작성자 닉네임 가져오기
+    	List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);//댓글 목록 가져오기
+    	List<String> commentNickName = userService.getCommentNickNameByBoardSeq(boardSeq);
     	mv.addObject("commentList",commentList);
-    	mv.addObject("nickName",nickName);
+    	mv.addObject("nickName",boardNickName);
+    	mv.addObject("commentNick",commentNickName);
     	mv.addObject("board", dto);
     	mv.setViewName("board/detail");
     	return mv;

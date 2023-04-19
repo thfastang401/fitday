@@ -1,6 +1,7 @@
 package com.fittrio.fitday.dao;
 
-import com.fittrio.fitday.dto.UserDTO;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,7 @@ public interface UserDAO {
 	UserDTO findUserByEmail(String email);
   
 	int insertUser(UserDTO dto);
+	
+	List<String> getCommentNickNameByBoardSeq(int boardSeq);
 
 }
