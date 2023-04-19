@@ -77,7 +77,7 @@
 						<c:forEach items="${commentList }" var="comment" varStatus="commentStatus">
 							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/>
 								<tr>
-									<td>${nickName}&nbsp;&nbsp;${comment.date }<br></td>
+									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp;<input type="button" value="삭제"> <br></td>
 								</tr>
 								<tr>
 									<td>${comment.content}<br><br></td>
