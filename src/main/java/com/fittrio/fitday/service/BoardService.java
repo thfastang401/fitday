@@ -14,5 +14,8 @@ public interface BoardService {
 
 	void insertBoard(BoardDTO dto);
     
+	void deleteBoard(int boardSeq);
+	
+	void updateViewCount(int boardSeq);
 
 }

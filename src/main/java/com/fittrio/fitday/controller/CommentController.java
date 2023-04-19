@@ -1,22 +1,32 @@
 package com.fittrio.fitday.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.fittrio.fitday.dto.CommentDTO;
 import com.fittrio.fitday.service.CommentService;
 
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
 	
-	@AutoConfigureOrder
-	@Qualifier("commentservice")
+	@Autowired
+	@Qualifier("commentService")
 	CommentService commentService;
 	
 	//코멘트 등록
-	
+	@PostMapping("/insert")
+	public ModelAndView insert(CommentDTO commentDto) {
+		ModelAndView mv = new ModelAndView();
+		commentService.insertComment(commentDto);
+		mv.setViewName("redirect:/board/detail/"+commentDto.getBoardSeq());
+		return mv;
+	}
 	
 	
 	

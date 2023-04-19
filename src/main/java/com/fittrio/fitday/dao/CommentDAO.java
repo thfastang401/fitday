@@ -12,6 +12,7 @@ import com.fittrio.fitday.dto.CommentDTO;
 public interface CommentDAO {
 
 	List<CommentDTO> getCommentListByBoardSeq(int boardSeq);
+	void insertComment(CommentDTO commentDto);
+	void deleteCommentByBoardSeq(int boardSeq);	
 	
-		
 }

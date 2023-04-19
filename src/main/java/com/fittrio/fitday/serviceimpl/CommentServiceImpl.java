@@ -20,5 +20,9 @@ public class CommentServiceImpl implements CommentService {
 		return dao.getCommentListByBoardSeq(boardSeq);
 	}
 	
+	@Override
+	public void insertComment(CommentDTO commentDto) {
+		dao.insertComment(commentDto);
+	}
 	
 }

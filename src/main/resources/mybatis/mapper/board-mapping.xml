@@ -24,4 +24,12 @@
 		insert into board(user_seq,category,title,content,DATE,board_type)
 			values(#{userSeq},#{category},#{title},#{content},now(),#{boardType})
 	</insert>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where board_seq=#{boardSeq}
+	</delete>
+	
+	<update id="updateViewCount" parameterType="int">
+		update board set view_count=view_count+1 where board_seq=#{boardSeq}
+	</update>
 </mapper>

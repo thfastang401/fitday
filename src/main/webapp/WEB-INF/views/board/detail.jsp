@@ -46,7 +46,7 @@
 				<td>
 					<input type="button" value="수정" id="updateBtn">
 					<input type="button" value="목록" id="goListBtn" onclick="goList()">
-					<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard()">
+					<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard(${board.boardSeq})">
 				</td>
 			</tr>
 			<tr>
@@ -56,32 +56,37 @@
 			</tr>
 		</table>
 		<!-- 댓글창 -->
-		<form action="<%-- <%=request.getContextPath()%>/comment/ --%>">
+		<form action="<%=request.getContextPath()%>/comment/insert" method="post">
 			<table>
 				<tr>
 					<td>
-						<input type="text" placeholder="댓글을 입력하세요." id="commentArea">&nbsp;<input type="submit" value="등록" id="commentSubmit"><br>
+						<input type="text" placeholder="댓글을 입력하세요." name="content">&nbsp;
+						<input type="submit" value="등록" id="commentSubmit"><br>
+						<input type="hidden" value=2 name="userSeq"><!-- 임시 댓글 유저 번호 -->
+						<input type="hidden" value="${board.boardSeq}" name="boardSeq">
 					</td>
 				</tr>
 				<!-- 댓글이 없을때 -->
 				<c:choose>
 					<c:when test="${fn:length(commentList) == 0}">
-						댓글이 없습니다.					
+						<tr>
+							<td>댓글이 없습니다.</td>
+						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${commentList }" var="comment">
-							<tr>
-								<td>닉네임 출력해야 함!!!!&nbsp;&nbsp;${comment.date }<br></td>
-							</tr>
-							<tr>
-								<td>${comment.content}<br><br></td>
-							</tr>
-						</c:forEach>
+						<c:forEach items="${commentList }" var="comment" varStatus="commentStatus">
+							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/>
+								<tr>
+									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp;<input type="button" value="삭제"> <br></td>
+								</tr>
+								<tr>
+									<td>${comment.content}<br><br></td>
+								</tr>
+							</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</table>
 		</form>
-		<!-- 댓글이 있을경우엔 댓글 리스트 출력/없으면 "댓글이 없습니다" 출력 -->
 	</div>
 <script type="text/javascript">
 	//목록버튼
@@ -89,22 +94,13 @@
 		location.href="${pageContext.request.contextPath}/board/list";
 	}
 	//삭제버튼
-	function deleteBoard(){
+	function deleteBoard(boardSeq){
 		let check = confirm('삭제하시겠습니까?');
 		if(check==true){//예 누르면 삭제 실행
-			
+			location.href="/board/delete/"+boardSeq;
+			alert("삭제되었습니다.");
 		}
 	}
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

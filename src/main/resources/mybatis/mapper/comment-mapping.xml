@@ -13,4 +13,12 @@
 	select * from comment where board_seq=#{boardSeq}
 </select>	
 
+<insert id="insertComment" parameterType="commentdto">
+	insert into comment(board_seq, user_seq, content, date) 
+		values(#{boardSeq},#{userSeq},#{content},now())
+</insert>
+
+<delete id="deleteCommentByBoardSeq" parameterType="int">
+	delete from comment where board_seq=#{boardSeq}
+</delete>
 </mapper>

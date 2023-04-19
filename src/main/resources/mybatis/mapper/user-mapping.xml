@@ -19,6 +19,14 @@
 	<select id="getNickNameByUserSeq" parameterType="int" resultType="String">
 		select nickname from user where user_seq=#{userSeq}
 	</select>
+	
+	<select id="getCommentNickNameByBoardSeq" parameterType="int" resultType="String">
+		SELECT nickname
+		FROM comment c
+		JOIN user u
+		ON u.user_seq = c.user_seq
+		WHERE board_seq=#{boardSeq}
+	</select>
 
 	<insert id="insertUser" parameterType="userDto">
 		insert into user (email, password, nickname, fit_type, date, goal)
