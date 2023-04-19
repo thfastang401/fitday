@@ -2,10 +2,11 @@ package com.fittrio.fitday.serviceimpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fittrio.fitday.dao.BoardDAO;
+import com.fittrio.fitday.dao.CommentDAO;
 import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.service.BoardService;
 
@@ -14,6 +15,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	BoardDAO dao;
+	
+	@Autowired
+	CommentDAO commentDao;
 
 	@Override
 	public int getAllBoardCnt() {
@@ -35,5 +39,9 @@ public class BoardServiceImpl implements BoardService {
 		dao.insertBoard(dto);
 	}
 	
-	
+	@Override
+	public void deleteBoard(int boardSeq) {
+		commentDao.deleteCommentByBoardSeq(boardSeq);
+		dao.deleteBoard(boardSeq);
+	}
 }

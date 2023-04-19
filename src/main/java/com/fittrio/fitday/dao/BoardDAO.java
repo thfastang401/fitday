@@ -19,4 +19,5 @@ public interface BoardDAO {
 	
 	void insertBoard(BoardDTO dto);
 		
+	void deleteBoard(int BoardSeq);
 }

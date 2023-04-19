@@ -24,4 +24,8 @@
 		insert into board(user_seq,category,title,content,DATE,board_type)
 			values(#{userSeq},#{category},#{title},#{content},now(),#{boardType})
 	</insert>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where board_seq=#{boardSeq}
+	</delete>
 </mapper>

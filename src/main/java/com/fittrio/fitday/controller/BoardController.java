@@ -92,8 +92,15 @@ public class BoardController {
     	return mv;
     }
     
-    
-    
+    //글 삭제
+    @GetMapping(value = {"/delete/{boardSeq}"})
+    public ModelAndView deleteBoard(@PathVariable("boardSeq") int boardSeq) {
+    	ModelAndView mv = new ModelAndView();
+    	System.out.println(boardSeq);
+    	boardService.deleteBoard(boardSeq);
+    	mv.setViewName("redirect:/board/list");
+    	return mv;
+    }
     
     
     

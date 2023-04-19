@@ -46,7 +46,7 @@
 				<td>
 					<input type="button" value="수정" id="updateBtn">
 					<input type="button" value="목록" id="goListBtn" onclick="goList()">
-					<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard()">
+					<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard(${board.boardSeq})">
 				</td>
 			</tr>
 			<tr>
@@ -93,10 +93,11 @@
 		location.href="${pageContext.request.contextPath}/board/list";
 	}
 	//삭제버튼
-	function deleteBoard(){
+	function deleteBoard(boardSeq){
 		let check = confirm('삭제하시겠습니까?');
 		if(check==true){//예 누르면 삭제 실행
-			
+			location.href="/board/delete/"+boardSeq;
+			alert("삭제되었습니다.");
 		}
 	}
 </script>
