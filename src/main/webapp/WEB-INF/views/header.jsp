@@ -18,13 +18,16 @@ height: 190px;
 </head>
 <body>
 <div id="header">
-	<h1><a href="<%=request.getContextPath()%>/board/list">FITDAY</a></h1>
-	
+	<h1><a href="<%=request.getContextPath()%>/">FITDAY</a></h1>
+	<p>
+		<a href="<%=request.getContextPath()%>/board/list">커뮤니티</a>
+	</p>
 	<%-- <c:choose>
 		<c:when test="${not empty currentUser}"> --%>
-		
 		<sec:authorize access="isAuthenticated()"> 
-		<sec:authentication property="principal.Nickname" />
+			<div>
+				<p><sec:authentication property="principal.Nickname" />님 안녕하세요!</p> 
+			</div>
 		<%-- 	<div>
 				로그인 이메일 : ${currentUser.getUsername()} ${principle.customUser }
 			</div>
@@ -48,7 +51,6 @@ height: 190px;
 		
 		<%-- </c:otherwise> 
 	</c:choose> --%>
-	
 		<sec:authorize access="hasAnyAuthority('USER')">
 		<div>
         	<button onclick="location.href='/user/mypage'" class="btn btn-primary">마이페이지</button>
