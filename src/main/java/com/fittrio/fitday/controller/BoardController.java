@@ -73,22 +73,22 @@ public class BoardController {
     
     //글 작성
     @PostMapping("/form")
-    public ModelAndView form(@Valid BoardDTO dto, BindingResult bindResult) {
+    public ModelAndView form(@Valid BoardDTO dto) {
     	ModelAndView mv = new ModelAndView();
-    	if (bindResult.hasErrors()) {
-			mv.getModel().putAll(bindResult.getModel());
-			return mv;
-		}
-    	try {
+//    	if (bindResult.hasErrors()) {
+//			mv.getModel().putAll(bindResult.getModel());
+//			return mv;
+//		}
+//    	try {
     		boardService.insertBoard(dto);
     		mv.setViewName("redirect:list");    		
-    	}catch (Exception e) {
-			e.printStackTrace();
-			bindResult.reject("error.board.insert");
-			mv.getModel().putAll(bindResult.getModel());
-			return mv;
-		}
-    	mv.setViewName("redirect:board/list");
+//    	}catch (Exception e) {
+//			e.printStackTrace();
+//			bindResult.reject("error.board.insert");
+//			mv.getModel().putAll(bindResult.getModel());
+//			return mv;
+//		}
+    	mv.setViewName("redirect:/board/list");
     	return mv;
     }
     
