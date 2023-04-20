@@ -1,5 +1,6 @@
 package com.fittrio.fitday.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void updateViewCount(int boardSeq) {
 		dao.updateViewCount(boardSeq);
+	}
+
+	@Override
+	public void updateBoard(HashMap<String, Object> map) {
+		dao.updateBoard(map);
 	}
 }

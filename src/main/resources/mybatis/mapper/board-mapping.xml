@@ -32,4 +32,13 @@
 	<update id="updateViewCount" parameterType="int">
 		update board set view_count=view_count+1 where board_seq=#{boardSeq}
 	</update>
+	
+	<update id="updateBoard" parameterType="hashmap">
+		update board set
+		category=#{dto.category},
+		title=#{dto.title},
+		content=#{dto.content},
+		board_type=#{dto.boardType}
+		where board_seq=#{boardSeq}
+	</update>
 </mapper>

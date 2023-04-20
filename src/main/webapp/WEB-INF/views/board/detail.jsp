@@ -7,27 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
-<style type="text/css">
-/* 	#goListBtn{ */
-/* 		width:80px; */
-/* 		margin-left: 50%; */
-/* 	} */
-	
-/* 	#commentArea{ */
-/* 		width:50%; */
-/* 		height: 100px; */
-/* 	} */
-	
-/* 	#commentSubmit{ */
-/* 		width:77px; */
-/* 		height: 100px; */
-/* 	} */
-</style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-	<h2>상세화면 테스트</h2>
+	<h2>게시글 상세화면</h2>
 	<div>
+	<form action="<%=request.getContextPath()%>/board/updateForm/${board.boardSeq}" method="post">
 		<table>
 			<tr>
 				<td><h2>[${board.category}]${board.title}</h2></td>
@@ -44,7 +29,8 @@
 			<tr>
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
 				<td>
-					<input type="button" value="수정" id="updateBtn">
+					<input type="hidden" value="${board.boardSeq}" name="boardSeq">
+					<input type="submit" value="수정" id="updateBtn">
 					<input type="button" value="목록" id="goListBtn" onclick="goList()">
 					<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard(${board.boardSeq})">
 				</td>
@@ -55,6 +41,7 @@
 				</td>
 			</tr>
 		</table>
+	</form>
 		<!-- 댓글창 -->
 		<form action="<%=request.getContextPath()%>/comment/insert" method="post">
 			<table>
@@ -77,7 +64,7 @@
 						<c:forEach items="${commentList }" var="comment" varStatus="commentStatus">
 							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/>
 								<tr>
-									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp;<input type="button" value="삭제"> <br></td>
+									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp;<input type="button" value="삭제" onclick="deleteComment(${board.boardSeq}, ${comment.commentSeq})"> <br></td>
 								</tr>
 								<tr>
 									<td>${comment.content}<br><br></td>
@@ -98,6 +85,14 @@
 		let check = confirm('삭제하시겠습니까?');
 		if(check==true){//예 누르면 삭제 실행
 			location.href="/board/delete/"+boardSeq;
+			alert("삭제되었습니다.");
+		}
+	}
+	
+	function deleteComment(boardSeq, commentSeq){
+		let check = confirm('댓글을 삭제하시겠습니까?');
+		if(check==true){//예 누르면 삭제 실행
+			location.href="/comment/delete/"+boardSeq+"/"+commentSeq;
 			alert("삭제되었습니다.");
 		}
 	}

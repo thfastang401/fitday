@@ -14,5 +14,5 @@ public interface CommentDAO {
 	List<CommentDTO> getCommentListByBoardSeq(int boardSeq);
 	void insertComment(CommentDTO commentDto);
 	void deleteCommentByBoardSeq(int boardSeq);	
-	
+	void deleteComment(int commentSeq);
 }
