@@ -31,6 +31,11 @@ public class UserController {
         }
         return "redirect:/";
     }
+    
+    @GetMapping("/user/mypage")
+    public String mypage() {
+    	return "user/myPage";
+    }
 
     
 }
