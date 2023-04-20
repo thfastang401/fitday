@@ -29,11 +29,11 @@
         <div>
             <label for="fitType">관심운동</label>
             <select id="fitType" name="fitType" class="form-control">
-                <option value="1">테니스</option>
-                <option value="2">헬스</option>
-                <option value="3">러닝</option>
-                <option value="4">필라테스</option>
-                <option value="5">기타</option>
+                <option value="테니스">테니스</option>
+                <option value="헬스">헬스</option>
+                <option value="러닝">러닝</option>
+                <option value="필라테스">필라테스</option>
+                <option value="기타">기타</option>
             </select>
         </div>
         <div>
