@@ -24,6 +24,7 @@ public class UserSecurityService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		UserDTO siteUser = userService.findUserByEmail(email);
+		CustomUser customUser = new CustomUser();
 		
 		if (siteUser==null) {
 			throw new UsernameNotFoundException("사용자를 찾을수 없습니다.");
@@ -35,12 +36,21 @@ public class UserSecurityService implements UserDetailsService{
 		else {
 			authorities = UserRole.USER.getValue();
 		}
+		customUser.setEmail(siteUser.getEmail());
+		customUser.setPassword(siteUser.getPassword());
+		customUser.setNickname(siteUser.getNickname());
+		customUser.setAuthority(authorities);
+		customUser.setFitType(siteUser.getFitType());
+		customUser.setGoal(siteUser.getGoal());
+		customUser.setEnable(true);
+		
 //		System.out.println(authorities);
-		return User.builder()	
-				.username(siteUser.getEmail())
-				.password(siteUser.getPassword())
-				.roles(authorities)
-				.build()
+//		return User.builder()	
+//				.username(siteUser.getEmail())
+//				.password(siteUser.getPassword())
+//				.roles(authorities)
+//				.build()
+		return customUser
 				;
 	}
 

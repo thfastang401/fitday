@@ -6,15 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.fittrio.fitday.config.CustomUser;
+
 
 @Controller
 public class MainController {
 	
 	@GetMapping("/")
-    public String main(@AuthenticationPrincipal User user, Model model) {
-		if(user != null) {
-			model.addAttribute("loginId", user.getUsername());
-			model.addAttribute("loginRoles", user.getAuthorities());
+    public String main(@AuthenticationPrincipal CustomUser customUser, Model model) {
+		if(customUser != null) {
+			model.addAttribute("loginId", customUser.getUsername());
+			model.addAttribute("loginNickname", customUser.getNickname());
+			model.addAttribute("loginRoles", customUser.getAuthorities());
 		}
         return "main";
     }
