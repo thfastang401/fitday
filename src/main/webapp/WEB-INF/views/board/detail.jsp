@@ -77,7 +77,7 @@
 						<c:forEach items="${commentList }" var="comment" varStatus="commentStatus">
 							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/>
 								<tr>
-									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp;<input type="button" value="삭제"> <br></td>
+									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp;<input type="button" value="삭제" onclick="deleteComment(${board.boardSeq}, ${comment.commentSeq})"> <br></td>
 								</tr>
 								<tr>
 									<td>${comment.content}<br><br></td>
@@ -98,6 +98,14 @@
 		let check = confirm('삭제하시겠습니까?');
 		if(check==true){//예 누르면 삭제 실행
 			location.href="/board/delete/"+boardSeq;
+			alert("삭제되었습니다.");
+		}
+	}
+	
+	function deleteComment(boardSeq, commentSeq){
+		let check = confirm('댓글을 삭제하시겠습니까?');
+		if(check==true){//예 누르면 삭제 실행
+			location.href="/comment/delete/"+boardSeq+"/"+commentSeq;
 			alert("삭제되었습니다.");
 		}
 	}

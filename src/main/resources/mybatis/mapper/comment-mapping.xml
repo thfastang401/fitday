@@ -21,4 +21,8 @@
 <delete id="deleteCommentByBoardSeq" parameterType="int">
 	delete from comment where board_seq=#{boardSeq}
 </delete>
+
+<delete id="deleteComment" parameterType="int">
+	delete from comment where comment_seq=#{commentSeq}
+</delete>
 </mapper>
