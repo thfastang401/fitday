@@ -7,27 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
-<style type="text/css">
-/* 	#goListBtn{ */
-/* 		width:80px; */
-/* 		margin-left: 50%; */
-/* 	} */
-	
-/* 	#commentArea{ */
-/* 		width:50%; */
-/* 		height: 100px; */
-/* 	} */
-	
-/* 	#commentSubmit{ */
-/* 		width:77px; */
-/* 		height: 100px; */
-/* 	} */
-</style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-	<h2>상세화면 테스트</h2>
+	<h2>게시글 상세화면</h2>
 	<div>
+	<form action="<%=request.getContextPath()%>/board/updateForm/${board.boardSeq}" method="post">
 		<table>
 			<tr>
 				<td><h2>[${board.category}]${board.title}</h2></td>
@@ -44,7 +29,8 @@
 			<tr>
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
 				<td>
-					<input type="button" value="수정" id="updateBtn">
+					<input type="hidden" value="${board.boardSeq}" name="boardSeq">
+					<input type="submit" value="수정" id="updateBtn">
 					<input type="button" value="목록" id="goListBtn" onclick="goList()">
 					<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard(${board.boardSeq})">
 				</td>
@@ -55,6 +41,7 @@
 				</td>
 			</tr>
 		</table>
+	</form>
 		<!-- 댓글창 -->
 		<form action="<%=request.getContextPath()%>/comment/insert" method="post">
 			<table>

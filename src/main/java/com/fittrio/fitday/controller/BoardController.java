@@ -1,18 +1,15 @@
 package com.fittrio.fitday.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -105,11 +102,25 @@ public class BoardController {
     	return mv;
     }
     
+    //글 수정 폼
+    @PostMapping(value= {"/updateForm/{boardSeq}"})
+    public ModelAndView updateForm(@PathVariable("boardSeq") int boardSeq) {
+    	ModelAndView mv = new ModelAndView();
+    	BoardDTO boardDetail = boardService.getOneBoard(boardSeq);
+    	mv.addObject("board",boardDetail);
+    	mv.setViewName("board/updateForm");
+        return mv;
+    }
     
-    
-    
-    
-    
+    @PostMapping(value= {"/update/{boardSeq}"})
+    public String update(@PathVariable("boardSeq") int boardSeq, BoardDTO dto) {
+    	HashMap<String, Object> map = new HashMap<String, Object>();
+    	map.put("dto", dto);
+    	map.put("boardSeq", boardSeq);
+    	boardService.updateBoard(map);
+    	
+    	return "redirect:/board/detail/"+boardSeq;
+    }
     
     
     
