@@ -32,6 +32,12 @@
 		insert into user (email, password, nickname, fit_type, date, goal)
 		values(#{email}, #{password}, #{nickname}, #{fitType}, now(),#{goal})
 	</insert>
+	
+	<update id="updateUserInfo" parameterType="userDto">
+		UPDATE user
+		SET nickname=#{nickname}, password=#{password}, fit_type=#{fitType}, goal=#{goal}
+		WHERE email=#{email}
+	</update>
 
 
 </mapper>

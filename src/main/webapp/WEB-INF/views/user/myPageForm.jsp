@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${currentUser.getNickname()}님의 회원정보 수정</title>
+</head>
+<body>
+<jsp:include page="../header.jsp"/>
+<h3> 회원 정보 수정 </h3>
+<form action="/user/mypage/form" method="post">
+<table>
+	<tr>
+		<th> 가입 이메일 : </th>
+		<td> <sec:authentication property="principal.Username" /> </td>
+	</tr>
+	<tr>
+		<th> 닉네임 : </th>
+		<td> <input type="text" name="nickname" value="<sec:authentication property="principal.Nickname" />"> </td>
+	</tr>
+	<tr>
+		<th> 비밀번호 : </th>
+		<td> <sec:authentication property="principal.Password" /> </td>
+	</tr>
+	<tr>
+		<th> 선호 운동 : </th>
+		<td> <input type="text" name="fitType" value="<sec:authentication property="principal.FitType" />"> </td>
+	</tr> 
+	<tr>
+		<th> 목표 : </th>
+		<td> <input type="text" name="goal" value="<sec:authentication property="principal.Goal" />"> </td>
+	</tr>
+	   
+</table>
+	      	<button type="submit" class="btn btn-primary">수정 완료</button>
+</form>
+
+
+
+
+</body>
+</html>
