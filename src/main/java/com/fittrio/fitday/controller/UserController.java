@@ -50,8 +50,8 @@ public class UserController {
     public String mypageForm() {
     	return "user/myPageForm";
     }
+
     //회원정보 수정
-    
     @Transactional
     @PostMapping("/user/mypage/form")
     public String mypageInfo(@ModelAttribute UserDTO dto , @AuthenticationPrincipal CustomUser customUser) {
@@ -59,17 +59,18 @@ public class UserController {
     	dto.setPassword(customUser.getPassword());
     	service.updateUserInfo(dto);
     	
-    	// 2. 현재 Authentication에 저장된 account의 age값 변경
-        // 2-1. 현재 Authentication 정보 호출
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    	CustomUser userAccount = (CustomUser) authentication.getPrincipal();
-    	UserDTO newPrincipal = service.findUserByEmail(customUser.getEmail());
-    	UsernamePasswordAuthenticationToken newToken = new UsernamePasswordAuthenticationToken(newPrincipal,authentication.getCredentials(),userAccount.getAuthorities()); 
+        CustomUser userPrincipal = (CustomUser) authentication.getPrincipal();
+        UserDTO userAccount = service.findUserByEmail(customUser.getEmail());
+        userPrincipal.setNickname(userAccount.getNickname());
+        userPrincipal.setFitType(userAccount.getFitType());
+        userPrincipal.setGoal(userAccount.getGoal());
+        
+    	UsernamePasswordAuthenticationToken newToken = new UsernamePasswordAuthenticationToken(userPrincipal,authentication.getCredentials(),userPrincipal.getAuthorities()); 
         newToken.setDetails(authentication.getDetails());
-        // 2-2. 현재 Authentication로 사용자 인증 후 새 Authentication 정보를 SecurityContextHolder에 세팅
         SecurityContextHolder.getContext().setAuthentication(newToken);
     	
-    	return "redirect:/";
+    	return "redirect:/user/mypage";
     }
     
 }
