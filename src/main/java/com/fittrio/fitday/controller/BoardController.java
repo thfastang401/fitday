@@ -121,11 +121,16 @@ public class BoardController {
     	
     	return "redirect:/board/detail/"+boardSeq;
     }
-    
-    
-    
-    
-    
+
+	//missionList 가져오기
+    @GetMapping("/mission/list")
+	public ModelAndView missionList(){
+		ModelAndView mv = new ModelAndView();
+		List<BoardDTO> missionList = boardService.getAllMissionList();
+		mv.addObject("missionList",missionList);
+		mv.setViewName("board/mission/list");
+		return mv;
+	}
     
     
     

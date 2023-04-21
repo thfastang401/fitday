@@ -41,4 +41,8 @@
 		board_type=#{dto.boardType}
 		where board_seq=#{boardSeq}
 	</update>
+
+	<select id="getAllMissionList" resultType="boarddto">
+		select * from board where board_type='mission'
+	</select>
 </mapper>

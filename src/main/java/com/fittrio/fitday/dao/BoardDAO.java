@@ -25,4 +25,6 @@ public interface BoardDAO {
 	void updateViewCount(int boardSeq);
 	
 	void updateBoard(HashMap<String, Object> map);
+
+	List<BoardDTO> getAllMissionList();
 }

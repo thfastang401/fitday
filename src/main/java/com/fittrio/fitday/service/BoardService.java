@@ -21,4 +21,6 @@ public interface BoardService {
 	
 	void updateBoard(HashMap<String,Object> map);
 
+	List<BoardDTO> getAllMissionList();
+
 }

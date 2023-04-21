@@ -55,4 +55,8 @@ public class BoardServiceImpl implements BoardService {
 	public void updateBoard(HashMap<String, Object> map) {
 		dao.updateBoard(map);
 	}
+
+	//mission
+	@Override
+	public List<BoardDTO> getAllMissionList(){return dao.getAllMissionList();}
 }
