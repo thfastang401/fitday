@@ -33,7 +33,7 @@ public class CommentController {
 //	}
 	//코멘트 리스트
 	@GetMapping(value={"/list/{boardSeq}"})
-	public List<CommentDTO> list(@PathVariable("boardSeq") int boardSeq){
+	public @ResponseBody List<CommentDTO> list(@PathVariable("boardSeq") int boardSeq){
 		List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);
 		return commentList;
 	}
