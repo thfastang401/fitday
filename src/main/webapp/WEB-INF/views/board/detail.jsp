@@ -42,39 +42,8 @@
 			</tr>
 		</table>
 	</form>
-		<!-- 댓글창 -->
-		<form action="<%=request.getContextPath()%>/comment/insert" method="post">
-			<table>
-				<tr>
-					<td>
-						<input type="text" placeholder="댓글을 입력하세요." name="content">&nbsp;
-						<input type="submit" value="등록" id="commentSubmit"><br>
-						<input type="hidden" value=2 name="userSeq"><!-- 임시 댓글 유저 번호 -->
-						<input type="hidden" value="${board.boardSeq}" name="boardSeq">
-					</td>
-				</tr>
-				<!-- 댓글이 없을때 -->
-				<c:choose>
-					<c:when test="${fn:length(commentList) == 0}">
-						<tr>
-							<td>댓글이 없습니다.</td>
-						</tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${commentList }" var="comment" varStatus="commentStatus">
-							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/>
-								<tr>
-									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp;<input type="button" value="삭제" onclick="deleteComment(${board.boardSeq}, ${comment.commentSeq})"> <br></td>
-								</tr>
-								<tr>
-									<td>${comment.content}<br><br></td>
-								</tr>
-							</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</table>
-		</form>
 	</div>
+	<%@ include file="../board/comment.jsp" %>
 <script type="text/javascript">
 	//목록버튼
 	function goList(){
@@ -88,14 +57,7 @@
 			alert("삭제되었습니다.");
 		}
 	}
-	
-	function deleteComment(boardSeq, commentSeq){
-		let check = confirm('댓글을 삭제하시겠습니까?');
-		if(check==true){//예 누르면 삭제 실행
-			location.href="/comment/delete/"+boardSeq+"/"+commentSeq;
-			alert("삭제되었습니다.");
-		}
-	}
+
 </script>
 </body>
 </html>
