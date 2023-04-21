@@ -1,6 +1,7 @@
 package com.fittrio.fitday.serviceimpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<String> getCommentNickNameByBoardSeq(int boardSeq){
 		return dao.getCommentNickNameByBoardSeq(boardSeq);
+	}
+
+	@Override
+	public void updateUserInfo(UserDTO dto) {
+		dao.updateUserInfo(dto);
 	}
 	 
 }

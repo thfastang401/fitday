@@ -1,6 +1,7 @@
 package com.fittrio.fitday.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -19,4 +20,5 @@ public interface UserDAO {
 	
 	List<String> getCommentNickNameByBoardSeq(int boardSeq);
 
+	void updateUserInfo(UserDTO dto);
 }
