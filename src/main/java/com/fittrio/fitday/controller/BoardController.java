@@ -2,15 +2,16 @@ package com.fittrio.fitday.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fittrio.fitday.dto.BoardDTO;
@@ -49,22 +50,39 @@ public class BoardController {
     	return mv;
     }
     
-    //게시글 상세화면
+//    //게시글 상세화면
     @GetMapping(value={"/detail/{boardSeq}"})
     public ModelAndView detail(@PathVariable("boardSeq") int boardSeq) {
     	ModelAndView mv = new ModelAndView();
     	boardService.updateViewCount(boardSeq);
     	BoardDTO dto = boardService.getOneBoard(boardSeq);//게시글 내용 가져오기
     	String boardNickName = userService.getNickNameByUserSeq(dto.getUserSeq());//작성자 닉네임 가져오기
-    	List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);//댓글 목록 가져오기
+//    	List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);//댓글 목록 가져오기
     	List<String> commentNickName = userService.getCommentNickNameByBoardSeq(boardSeq);
-    	mv.addObject("commentList",commentList);
+//    	mv.addObject("commentList",commentList);
     	mv.addObject("nickName",boardNickName);
     	mv.addObject("commentNick",commentNickName);
     	mv.addObject("board", dto);
     	mv.setViewName("board/detail");
     	return mv;
     }
+    
+  //게시글 상세화면
+//    @GetMapping(value={"/detail/{boardSeq}"})
+//    @ResponseBody
+//    public Map<String, Object> detail(@PathVariable("boardSeq") int boardSeq) {
+//    	Map<String,Object> resultMap = new HashMap<>();
+//    	boardService.updateViewCount(boardSeq);
+//    	BoardDTO dto = boardService.getOneBoard(boardSeq);//게시글 내용 가져오기
+//    	String boardNickName = userService.getNickNameByUserSeq(dto.getUserSeq());//작성자 닉네임 가져오기
+//    	List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);//댓글 목록 가져오기
+//    	List<String> commentNickName = userService.getCommentNickNameByBoardSeq(boardSeq);
+//    	resultMap.put("commentList",commentList);
+//    	resultMap.put("nickName",boardNickName);
+//    	resultMap.put("commentNick",commentNickName);
+//    	resultMap.put("board", dto);
+//    	return resultMap;
+//    }
     
     @GetMapping("/form")
     public String form() {
