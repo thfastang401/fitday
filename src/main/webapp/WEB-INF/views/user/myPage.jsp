@@ -10,26 +10,37 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<div>
-   <div>
-	  가입 이메일 : <sec:authentication property="principal.Username" />
-   </div>
-   <div>
-	   닉네임 : <sec:authentication property="principal.Nickname" />
-   </div>
-   <div>
-	   비밀번호 : <sec:authentication property="principal.Password" />
-   </div>
-   <div>
-	   선호 운동 : <sec:authentication property="principal.FitType" />
-   </div>
-   <div>
-	   목표 : <sec:authentication property="principal.Goal" />
-   </div>
-   
-   
-</div>
+<h3> 회원 정보 </h3>
 
+<h4>${currentUser.getNickname()}님 환영합니다.</h4>
+
+
+<table>
+	<tr>
+		<th> 가입 이메일 : </th>
+		<td> <sec:authentication property="principal.Username" /> </td>
+	</tr>
+	<tr>
+		<th> 닉네임 : </th>
+		<td> <sec:authentication property="principal.Nickname" /> </td>
+	</tr>
+	<tr>
+		<th> 비밀번호 : </th>
+		<td> <sec:authentication property="principal.Password" /> </td>
+	</tr>
+	<tr>
+		<th> 선호 운동 : </th>
+		<td> <sec:authentication property="principal.FitType" /> </td>
+	</tr> 
+	<tr>
+		<th> 목표 : </th>
+		<td> <sec:authentication property="principal.Goal" /> </td>
+	</tr>
+	   
+</table>
+      	<button onclick="location.href='mypage/form'" class="btn btn-primary">수정</button>
+
+   
 
 
 
