@@ -21,4 +21,6 @@ public interface UserDAO {
 	List<String> getCommentNickNameByBoardSeq(int boardSeq);
 
 	void updateUserInfo(UserDTO dto);
+
+	UserDTO findUserByNickname(String nickname);
 }

@@ -36,13 +36,16 @@ public class UserSecurityService implements UserDetailsService{
 		else {
 			authorities = UserRole.USER.getValue();
 		}
-		customUser.setEmail(siteUser.getEmail());
-		customUser.setPassword(siteUser.getPassword());
-		customUser.setNickname(siteUser.getNickname());
+		
+		customUser.update(siteUser);
+		
+//		customUser.setEmail(siteUser.getEmail());
+//		customUser.setPassword(siteUser.getPassword());
+//		customUser.setNickname(siteUser.getNickname());
+//		customUser.setFitType(siteUser.getFitType());
+//		customUser.setGoal(siteUser.getGoal());
+//		customUser.setEnable(true);
 		customUser.setAuthority(authorities);
-		customUser.setFitType(siteUser.getFitType());
-		customUser.setGoal(siteUser.getGoal());
-		customUser.setEnable(true);
 		
 //		System.out.println(authorities);
 //		return User.builder()	

@@ -16,6 +16,10 @@
 		select * from user where email=#{email}
 	</select>
 
+	<select id="findUserByNickname" parameterType="String" resultType="userdto">
+		select * from user where nickname=#{nickname}
+	</select>
+
 	<select id="getNickNameByUserSeq" parameterType="int" resultType="String">
 		select nickname from user where user_seq=#{userSeq}
 	</select>
