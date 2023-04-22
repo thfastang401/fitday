@@ -1,5 +1,6 @@
 package com.fittrio.fitday.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,14 @@ public class CommentController {
 	    return "success";
 	}
 
-
+	@PostMapping(value= {"/update/{boardSeq}/{commentSeq}"})
+	public @ResponseBody String updateComment(@PathVariable("boardSeq") int boardSeq, @PathVariable("commentSeq") int commentSeq, String content) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("content", content);
+		map.put("commentSeq", commentSeq);
+		commentService.updateComment(map);
+		return "success";
+	}
 	
 	
 }

@@ -1,5 +1,6 @@
 package com.fittrio.fitday.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -15,4 +16,5 @@ public interface CommentDAO {
 	void insertComment(CommentDTO commentDto);
 	void deleteCommentByBoardSeq(int boardSeq);	
 	void deleteComment(int commentSeq);
+	void updateComment(HashMap<String, Object> map);
 }
