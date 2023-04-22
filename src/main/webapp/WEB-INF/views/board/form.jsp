@@ -16,7 +16,7 @@
 							<select name="boardType">
 							<!-- 컨트롤러에서 불러오기. if로 talk면 커뮤니티, excercise면 운동으로 -->
 								<option value="talk">커뮤니티</option>
-								<option value="excercise">인증</option>
+								<option value="mission">인증</option>
 							</select>
 							<select name="category">
 								<option value="공유">공유</option>

@@ -27,17 +27,17 @@
 				</tr>
 				
 				<div id="commentArea">
-					<c:forEach items="${commentList }" var="comment" varStatus="commentStatus">
-							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/>
-								<tr>
-									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp;
-									<input type="button" value="삭제" onclick="deleteCommentAjax(${board.boardSeq}, ${comment.commentSeq})">
-									</td>
-								</tr>
-								<tr>
-									<td>${comment.content}<br><br></td>
-								</tr>
-					</c:forEach>
+<%-- 					<c:forEach items="${commentList }" var="comment" varStatus="commentStatus"> --%>
+<%-- 							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/> --%>
+<!-- 								<tr> -->
+<%-- 									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp; --%>
+<%-- 									<input type="button" value="삭제" onclick="deleteCommentAjax(${board.boardSeq}, ${comment.commentSeq})"> --%>
+<!-- 									</td> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<%-- 									<td>${comment.content}<br><br></td> --%>
+<!-- 								</tr> -->
+<%-- 					</c:forEach> --%>
 				<tr><td>
 				<div id="commentArea2">
 				
@@ -101,9 +101,10 @@ window.onload = function(){
 		    	for(var i=0; i<comments.length; i++) {
 		    	  var comment = comments[i];
 		    	  var html = "<tr><td>" + nickName + "&nbsp;" + comment.date + "&nbsp;&nbsp;"+
+		    	  "<input type='button' value='수정' id='updateBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;"  + 
 		    	  "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'>"  + 
 		    	  			"</td></tr>" + 
-		    	             "<tr><td>" + comment.content + "</td></tr>";
+		    	             "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 		    	  commentList.append(html); // 댓글 목록에 댓글 HTML 추가
 		    	}	    		
 	    	}
@@ -112,6 +113,21 @@ window.onload = function(){
 	     	alert("댓글 목록을 불러오는 중 오류가 발생했습니다.");
 	    }
 	  });
+	}
+	
+	//댓글 수정
+	function updateCommentAjax(boardSeq, content, commentSeq){
+		var inputBox = $('<input type="text" value="' + content + '">'); //content내용을 담고있는 input 박스만들기
+		$('#contentArea'+commentSeq).empty().append(inputBox); 
+		var updateBtn = $(this);
+// 		updateBtn.val("완료"); // 버튼의 값 변경
+// 		updateBtn.off('click'); // 기존의 click 이벤트 제거
+// 		updateBtn.on('click', function() { // 새로운 click 이벤트 등록
+// 		    var updatedContent = inputBox.val();
+// 		    // ... (댓글 수정 처리)
+// 		  });
+// 		  $('#contentArea' + commentSeq).empty().append(inputBox);
+		
 	}
 	
 	//댓글 삭제

@@ -1,5 +1,6 @@
 package com.fittrio.fitday.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public void deleteComment(int commentSeq) {
 		dao.deleteComment(commentSeq);
+	}
+	
+	@Override
+	public void updateComment(HashMap<String, Object> map) {
+		dao.updateComment(map);
 	}
 	
 }

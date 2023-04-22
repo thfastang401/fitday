@@ -25,4 +25,10 @@
 <delete id="deleteComment" parameterType="int">
 	delete from comment where comment_seq=#{commentSeq}
 </delete>
+
+<update id="updateComment" parameterType="hashmap">
+	update comment set 
+	content=#{content}
+	where comment_seq = #{commentSeq}
+</update>
 </mapper>
