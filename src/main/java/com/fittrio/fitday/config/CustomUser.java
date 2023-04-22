@@ -7,11 +7,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fittrio.fitday.dto.UserDTO;
+
 import lombok.Getter;
 import lombok.Setter;
 
+//@Setter
 @Getter
-@Setter
 @SuppressWarnings("serial")
 public class CustomUser implements UserDetails{
 	
@@ -59,32 +61,51 @@ public class CustomUser implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-
+	
+//	public void update(UserDetails user) {
+//		if (user instanceof UserDTO) {
+//            UserDTO userDto = (UserDTO) user;
+//            this.nickname = userDto.getNickname();
+//            this.fitType = userDto.getFitType();
+//            this.goal = userDto.getGoal();
+//            this.email = userDto.getEmail();
+//            this.password = userDto.getPassword();
+//        }
+//	}
+	public void update(UserDTO user) {
+            this.nickname = user.getNickname();
+            this.fitType = user.getFitType();
+            this.goal = user.getGoal();
+            this.email = user.getEmail();
+            this.password = user.getPassword();
+        
+	}
+	
 	//Getter ,Setter
 	
 	public String getNickname() {
 		return nickname;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+//	public void setNickname(String nickname) {
+//		this.nickname = nickname;
+//	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
 
 	public boolean isEnable() {
 		return enable;
 	}
 
-	public void setEnable(boolean enable) {
-		this.enable = enable;
-	}
+//	public void setEnable(boolean enable) {
+//		this.enable = enable;
+//	}
 
 	public String getAuthority() {
 		return authority;
@@ -98,21 +119,21 @@ public class CustomUser implements UserDetails{
 		return goal;
 	}
 
-	public void setGoal(String goal) {
-		this.goal = goal;
-	}
+//	public void setGoal(String goal) {
+//		this.goal = goal;
+//	}
 
 	public String getFitType() {
 		return fitType;
 	}
 
-	public void setFitType(String fitType) {
-		this.fitType = fitType;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+//	public void setFitType(String fitType) {
+//		this.fitType = fitType;
+//	}
+//
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
 	
 	
 
