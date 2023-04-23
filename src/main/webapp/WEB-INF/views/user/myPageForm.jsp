@@ -28,7 +28,7 @@
 	</tr>
 	<tr>
 		<th> 비밀번호 : </th>
-		<td> <sec:authentication property="principal.Password" /> </td>
+		<td> <button type="button" onclick="" id="pwBtn" class="">비밀번호 변경</button> </td>
 	</tr>
 	<tr>
 		<th> 선호 운동 : </th>
@@ -40,7 +40,7 @@
 	</tr>
 	   
 </table>
-	      	<button type="submit" onclick="memberUpdate()" class="btn btn-primary">수정 완료</button>
+	      	<button type="submit" onclick="memberUpdate()" id="infoBtn" class="">수정 완료</button>
 </form>
 
 
@@ -65,13 +65,17 @@
 				if (res=="ok"){
 					checkResult.style.color = "green";
 					checkResult.innerHTML = "사용 가능한 닉네임입니다.";
+					document.getElementById("infoBtn").disabled = false;
 				}
 				else if  (res == "notchange"){
 					checkResult.innerHTML = "";
+					document.getElementById("infoBtn").disabled = false;
 				}
 				else{
 					checkResult.style.color = "red";
 					checkResult.innerHTML = "이미 사용중인 닉네임입니다.";
+					alert("이미 사용중인 닉네임입니다.");
+					document.getElementById("infoBtn").disabled = true;
 				}
 			},
 			error: function(err) {
