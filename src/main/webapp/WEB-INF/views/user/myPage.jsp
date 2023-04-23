@@ -38,7 +38,7 @@
 	</tr>
 	   
 </table>
-      	<button onclick="location.href='mypage/form'" class="btn btn-primary">수정</button>
+      	<button onclick="location.href='/user/check'" class="btn btn-primary">수정</button>
 
    
 
