@@ -18,7 +18,7 @@ public interface UserService {
 	
 	void updateUserInfo(UserDTO dto);
 	
-	boolean nicknameCheack(String nickname, CustomUser customUser);
+	String nicknameCheack(String nickname, CustomUser customUser);
 	
 	UserDTO findUserByNickname(String nickname);
 	

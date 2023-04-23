@@ -50,7 +50,7 @@ public class UserController {
 //    //정보 수정 전 회원 확인
 //    @GetMapping("/user/check")
 //    public String checkPwdView(){
-//        return "user/check";
+//        return "user/checkPw";
 //    }
     
     //회원정보 수정 화면
@@ -61,9 +61,9 @@ public class UserController {
 
     //닉네임 체크
     @PostMapping("/user/mypage/nickname")
-    public @ResponseBody boolean nicknameCheck(@RequestParam("nickname") String nickname, @AuthenticationPrincipal CustomUser customUser) {
+    public @ResponseBody String nicknameCheck(@RequestParam("nickname") String nickname, @AuthenticationPrincipal CustomUser customUser) {
 //    	System.out.println("nickname = "+ nickname );
-    	boolean checkResult = service.nicknameCheack(nickname, customUser);
+    	String checkResult = service.nicknameCheack(nickname, customUser);
     	
     	return checkResult;
     }

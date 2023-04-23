@@ -62,9 +62,12 @@
 			},
 			success: function(res) {
 				/* console.log("성공", res); */
-				if (res==true){
+				if (res=="ok"){
 					checkResult.style.color = "green";
 					checkResult.innerHTML = "사용 가능한 닉네임입니다.";
+				}
+				else if  (res == "notchange"){
+					checkResult.innerHTML = "";
 				}
 				else{
 					checkResult.style.color = "red";

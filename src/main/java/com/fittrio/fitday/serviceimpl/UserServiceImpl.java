@@ -40,17 +40,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean nicknameCheack(String nickname, @AuthenticationPrincipal CustomUser customUser) {
+	public String nicknameCheack(String nickname, @AuthenticationPrincipal CustomUser customUser) {
 		Optional<UserDTO> byNickname = Optional.ofNullable(dao.findUserByNickname(nickname));
-		
-		if (byNickname.isPresent()) {
-			return false;
+
+		if (byNickname.isPresent() && customUser.getNickname().equals(nickname)) {
+			return "notchange";
 		}
-		else if (byNickname.isPresent() && customUser.getNickname().equals(nickname)) {
-			return true;
+		else if (byNickname.isPresent() ) {
+			return "no";
 		}
 		
-		return true;
+		return "ok";
 	}
 
 	@Override
