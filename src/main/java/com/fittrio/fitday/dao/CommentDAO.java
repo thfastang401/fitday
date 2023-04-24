@@ -16,5 +16,5 @@ public interface CommentDAO {
 	void insertComment(CommentDTO commentDto);
 	void deleteCommentByBoardSeq(int boardSeq);	
 	void deleteComment(int commentSeq);
-	void updateComment(HashMap<String, Object> map);
+	void updateComment(CommentDTO commentDto);
 }
