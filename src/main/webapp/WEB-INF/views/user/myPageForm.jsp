@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/js/userInfo.js"></script>
+<script src="/js/mypage/userInfo.js"></script>
 <meta charset="UTF-8">
 <title>${currentUser.getNickname()}님의 회원정보 수정</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -29,7 +29,7 @@
 	</tr>
 	<tr>
 		<th> 비밀번호 : </th>
-		<td> <button type="button" onclick="" id="pwBtn" class="">비밀번호 변경</button> </td>
+		<td> <button type="button" onclick="location.href='/user/mypage/modifyPw'" id="pwBtn" class="">비밀번호 변경</button> </td>
 	</tr>
 	<tr>
 		<th> 선호 운동 : </th>

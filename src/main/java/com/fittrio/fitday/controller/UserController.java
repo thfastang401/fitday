@@ -61,7 +61,11 @@ public class UserController {
     public String mypageForm() {
     	return "user/myPageForm";
     }
-    
+    // 비밀번호 수정 화면
+    @GetMapping("/user/mypage/modifyPw")
+    public String modifyPwdView() {
+    	return "user/modifyPw";
+    }
     //회원정보 수정
     @Transactional
     @PostMapping("/user/mypage/form")
