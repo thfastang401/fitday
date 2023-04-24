@@ -61,12 +61,10 @@ public class CommentController {
 	    return "success";
 	}
 
-	@PostMapping(value= {"/update/{boardSeq}/{commentSeq}"})
-	public @ResponseBody String updateComment(@PathVariable("boardSeq") int boardSeq, @PathVariable("commentSeq") int commentSeq, String content) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("content", content);
-		map.put("commentSeq", commentSeq);
-		commentService.updateComment(map);
+	//코멘트 수정
+	@PostMapping(value= {"/update"})
+	public @ResponseBody String updateComment(@RequestBody CommentDTO commentDto ) {
+		commentService.updateComment(commentDto);
 		return "success";
 	}
 	

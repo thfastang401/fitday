@@ -9,5 +9,5 @@ public interface CommentService {
     List<CommentDTO> getCommentListByBoardSeq(int boardSeq);
     void insertComment(CommentDTO commentDto);
     void deleteComment(int commentSeq);
-    void updateComment(HashMap<String, Object> map);
+    void updateComment(CommentDTO commentDto);
 }

@@ -49,6 +49,12 @@ public class UserRestController {
     	return checkResult;
     }
     
+    //비밀번호 변경
+    @PostMapping("/user/mypage/modifyPw")
+    public String modifyPwd(@RequestParam("password") String password, @RequestParam("password") String newPw) {
+    	return "";
+    }
+    
     
     
     
