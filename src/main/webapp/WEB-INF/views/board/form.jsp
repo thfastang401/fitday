@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>글 작성</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div>
-		<form action="<%=request.getContextPath()%>/board/form" method="post">
+		<form action="<%=request.getContextPath()%>" id="f" method="post">
 			<div>
 				<table>
 					<tr>
@@ -26,16 +27,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td><input type="text" placeholder="제목을 입력하세요." name="title"></td>
+						<td><input type="text" placeholder="제목을 입력하세요." name="title" id="title"></td>
 					</tr>
 					<tr>
-						<td><textarea rows="20" cols="70" placeholder="내용을 입력하세요." name="content"></textarea> </td>
+						<td><textarea rows="20" cols="70" placeholder="내용을 입력하세요." name="content" id="content"></textarea> </td>
 					</tr>
 					<tr>
 						<td>
 							<input type="hidden" name="userSeq" value="1"><!-- 임시 회원번호 -->
 							<input type="button" value="취소" onclick="cancelForm()">
-							<input type="submit" value="등록">
+							<input type="submit" value="등록" onclick="checkForm()">
 						</td>
 					</tr>
 				</table>
@@ -49,6 +50,18 @@
 			location.href="/board/list";
 		}
 	}
+	
+		function checkForm(){
+			var title = $("#title").val();
+			var content = $("#content").val();
+			//공백 검색
+			if(title.trim().length === 0 ||content.trim().length === 0){
+				alert('내용을 입력하세요');
+			}else{
+				$("form").attr("action","/board/form");
+			}					
+		}
+
 </script>
 </body>
 </html>

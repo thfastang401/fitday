@@ -32,8 +32,8 @@ public class CommentServiceImpl implements CommentService {
 	}
 	
 	@Override
-	public void updateComment(HashMap<String, Object> map) {
-		dao.updateComment(map);
+	public void updateComment(CommentDTO commentDto) {
+		dao.updateComment(commentDto);
 	}
 	
 }
