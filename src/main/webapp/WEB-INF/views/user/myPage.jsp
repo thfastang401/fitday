@@ -25,10 +25,6 @@
 		<td> <sec:authentication property="principal.Nickname" /> </td>
 	</tr>
 	<tr>
-		<th> 비밀번호 : </th>
-		<td> <sec:authentication property="principal.Password" /> </td>
-	</tr>
-	<tr>
 		<th> 선호 운동 : </th>
 		<td> <sec:authentication property="principal.FitType" /> </td>
 	</tr> 
@@ -38,7 +34,7 @@
 	</tr>
 	   
 </table>
-      	<button onclick="location.href='/user/check'" class="btn btn-primary">수정</button>
+      	<button onclick="location.href='/user/check'" class="btn btn-primary">회원 정보 수정</button>
 
    
 
