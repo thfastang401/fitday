@@ -27,4 +27,6 @@ public interface BoardDAO {
 	void updateBoard(HashMap<String, Object> map);
 
 	List<BoardDTO> getAllMissionList();
+
+	void insertMission(BoardDTO dto);
 }

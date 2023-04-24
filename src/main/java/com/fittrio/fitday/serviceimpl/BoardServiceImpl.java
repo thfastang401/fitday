@@ -59,4 +59,9 @@ public class BoardServiceImpl implements BoardService {
 	//mission
 	@Override
 	public List<BoardDTO> getAllMissionList(){return dao.getAllMissionList();}
+
+	@Override
+	public void insertMission(BoardDTO dto) {
+		dao.insertMission(dto);
+	}
 }

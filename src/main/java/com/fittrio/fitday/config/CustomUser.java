@@ -24,7 +24,8 @@ public class CustomUser implements UserDetails{
 	 private String authority;
 	 private String goal;
 	 private String fitType;
-	
+	 private int userSeq;
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
@@ -78,6 +79,7 @@ public class CustomUser implements UserDetails{
             this.goal = user.getGoal();
             this.email = user.getEmail();
             this.password = user.getPassword();
+			this.userSeq = user.getUserSeq();
         
 	}
 	
@@ -134,9 +136,10 @@ public class CustomUser implements UserDetails{
 //	public void setPassword(String password) {
 //		this.password = password;
 //	}
-	
-	
 
+	public int getUserSeq() {
+		return userSeq;
 	}
+}
 
 

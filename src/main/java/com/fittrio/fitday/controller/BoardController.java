@@ -149,7 +149,19 @@ public class BoardController {
 		mv.setViewName("board/mission/list");
 		return mv;
 	}
-    
+
+	@GetMapping("/mission/form")
+	public String insertMission() {return "board/mission/form";}
+
+	@PostMapping("/mission/form")
+	public ModelAndView insertMission(BoardDTO dto){
+		ModelAndView mv = new ModelAndView();
+		boardService.insertMission(dto);
+		mv.setViewName("redirect:/board/mission/list");
+		return mv;
+	}
+
+
     
     
     

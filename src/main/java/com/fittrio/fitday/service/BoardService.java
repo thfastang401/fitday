@@ -23,4 +23,6 @@ public interface BoardService {
 
 	List<BoardDTO> getAllMissionList();
 
+	void insertMission(BoardDTO dto);
+
 }
