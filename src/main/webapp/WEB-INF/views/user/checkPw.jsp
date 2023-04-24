@@ -20,5 +20,5 @@
 <button class="" id="checkPwd"> 비밀번호 확인</button>
 
 </body>
-<script src="/js/checkPw.js"></script>
+<script src="/js/mypage/checkPw.js"></script>
 </html>
