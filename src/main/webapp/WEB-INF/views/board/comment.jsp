@@ -25,23 +25,12 @@
 						<input type="hidden" value="${nickName}" name="nickName" id="nickName">
 					</td>
 				</tr>
-				
-				<div id="commentArea">
-<%-- 					<c:forEach items="${commentList }" var="comment" varStatus="commentStatus"> --%>
-<%-- 							<c:set var="nickName" value="${commentNick[commentStatus.index]}"/> --%>
-<!-- 								<tr> -->
-<%-- 									<td>${nickName}&nbsp;&nbsp;${comment.date }&nbsp; --%>
-<%-- 									<input type="button" value="삭제" onclick="deleteCommentAjax(${board.boardSeq}, ${comment.commentSeq})"> --%>
-<!-- 									</td> -->
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<%-- 									<td>${comment.content}<br><br></td> --%>
-<!-- 								</tr> -->
-<%-- 					</c:forEach> --%>
-				<tr><td>
-				<div id="commentArea2">
-				
-				</div></td></tr>
+				<tr>
+					<td>
+						<div id="commentArea">
+						</div>
+					</td>
+				</tr>
 			</table>
 			</div>
 		</form>
@@ -93,7 +82,7 @@ window.onload = function(){
 	    success: function(data) {
 	    // 서버에서 받아온 데이터를 이용하여 댓글 목록을 생성하고 화면에 출력하는 코드
 	    	var comments =data; // JSON 형태의 데이터를 JavaScript 객체로 변환
-	    	var commentList = $("#commentArea2"); // 댓글 목록이 출력될 HTML 요소 선택
+	    	var commentList = $("#commentArea"); // 댓글 목록이 출력될 HTML 요소 선택
 	    	commentList.empty(); // 댓글 목록 초기화
 	    	if(comments.length==0){
 	    		commentList.append("<tr><td>댓글이 없습니다.</td></tr>");
@@ -119,13 +108,9 @@ window.onload = function(){
 	function updateCommentAjax(boardSeq, content, commentSeq){
 		var inputBox = $('<input type="text" name="updateContent" value="' + content + '">'); //content내용을 담고있는 input 박스만들기
 		var updateBtn = $('<input type="button" value="수정하기">');
-		var cancleBtn = $('<input type="button" value="수정취소">'); 
+		var cancleBtn = $('<input type="button" id="cancle" value="수정취소">'); 
 		
 		$('#contentArea'+commentSeq).empty().append(inputBox).append(updateBtn).append(cancleBtn);
-		
-// 		cancleBtn.on('click',function)(){
-			
-// 		}
 		
 		//수정하기 버튼 클릭했을때
 		updateBtn.on('click', function(){
@@ -157,6 +142,11 @@ window.onload = function(){
 				});
 			}
 		});
+		//수정취소 버튼 클릭했을때
+		cancleBtn.on('click',function(){
+			$('#contentArea'+commentSeq).empty().text(content); 
+		})
+		
 		
 	}
 	

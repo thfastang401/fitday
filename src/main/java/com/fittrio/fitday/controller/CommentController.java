@@ -64,11 +64,6 @@ public class CommentController {
 	//코멘트 수정
 	@PostMapping(value= {"/update"})
 	public @ResponseBody String updateComment(@RequestBody CommentDTO commentDto ) {
-		HashMap<String, Object> map = new HashMap<>();
-		System.out.println("댓글번호"+commentDto.getCommentSeq());
-		System.out.println("글 내용"+commentDto.getContent());
-//		map.put("content", content);
-//		map.put("commentSeq", commentSeq);
 		commentService.updateComment(commentDto);
 		return "success";
 	}

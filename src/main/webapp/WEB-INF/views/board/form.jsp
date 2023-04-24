@@ -26,16 +26,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td><input type="text" placeholder="제목을 입력하세요." name="title"></td>
+						<td><input type="text" placeholder="제목을 입력하세요." name="title" id="title"></td>
 					</tr>
 					<tr>
-						<td><textarea rows="20" cols="70" placeholder="내용을 입력하세요." name="content"></textarea> </td>
+						<td><textarea rows="20" cols="70" placeholder="내용을 입력하세요." name="content" id="content"></textarea> </td>
 					</tr>
 					<tr>
 						<td>
 							<input type="hidden" name="userSeq" value="1"><!-- 임시 회원번호 -->
 							<input type="button" value="취소" onclick="cancelForm()">
-							<input type="submit" value="등록">
+							<input type="submit" value="등록" onclick="checkForm()">
 						</td>
 					</tr>
 				</table>
@@ -48,6 +48,11 @@
 		if(check==true){
 			location.href="/board/list";
 		}
+	}
+	
+	function checkForm(){
+		var title = $('#title').val
+		confirm(title);
 	}
 </script>
 </body>
