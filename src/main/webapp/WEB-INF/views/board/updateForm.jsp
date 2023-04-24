@@ -43,7 +43,7 @@ width:500px;
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
 				<td>
 					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})">
-					<input type="submit" value="등록하기">
+					<input type="submit" value="등록하기" onclick="checkForm(${board.boardSeq})">
 				</td>
 			</tr>
 		</table>
@@ -53,6 +53,15 @@ width:500px;
 	//목록버튼
 	function goBack(boardSeq){
 		location.href="${pageContext.request.contextPath}/board/detail/"+boardSeq;
+	}
+	
+	function checkForm(boardSeq){
+		var title = $("#title").val();
+		var content = $("#content").val();
+		//공백 검색
+		if(title.trim().length === 0 ||content.trim().length === 0){
+			alert('내용을 입력하세요');
+		}				
 	}
 </script>
 </body>

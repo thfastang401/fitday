@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>글 작성</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div>
-		<form action="<%=request.getContextPath()%>/board/form" method="post">
+		<form action="<%=request.getContextPath()%>" id="f" method="post">
 			<div>
 				<table>
 					<tr>
@@ -50,10 +51,17 @@
 		}
 	}
 	
-	function checkForm(){
-		var title = $('#title').val
-		confirm(title);
-	}
+		function checkForm(){
+			var title = $("#title").val();
+			var content = $("#content").val();
+			//공백 검색
+			if(title.trim().length === 0 ||content.trim().length === 0){
+				alert('내용을 입력하세요');
+			}else{
+				$("form").attr("action","/board/form");
+			}					
+		}
+
 </script>
 </body>
 </html>
