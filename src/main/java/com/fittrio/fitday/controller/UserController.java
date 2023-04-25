@@ -72,7 +72,6 @@ public class UserController {
     public String mypageInfo(@ModelAttribute UserDTO dto , @AuthenticationPrincipal CustomUser customUser) {
     	//DB 수정
     	dto.setEmail(customUser.getEmail());
-    	dto.setPassword(customUser.getPassword());
     	service.updateUserInfo(dto);
     	//인증정보 수정
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

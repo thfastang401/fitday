@@ -23,4 +23,6 @@ public interface UserDAO {
 	void updateUserInfo(UserDTO dto);
 
 	UserDTO findUserByNickname(String nickname);
+
+	void updatePasswordInfo(UserDTO dto);
 }

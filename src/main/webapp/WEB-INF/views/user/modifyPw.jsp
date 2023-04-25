@@ -19,12 +19,15 @@
 			</tr>
 			<tr>
 				<th><label class="">새 비밀번호</label></th>
-				<td><input type="password" placeholder="새 비밀번호 " id="newPw" name="newPw" class="pw"><br></td>
+				<td>
+					<input type="password" placeholder="새 비밀번호 " id="newPw" name="newPw" class="pw" onblur="newPw()">
+					<br><span id="checkNewPw"></span>
+				</td>
 			</tr>
 			<tr>
 				<th><label class="">새 비밀번호 확인</label></th>
 				<td>
-					<input type="password" placeholder="새 비밀번호 확인" id="newPwCheck" name="newPwCheck" class="pw">
+					<input type="password" placeholder="새 비밀번호 확인" id="newPwCheck" name="newPwCheck" class="pw" onblur="newPwSameCheck()" onkeydown="checkEnter(event)">
 					<br><span id="checkResult"></span>
 				</td>
 				
@@ -34,7 +37,8 @@
 			</div>
 	</div>
 </div>
-<button class="" id="checkPwd"> 비밀번호 변경 </button>
+<button class="" id="modifyPwd"> 비밀번호 변경 </button>
+<button class="" id="" onclick="location.href='/user/mypage'"> 취소 </button>
 
 </body>
 <script src="/js/mypage/modifyPw.js"></script>

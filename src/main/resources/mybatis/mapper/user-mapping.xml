@@ -39,9 +39,16 @@
 	
 	<update id="updateUserInfo" parameterType="userDto">
 		UPDATE user
-		SET nickname=#{nickname}, password=#{password}, fit_type=#{fitType}, goal=#{goal}
+		SET nickname=#{nickname}, fit_type=#{fitType}, goal=#{goal}
 		WHERE email=#{email}
 	</update>
+	
+	<update id="updatePasswordInfo" parameterType="userDto">
+		UPDATE user
+		SET password=#{password}
+		WHERE email=#{email}
+	</update>
+	
 
 
 </mapper>
