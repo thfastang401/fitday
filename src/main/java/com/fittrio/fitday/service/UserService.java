@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fittrio.fitday.config.CustomUser;
+import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.dto.UserDTO;
 
 public interface UserService {
@@ -26,6 +27,9 @@ public interface UserService {
 	UserDTO findUserByNickname(String nickname);
 	
 	boolean checkPassword (String Email, String password);
-	
+
+	List<String> getNickNameJoinBoard(List<BoardDTO> boardList);
+
 	void updatePasswordInfo(UserDTO dto);
+
 }

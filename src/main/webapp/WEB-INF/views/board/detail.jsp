@@ -43,6 +43,7 @@
 		</table>
 	</form>
 	</div>
+	<!-- 댓글 불러오기 -->
 	<%@ include file="../board/comment.jsp" %>
 <script type="text/javascript">
 	//목록버튼

@@ -43,12 +43,25 @@
 		WHERE email=#{email}
 	</update>
 	
+
+	<select id="getNickNameJoinBoard" resultType="String" parameterType="boarddto">
+		SELECT nickname FROM user u
+		JOIN board b
+		ON u.user_seq = b.user_seq
+		where board_seq in
+		<foreach item="board" collection="list" open="(" separator="," close=")">
+			#{board.boardSeq}
+		</foreach>
+		order by board_seq
+	</select>
+
 	<update id="updatePasswordInfo" parameterType="userDto">
 		UPDATE user
 		SET password=#{password}
 		WHERE email=#{email}
 	</update>
 	
+
 
 
 </mapper>

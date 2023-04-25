@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.fittrio.fitday.config.CustomUser;
 import com.fittrio.fitday.dao.UserDAO;
+import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.dto.UserDTO;
 import com.fittrio.fitday.service.UserService;
 
@@ -76,9 +77,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<String> getNickNameJoinBoard(List<BoardDTO> boardList) {
+		return dao.getNickNameJoinBoard(boardList);
+
+
+	@Override
 	public void updatePasswordInfo(UserDTO dto) {
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 		dao.updatePasswordInfo(dto);
+
 	}
 	 
 }
