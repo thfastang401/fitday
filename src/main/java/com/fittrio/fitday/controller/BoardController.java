@@ -44,7 +44,12 @@ public class BoardController {
     	int boardCnt = boardService.getAllBoardCnt();//총 게시글 갯수 가져오기
 //    	int limit = *1; //페이징
     	List<BoardDTO> boardList= boardService.getAllBoardList();//모든 게시글 내용 가져오기
-    	
+    	List<String> nickNameList = userService.getNickNameJoinBoard(boardList);
+    	for(String s : nickNameList) {
+    		System.out.println(s);
+    	}
+    	System.out.println("Aaa");
+    	mv.addObject("nickNameList",nickNameList);
     	mv.addObject("boardList",boardList);
     	mv.setViewName("board/list");
     	return mv;
@@ -57,9 +62,7 @@ public class BoardController {
     	boardService.updateViewCount(boardSeq);
     	BoardDTO dto = boardService.getOneBoard(boardSeq);//게시글 내용 가져오기
     	String boardNickName = userService.getNickNameByUserSeq(dto.getUserSeq());//작성자 닉네임 가져오기
-//    	List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);//댓글 목록 가져오기
     	List<String> commentNickName = userService.getCommentNickNameByBoardSeq(boardSeq);
-//    	mv.addObject("commentList",commentList);
     	mv.addObject("nickName",boardNickName);
     	mv.addObject("commentNick",commentNickName);
     	mv.addObject("board", dto);

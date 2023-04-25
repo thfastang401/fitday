@@ -14,9 +14,6 @@
 </style>
 </head>
 <body>
-<%-- <jsp:include page="../header.jsp"> --%>
-<%--     <jsp:param value="false" name="login"/> --%>
-<%-- </jsp:include> --%>
 	<div id="title">
 		<h2>커뮤니티 게시판</h2>
 	</div>
@@ -30,17 +27,15 @@
 				<th>작성일</th>
 				<th>조회수</th>
 			</tr>
-			<c:forEach items="${boardList}" var="list">
+			<c:forEach items="${boardList}" var="list" varStatus="nickStatus">
+			<c:set var="nickName" value="${nickNameList[nickStatus.index]}"/>
 			<c:set var="i" value="${i+1}" />
 				<tr>
 					<td>${i}</td>
-					<td>[${list.category}]</td>
-					<td><a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>
-					<td>
-<%-- 						<fmt:parseDate var="parseDate" value="${list.date}" pattern="yyyy-MM-dd hh:mm:ss"/> --%>
-<%-- 						<fmt:formatDate value="${parseDate}" pattern="yyyy-MM-dd"/> --%>
-						${list.date }
-						</td>
+					<td>[${list.category}]
+						<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>
+					<td>${nickName}</td>
+					<td>${list.date}</td>
 					<td>${list.viewCount}</td>
 				</tr>
 			</c:forEach>

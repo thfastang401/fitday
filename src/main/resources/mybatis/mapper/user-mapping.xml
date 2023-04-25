@@ -42,6 +42,17 @@
 		SET nickname=#{nickname}, password=#{password}, fit_type=#{fitType}, goal=#{goal}
 		WHERE email=#{email}
 	</update>
+	
+	<select id="getNickNameJoinBoard" resultType="String" parameterType="boarddto">
+		SELECT nickname FROM user u
+		JOIN board b
+		ON u.user_seq = b.user_seq
+		where board_seq in
+		<foreach item="board" collection="list" open="(" separator="," close=")">
+			#{board.boardSeq}
+		</foreach>
+		order by board_seq
+	</select>
 
 
 </mapper>
