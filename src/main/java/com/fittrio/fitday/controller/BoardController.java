@@ -45,10 +45,6 @@ public class BoardController {
 //    	int limit = *1; //페이징
     	List<BoardDTO> boardList= boardService.getAllBoardList();//모든 게시글 내용 가져오기
     	List<String> nickNameList = userService.getNickNameJoinBoard(boardList);
-    	for(String s : nickNameList) {
-    		System.out.println(s);
-    	}
-    	System.out.println("Aaa");
     	mv.addObject("nickNameList",nickNameList);
     	mv.addObject("boardList",boardList);
     	mv.setViewName("board/list");

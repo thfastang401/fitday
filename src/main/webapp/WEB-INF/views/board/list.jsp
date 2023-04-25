@@ -31,11 +31,11 @@
 			<c:set var="nickName" value="${nickNameList[nickStatus.index]}"/>
 			<c:set var="i" value="${i+1}" />
 				<tr>
-					<td>${i}</td>
+					<td>${i}&nbsp;</td>
 					<td>[${list.category}]
 						<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>
-					<td>${nickName}</td>
-					<td>${list.date}</td>
+					<td>&nbsp;${nickName}&nbsp;&nbsp;</td>
+					<td>${list.date}&nbsp;&nbsp;</td>
 					<td>${list.viewCount}</td>
 				</tr>
 			</c:forEach>
