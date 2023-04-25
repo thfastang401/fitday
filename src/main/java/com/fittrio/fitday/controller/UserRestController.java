@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserRestController {
+	
     @Autowired
     @Qualifier("userService")
     UserService service;
@@ -50,9 +51,14 @@ public class UserRestController {
     }
     
     //비밀번호 변경
+    @Transactional
     @PostMapping("/user/mypage/modifyPw")
-    public String modifyPwd(@RequestParam("password") String password, @RequestParam("password") String newPw) {
-    	return "";
+    public boolean modifyPwd(@RequestParam("password") String password, @AuthenticationPrincipal CustomUser customUser) {
+    	UserDTO dto = new UserDTO();
+    	dto.setEmail(customUser.getEmail());
+    	dto.setPassword(password);
+    	service.updatePasswordInfo(dto);
+    	return true;
     }
     
     

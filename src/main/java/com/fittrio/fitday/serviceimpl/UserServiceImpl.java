@@ -74,5 +74,11 @@ public class UserServiceImpl implements UserService {
 		boolean matches = passwordEncoder.matches(password, realPassword);
 		return matches;
 	}
+
+	@Override
+	public void updatePasswordInfo(UserDTO dto) {
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		dao.updatePasswordInfo(dto);
+	}
 	 
 }

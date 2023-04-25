@@ -27,5 +27,5 @@ public interface UserService {
 	
 	boolean checkPassword (String Email, String password);
 	
-
+	void updatePasswordInfo(UserDTO dto);
 }
