@@ -8,8 +8,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<jsp:include page="../header.jsp"/>
 	<div>
-		<form action="<%=request.getContextPath()%>" id="f" method="post">
+		<form action="<%=request.getContextPath()%>" method="post">
 			<div>
 				<table>
 					<tr>
@@ -36,7 +37,7 @@
 						<td>
 							<input type="hidden" name="userSeq" value="1"><!-- 임시 회원번호 -->
 							<input type="button" value="취소" onclick="cancelForm()">
-							<input type="submit" value="등록" onclick="checkForm()">
+							<input type="submit" value="등록" id="submitBtn">
 						</td>
 					</tr>
 				</table>
@@ -51,16 +52,18 @@
 		}
 	}
 	
-		function checkForm(){
+	$("#submitBtn").click(function(e){
 			var title = $("#title").val();
 			var content = $("#content").val();
 			//공백 검색
 			if(title.trim().length === 0 ||content.trim().length === 0){
 				alert('내용을 입력하세요');
+				e.preventDefault();
 			}else{
 				$("form").attr("action","/board/form");
 			}					
-		}
+		
+	});
 
 </script>
 </body>

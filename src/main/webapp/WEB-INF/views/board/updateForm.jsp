@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 #title{
 width:500px;
@@ -37,13 +38,14 @@ width:500px;
 			</tr>
 			<tr>
 				<td><hr><br>
-				<textarea rows="20" cols="70" name="content"> ${board.content}</textarea><br><br></td>
+				<textarea rows="20" cols="70" id="content" name="content">${board.content}</textarea><br><br></td>
 			</tr>
 			<tr>
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
 				<td>
+					<input type="hidden" value="${board.boardSeq}" id="boardSeq" name="boardSeq">
 					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})">
-					<input type="submit" value="등록하기" onclick="checkForm(${board.boardSeq})">
+					<input type="submit" value="등록하기" id="submitBtn">
 				</td>
 			</tr>
 		</table>
@@ -55,14 +57,19 @@ width:500px;
 		location.href="${pageContext.request.contextPath}/board/detail/"+boardSeq;
 	}
 	
-	function checkForm(boardSeq){
+	$("#submitBtn").click(function(e){
 		var title = $("#title").val();
 		var content = $("#content").val();
+		var boardSeq = $("#boardSeq").val();
+		console.log(title);
+		console.log(content);
 		//공백 검색
 		if(title.trim().length === 0 ||content.trim().length === 0){
 			alert('내용을 입력하세요');
-		}				
-	}
+			e.preventDefault();
+		}	
+		
+	});
 </script>
 </body>
 </html>
