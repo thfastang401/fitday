@@ -39,10 +39,11 @@
 	
 	<update id="updateUserInfo" parameterType="userDto">
 		UPDATE user
-		SET nickname=#{nickname}, password=#{password}, fit_type=#{fitType}, goal=#{goal}
+		SET nickname=#{nickname}, fit_type=#{fitType}, goal=#{goal}
 		WHERE email=#{email}
 	</update>
 	
+
 	<select id="getNickNameJoinBoard" resultType="String" parameterType="boarddto">
 		SELECT nickname FROM user u
 		JOIN board b
@@ -53,6 +54,14 @@
 		</foreach>
 		order by board_seq
 	</select>
+
+	<update id="updatePasswordInfo" parameterType="userDto">
+		UPDATE user
+		SET password=#{password}
+		WHERE email=#{email}
+	</update>
+	
+
 
 
 </mapper>

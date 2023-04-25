@@ -27,8 +27,9 @@ public interface UserService {
 	UserDTO findUserByNickname(String nickname);
 	
 	boolean checkPassword (String Email, String password);
-	
-//	List<String> getNickNameJoinBoard(BoardDTO boardDTO);
 
 	List<String> getNickNameJoinBoard(List<BoardDTO> boardList);
+
+	void updatePasswordInfo(UserDTO dto);
+
 }

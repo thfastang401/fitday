@@ -17,7 +17,7 @@ function checkEnter(e) {
                 data: {'checkPassword': checkPassword},
                 datatype: "text"
             }).done(function(result){
-                console.log(result);
+                /*console.log(result);*/
                 if(result){
                    /*  console.log("비밀번호 일치"); */
                     window.location.href="/user/mypage/form";

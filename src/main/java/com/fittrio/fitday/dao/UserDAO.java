@@ -26,4 +26,6 @@ public interface UserDAO {
 	UserDTO findUserByNickname(String nickname);
 	
 	List<String> getNickNameJoinBoard(List<BoardDTO> boardList);
+
+	void updatePasswordInfo(UserDTO dto);
 }

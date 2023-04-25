@@ -75,15 +75,17 @@ public class UserServiceImpl implements UserService {
 		boolean matches = passwordEncoder.matches(password, realPassword);
 		return matches;
 	}
-	
-//	@Override
-//	public List<String> getNickNameJoinBoard(BoardDTO boardDTO) {
-//		return dao.getNickNameJoinBoard(boardDTO);
-//	}
 
 	@Override
 	public List<String> getNickNameJoinBoard(List<BoardDTO> boardList) {
 		return dao.getNickNameJoinBoard(boardList);
+
+
+	@Override
+	public void updatePasswordInfo(UserDTO dto) {
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		dao.updatePasswordInfo(dto);
+
 	}
 	 
 }
