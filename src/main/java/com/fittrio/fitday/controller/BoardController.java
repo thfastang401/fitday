@@ -46,10 +46,6 @@ public class BoardController {
     	int limit = (page - 1)*10; //페이징
     	List<BoardDTO> boardList= boardService.getAllBoardList(limit);//모든 게시글 내용 가져오기
     	List<String> nickNameList = userService.getNickNameJoinBoard(boardList);
-    	for(String s : nickNameList) {
-    		System.out.println(s);
-    	}
-    	
     	mv.addObject("boardCnt", boardCnt);
     	mv.addObject("nickNameList",nickNameList);
     	mv.addObject("boardList",boardList);

@@ -18,7 +18,7 @@ public class SecurityConfig {
 		 http.csrf().disable().cors().disable()      // csrf 보안 해제
 	                .authorizeHttpRequests()
 	                	.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() 
-	                	.requestMatchers("/board/detail/*" ,"/user/mypage","/user/mypage/*").authenticated() // 로그인해야 접근 가능한 페이지
+	                	.requestMatchers("/board/detail/*" ,"/user/mypage","/user/mypage/*","/board/form").authenticated() // 로그인해야 접근 가능한 페이지
 	                    .anyRequest().permitAll()	// 요청 모두 허용
 	                .and()
 	                .formLogin()	// form 방식 로그인 사용

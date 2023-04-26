@@ -19,7 +19,8 @@
 				<tr>
 					<td>
 						<input type="text" placeholder="댓글을 입력하세요." name="content" id="content">&nbsp;
-						<input type="button" value="등록" onclick="insertCommentAjax(${board.boardSeq})">
+						<input type="checkbox" value="1" name="secret">비밀댓글
+						<input type="submit" value="등록" onclick="insertCommentAjax(${board.boardSeq})">
 						<input type="hidden" value=1 name="userSeq" id="userSeq"><!-- 임시 댓글 유저 번호 -->
 						<input type="hidden" value="${board.boardSeq}" name="boardSeq" id="boardSeq">
 						<input type="hidden" value="${nickName}" name="nickName" id="nickName">
@@ -46,6 +47,7 @@ window.onload = function(){
 	function insertCommentAjax(boardSeq) {
 		const userSeq = $("#userSeq").val();
 		const content = $("#content").val();
+		const secret = $("#secret").val();
 		if(content.trim().length === 0){
 			alert("내용을 입력하세요.");
 		}else{
