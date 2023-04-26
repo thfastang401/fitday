@@ -23,28 +23,29 @@ public class FileController {
 
         try {
             // 업로드된 파일을 저장할 디렉토리 생성
-            File uploadDir = new File("uploads");
+            File uploadDir = new File("src/main/resources/uploads");
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
+
 
             // 업로드된 파일을 실제 디렉토리에 저장
             File uploadedFile = new File(uploadDir.getAbsolutePath(), file.getOriginalFilename());
             file.transferTo(uploadedFile);
 
             // 파일 업로드 성공 시 메시지 전달
-            redirectAttributes.addFlashAttribute("message", "File uploaded successfully!");
+            redirectAttributes.addFlashAttribute("message", "파일이 성공적으로 업로드 되었습니다!");
             return "redirect:/board/mission/form";
         } catch (IOException e) {
             // 파일 업로드 실패 시 에러 메시지 전달
-            redirectAttributes.addFlashAttribute("message", "File upload failed: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("message", "파일 업로드에 실패하였습니다.: " + e.getMessage());
             return "redirect:/board/mission/form";
         }
     }
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public String handleMaxSizeException(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("message", "File size should be less than 20MB");
+        redirectAttributes.addFlashAttribute("message", "10MB 이하 파일만 업로드 가능합니다.");
         return "redirect:/board/mission/form";
     }
 }
