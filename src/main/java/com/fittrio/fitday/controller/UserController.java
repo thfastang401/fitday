@@ -86,5 +86,10 @@ public class UserController {
     	
     	return "redirect:/user/mypage";
     }
-    
+  //회원 탈퇴
+    @GetMapping("/user/mypage/deactivate")
+    public String userDeactivate(@AuthenticationPrincipal CustomUser customUser) {
+    	service.deleteUserByUserSeq(customUser.getUserSeq());
+    	return "redirect:/logout";
+    }
 }

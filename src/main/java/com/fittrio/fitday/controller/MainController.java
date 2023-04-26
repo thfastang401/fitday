@@ -22,6 +22,10 @@ public class MainController {
         return "main";
     }
 	
+	@GetMapping("/error")
+	public String errorView() {
+		return "error";
+	}
 	
 	
 	

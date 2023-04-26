@@ -5,8 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="/js/mypage/userDelete.js"></script>
 <meta charset="UTF-8">
 <title>${currentUser.getNickname()}님의 MYPAGE</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -35,6 +37,11 @@
 	   
 </table>
       	<button onclick="location.href='/user/check'" class="btn btn-primary">회원 정보 수정</button>
+      	
+      	
+      	<div>
+	      	<button onclick="userDelete()"  class="btn btn-primary">회원 탈퇴</button>
+      	</div>
 
    
 
