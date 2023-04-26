@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<String> getNickNameJoinBoard(List<BoardDTO> boardList) {
 		return dao.getNickNameJoinBoard(boardList);
-
+	}
 
 	@Override
 	public void updatePasswordInfo(UserDTO dto) {

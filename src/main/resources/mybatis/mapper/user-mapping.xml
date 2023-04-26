@@ -52,7 +52,7 @@
 		<foreach item="board" collection="list" open="(" separator="," close=")">
 			#{board.boardSeq}
 		</foreach>
-		order by board_seq
+		order by board_seq desc
 	</select>
 
 	<update id="updatePasswordInfo" parameterType="userDto">
