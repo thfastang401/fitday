@@ -31,4 +31,17 @@
 	content=#{content}
 	where comment_seq = #{commentSeq}
 </update>
+
+<delete id="deleteCommentByUserSeq" parameterType="int">
+	delete from comment where user_seq=#{userSeq}
+</delete>
+
+<delete id="deleteBoardCommentByUserSeq" parameterType="int">
+	delete c FROM comment c 
+	JOIN board b ON c.board_seq = b.board_seq
+	where b.user_seq=#{userSeq}
+</delete>
+
+
+
 </mapper>

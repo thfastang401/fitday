@@ -71,7 +71,10 @@
 <!-- 			#{comment.commentSeq} -->
 <!-- 		</foreach> -->
 	</select>
-
+  
+	<delete id="deleteUserByUserSeq" parameterType="int">
+		delete from user where user_seq=#{userSeq}
+	</delete>
 
 
 </mapper>

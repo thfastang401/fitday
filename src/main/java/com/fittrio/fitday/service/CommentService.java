@@ -10,4 +10,6 @@ public interface CommentService {
     void insertComment(CommentDTO commentDto);
     void deleteComment(int commentSeq);
     void updateComment(CommentDTO commentDto);
+    void deleteCommentByUserSeq(int userSeq);
+    void deleteBoardCommentByUserSeq(int userSeq);
 }

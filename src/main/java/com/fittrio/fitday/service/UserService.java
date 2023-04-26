@@ -34,5 +34,6 @@ public interface UserService {
 	void updatePasswordInfo(UserDTO dto);
 
 	List<String> getNickNameJoinComment(int boardSeq);
-
+	
+	void deleteUserByUserSeq(int UserSeq);
 }

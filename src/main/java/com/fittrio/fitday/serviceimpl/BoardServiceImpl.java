@@ -64,4 +64,9 @@ public class BoardServiceImpl implements BoardService {
 	public void insertMission(BoardDTO dto) {
 		dao.insertMission(dto);
 	}
+
+	@Override
+	public void deleteBoardByUserSeq(int userSeq) {
+		dao.deleteBoardByUserSeq(userSeq);
+	}
 }
