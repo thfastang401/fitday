@@ -26,8 +26,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> getAllBoardList() {
-		return dao.getAllBoardList();
+	public List<BoardDTO> getAllBoardList(int limit) {
+		return dao.getAllBoardList(limit);
 	}
 
 	@Override

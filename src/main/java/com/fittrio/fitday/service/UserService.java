@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fittrio.fitday.config.CustomUser;
 import com.fittrio.fitday.dto.BoardDTO;
+import com.fittrio.fitday.dto.CommentDTO;
 import com.fittrio.fitday.dto.UserDTO;
 
 public interface UserService {
@@ -31,6 +32,8 @@ public interface UserService {
 	List<String> getNickNameJoinBoard(List<BoardDTO> boardList);
 
 	void updatePasswordInfo(UserDTO dto);
+
+	List<String> getNickNameJoinComment(int boardSeq);
 	
 	void deleteUserByUserSeq(int UserSeq);
 }

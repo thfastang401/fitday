@@ -52,7 +52,7 @@
 		<foreach item="board" collection="list" open="(" separator="," close=")">
 			#{board.boardSeq}
 		</foreach>
-		order by board_seq
+		order by board_seq desc
 	</select>
 
 	<update id="updatePasswordInfo" parameterType="userDto">
@@ -61,11 +61,20 @@
 		WHERE email=#{email}
 	</update>
 	
+	<select id="getNickNameJoinComment" resultType="String" parameterType="int">
+		SELECT nickname FROM user u
+		JOIN comment c
+		ON u.user_seq = c.user_seq
+		where board_seq = #{boardSeq} 
+<!-- 		and comment_seq in -->
+<!-- 		<foreach item="comment" collection="list" open="(" separator="," close=")"> -->
+<!-- 			#{comment.commentSeq} -->
+<!-- 		</foreach> -->
+	</select>
+  
 	<delete id="deleteUserByUserSeq" parameterType="int">
 		delete from user where user_seq=#{userSeq}
 	</delete>
-	
-
 
 
 </mapper>
