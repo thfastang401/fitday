@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.fittrio.fitday.dto.BoardDTO;
+import com.fittrio.fitday.dto.CommentDTO;
 import com.fittrio.fitday.dto.UserDTO;
 
 @Mapper
@@ -23,4 +25,12 @@ public interface UserDAO {
 	void updateUserInfo(UserDTO dto);
 
 	UserDTO findUserByNickname(String nickname);
+	
+	List<String> getNickNameJoinBoard(List<BoardDTO> boardList);
+
+	void updatePasswordInfo(UserDTO dto);
+
+	List<String> getNickNameJoinComment(int boardSeq);
+	
+	void deleteUserByUserSeq(int UserSeq);
 }

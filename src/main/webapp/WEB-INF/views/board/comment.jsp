@@ -19,8 +19,9 @@
 				<tr>
 					<td>
 						<input type="text" placeholder="댓글을 입력하세요." name="content" id="content">&nbsp;
-						<input type="button" value="등록" onclick="insertCommentAjax(${board.boardSeq})">
-						<input type="hidden" value=1 name="userSeq" id="userSeq"><!-- 임시 댓글 유저 번호 -->
+						<input type="checkbox" value="1" name="secret">비밀댓글 
+						<input type="submit" value="등록" onclick="insertCommentAjax(${board.boardSeq})">
+						<input type="hidden" value="${currentUser.getUserSeq()}" name="userSeq" id="userSeq"><!-- 임시 댓글 유저 번호 -->
 						<input type="hidden" value="${board.boardSeq}" name="boardSeq" id="boardSeq">
 						<input type="hidden" value="${nickName}" name="nickName" id="nickName">
 					</td>
@@ -46,6 +47,7 @@ window.onload = function(){
 	function insertCommentAjax(boardSeq) {
 		const userSeq = $("#userSeq").val();
 		const content = $("#content").val();
+		const secret = $("#secret").val();
 		if(content.trim().length === 0){
 			alert("내용을 입력하세요.");
 		}else{
@@ -74,27 +76,28 @@ window.onload = function(){
 	
 	//댓글 리스트
 	function commentList(boardSeq) {
-		const nickName = $("#nickName").val();
 	  $.ajax({
 	    url: "/comment/list/" + boardSeq,
 	    type: "GET",
 	    dataType: "json",
 	    success: function(data) {
 	    // 서버에서 받아온 데이터를 이용하여 댓글 목록을 생성하고 화면에 출력하는 코드
-	    	var comments =data; // JSON 형태의 데이터를 JavaScript 객체로 변환
-	    	var commentList = $("#commentArea"); // 댓글 목록이 출력될 HTML 요소 선택
-	    	commentList.empty(); // 댓글 목록 초기화
-	    	if(comments.length==0){
-	    		commentList.append("<tr><td>댓글이 없습니다.</td></tr>");
+	    	var commentList = data.commentList; // 댓글 리스트
+			var commentNicknameList = data.commentNicknameList; // 댓글 작성자 리스트
+	    	var commentArea = $("#commentArea"); // 댓글 목록이 출력될 HTML 요소 선택
+	    	commentArea.empty(); // 댓글 목록 초기화
+	    	if(commentList.length==0){//댓글이 없을 경우 append() 사용해서 문구 추가하기
+	    		commentArea.append("<tr><td>댓글이 없습니다.</td></tr>");
 	    	}else{
-		    	for(var i=0; i<comments.length; i++) {
-		    	  var comment = comments[i];
-		    	  var html = "<tr><td>" + nickName + "&nbsp;" + comment.date + "&nbsp;&nbsp;"+
+		    	for(var i=0; i<commentList.length; i++) {
+		    	  var comment = commentList[i];
+				  var commentNickname = commentNicknameList[i];
+		    	  var html = "<tr><td>" + commentNickname + "&nbsp;" + comment.date + "&nbsp;&nbsp;"+
 		    	  "<input type='button' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;"  + 
 		    	  "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'>"  + 
 		    	  			"</td></tr>" + 
 		    	             "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
-		    	  commentList.append(html); // 댓글 목록에 댓글 HTML 추가
+		    	  commentArea.append(html); // 댓글 목록에 댓글 HTML 추가
 		    	}	    		
 	    	}
 	    },

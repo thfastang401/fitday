@@ -12,8 +12,10 @@
 		select count(*) from board
 	</select>
 
-	<select id="getAllBoardList" resultType="boarddto">
+	<select id="getAllBoardList" resultType="boarddto" parameterType="int">
 		select * from board
+		order by board_seq desc
+		limit #{limit},10
 	</select>
 	
 	<select id="getOneBoard" resultType="boarddto" parameterType="int">
@@ -50,4 +52,8 @@
 		insert into board(user_seq,title,content,DATE,board_type,file)
 		values(#{userSeq},#{title},#{content},now(),'mission',#{file})
 	</insert>
+	
+	<delete id="deleteBoardByUserSeq" parameterType="int">
+		delete from board where user_seq=#{userSeq}
+	</delete>
 </mapper>

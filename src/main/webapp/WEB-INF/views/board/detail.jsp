@@ -43,11 +43,12 @@
 		</table>
 	</form>
 	</div>
+	<!-- 댓글 불러오기 -->
 	<%@ include file="../board/comment.jsp" %>
 <script type="text/javascript">
 	//목록버튼
 	function goList(){
-		location.href="${pageContext.request.contextPath}/board/list";
+		location.href="${pageContext.request.contextPath}/board/list/1";
 	}
 	//삭제버튼
 	function deleteBoard(boardSeq){

@@ -9,7 +9,7 @@ public interface BoardService {
 
 	int getAllBoardCnt();
 
-	List<BoardDTO> getAllBoardList();
+	List<BoardDTO> getAllBoardList(int limit);
 
 	BoardDTO getOneBoard(int boardSeq);
 
@@ -24,5 +24,7 @@ public interface BoardService {
 	List<BoardDTO> getAllMissionList();
 
 	void insertMission(BoardDTO dto);
+	
+	void deleteBoardByUserSeq(int userSeq);
 
 }

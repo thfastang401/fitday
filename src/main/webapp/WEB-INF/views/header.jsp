@@ -20,7 +20,7 @@ height: 190px;
 <div id="header">
 	<h1><a href="<%=request.getContextPath()%>/">FITDAY</a></h1>
 	<p>
-		<a href="<%=request.getContextPath()%>/board/list">커뮤니티</a>
+		<a href="<%=request.getContextPath()%>/board/list/1">커뮤니티</a>
 	</p>
 	<%-- <c:choose>
 		<c:when test="${not empty currentUser}"> --%>

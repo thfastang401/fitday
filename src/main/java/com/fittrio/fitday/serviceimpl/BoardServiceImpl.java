@@ -26,8 +26,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> getAllBoardList() {
-		return dao.getAllBoardList();
+	public List<BoardDTO> getAllBoardList(int limit) {
+		return dao.getAllBoardList(limit);
 	}
 
 	@Override
@@ -63,5 +63,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertMission(BoardDTO dto) {
 		dao.insertMission(dto);
+	}
+
+	@Override
+	public void deleteBoardByUserSeq(int userSeq) {
+		dao.deleteBoardByUserSeq(userSeq);
 	}
 }

@@ -11,7 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fittrio.fitday.config.CustomUser;
+import com.fittrio.fitday.dao.BoardDAO;
+import com.fittrio.fitday.dao.CommentDAO;
 import com.fittrio.fitday.dao.UserDAO;
+import com.fittrio.fitday.dto.BoardDTO;
+import com.fittrio.fitday.dto.CommentDTO;
 import com.fittrio.fitday.dto.UserDTO;
 import com.fittrio.fitday.service.UserService;
 
@@ -23,6 +27,12 @@ public class UserServiceImpl implements UserService {
 	
     @Autowired
     UserDAO dao;
+    
+    @Autowired
+    BoardDAO boardDao;
+
+    @Autowired
+    CommentDAO commentDao;
 
 	@Override
 	public String getNickNameByUserSeq(int userSeq) {
@@ -73,6 +83,29 @@ public class UserServiceImpl implements UserService {
 		String realPassword = dao.findUserByEmail(Email).getPassword();
 		boolean matches = passwordEncoder.matches(password, realPassword);
 		return matches;
+	}
+
+	@Override
+	public List<String> getNickNameJoinBoard(List<BoardDTO> boardList) {
+		return dao.getNickNameJoinBoard(boardList);
+	}
+
+	@Override
+	public void updatePasswordInfo(UserDTO dto) {
+		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+		dao.updatePasswordInfo(dto);
+
+	}
+
+	@Override
+	public List<String> getNickNameJoinComment(int boardSeq) {
+		return dao.getNickNameJoinComment(boardSeq);
+}
+	public void deleteUserByUserSeq(int UserSeq) {
+		commentDao.deleteBoardCommentByUserSeq(UserSeq);
+		commentDao.deleteCommentByUserSeq(UserSeq);
+		boardDao.deleteBoardByUserSeq(UserSeq);
+		dao.deleteUserByUserSeq(UserSeq);
 	}
 	 
 }
