@@ -28,4 +28,6 @@ public interface UserDAO {
 	List<String> getNickNameJoinBoard(List<BoardDTO> boardList);
 
 	void updatePasswordInfo(UserDTO dto);
+	
+	void deleteUserByUserSeq(int UserSeq);
 }

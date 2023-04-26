@@ -61,6 +61,10 @@
 		WHERE email=#{email}
 	</update>
 	
+	<delete id="deleteUserByUserSeq" parameterType="int">
+		delete from user where user_seq=#{userSeq}
+	</delete>
+	
 
 
 
