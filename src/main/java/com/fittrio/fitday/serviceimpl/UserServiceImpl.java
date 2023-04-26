@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 	public List<String> getNickNameJoinBoard(List<BoardDTO> boardList) {
 		return dao.getNickNameJoinBoard(boardList);
 
-
+	}
 	@Override
 	public void updatePasswordInfo(UserDTO dto) {
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
