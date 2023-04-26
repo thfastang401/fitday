@@ -61,6 +61,16 @@
 		WHERE email=#{email}
 	</update>
 	
+	<select id="getNickNameJoinComment" resultType="String" parameterType="int">
+		SELECT nickname FROM user u
+		JOIN comment c
+		ON u.user_seq = c.user_seq
+		where board_seq = #{boardSeq} 
+<!-- 		and comment_seq in -->
+<!-- 		<foreach item="comment" collection="list" open="(" separator="," close=")"> -->
+<!-- 			#{comment.commentSeq} -->
+<!-- 		</foreach> -->
+	</select>
 
 
 

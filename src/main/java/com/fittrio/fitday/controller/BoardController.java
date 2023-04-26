@@ -122,7 +122,7 @@ public class BoardController {
 //			mv.getModel().putAll(bindResult.getModel());
 //			return mv;
 //		}
-    	mv.setViewName("redirect:/board/list");
+    	mv.setViewName("redirect:/board/list/1");
     	return mv;
     }
     

@@ -35,7 +35,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="hidden" name="userSeq" value="1"><!-- 임시 회원번호 -->
+							<input type="hidden" name="userSeq" value="${currentUser.getUserSeq()}"><!-- 임시 회원번호 -->
 							<input type="button" value="취소" onclick="cancelForm()">
 							<input type="submit" value="등록" id="submitBtn">
 						</td>

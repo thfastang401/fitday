@@ -15,6 +15,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="../header.jsp"/>
 	<div id="title">
 		<h2>커뮤니티 게시판</h2>
 	</div>

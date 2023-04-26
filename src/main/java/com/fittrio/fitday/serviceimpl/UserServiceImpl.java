@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.fittrio.fitday.config.CustomUser;
 import com.fittrio.fitday.dao.UserDAO;
 import com.fittrio.fitday.dto.BoardDTO;
+import com.fittrio.fitday.dto.CommentDTO;
 import com.fittrio.fitday.dto.UserDTO;
 import com.fittrio.fitday.service.UserService;
 
@@ -86,6 +87,11 @@ public class UserServiceImpl implements UserService {
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 		dao.updatePasswordInfo(dto);
 
+	}
+
+	@Override
+	public List<String> getNickNameJoinComment(int boardSeq) {
+		return dao.getNickNameJoinComment(boardSeq);
 	}
 	 
 }
