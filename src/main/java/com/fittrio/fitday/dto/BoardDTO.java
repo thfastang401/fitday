@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -16,6 +17,7 @@ public class BoardDTO {
 	
 	@NotNull(message = "내용을 입력하세요.")
 	String content;
+
 	
 	
 	public int getBoardSeq() {

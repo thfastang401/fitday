@@ -1,21 +1,17 @@
 package com.fittrio.fitday.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fittrio.fitday.dto.BoardDTO;
-import com.fittrio.fitday.dto.CommentDTO;
 import com.fittrio.fitday.service.BoardService;
 import com.fittrio.fitday.service.CommentService;
 import com.fittrio.fitday.service.UserService;
@@ -25,7 +21,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
-    @Autowired
+	@Autowired
     @Qualifier("boardService")
     BoardService boardService;
     
@@ -153,15 +149,14 @@ public class BoardController {
 	@GetMapping("/mission/form")
 	public String insertMission() {return "board/mission/form";}
 
-	@PostMapping("/mission/form")
-	public ModelAndView insertMission(BoardDTO dto){
-		ModelAndView mv = new ModelAndView();
-		boardService.insertMission(dto);
-		mv.setViewName("redirect:/board/mission/list");
-		return mv;
-	}
-
-
+	//게시글만 등록
+//	@PostMapping("/mission/form")
+//	public ModelAndView insertMission(BoardDTO dto){
+//		ModelAndView mv = new ModelAndView();
+//		boardService.insertMission(dto);
+//		mv.setViewName("redirect:/board/mission/list");
+//		return mv;
+//	}
     
     
     
