@@ -42,6 +42,9 @@ public class SecurityConfig {
 	                    .permitAll()
 	                .and()
 	                .logout() // 로그아웃은 기본설정으로 (/logout으로 인증해제)
+	                .and()
+	                .exceptionHandling()
+	                	.accessDeniedPage("/error")
 	                ;	
 	        	
 	        return http.build();
