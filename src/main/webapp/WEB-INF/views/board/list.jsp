@@ -32,7 +32,7 @@
 			<c:set var="nickName" value="${nickNameList[nickStatus.index]}"/>
 			<c:set var="i" value="${i+1}" />
 				<tr>
-					<td>${boardCnt - ((pageNum-1)*10+i)} &nbsp; ${list.boardSeq }</td>
+					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;</td>
 					<td>[${list.category}]
 						<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>
 					<td>&nbsp;&nbsp;${nickName}&nbsp;&nbsp;</td>
@@ -52,7 +52,7 @@
                  totalPage = totalCnt / 10 + 1;
              }
              int pageCnt = 10;
-//              int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+             int pageNum = 1;
              %> 
 			<c:set var="totalPage" value="<%=totalPage %>"/>
 			<c:choose>
