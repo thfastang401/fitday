@@ -43,7 +43,7 @@ public class SecurityConfig {
 	                .and()
 	                .logout() // 로그아웃은 기본설정으로 (/logout으로 인증해제)
 	                .and()
-	                .exceptionHandling()
+	                .exceptionHandling()  // 에러 페이지 핸들링
 	                	.accessDeniedPage("/error")
 	                ;	
 	        	
