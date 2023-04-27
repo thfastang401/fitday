@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sojeong
-  Date: 2023/04/21
-  Time: 5:17 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -25,8 +18,7 @@
         </thead>
         <tbody>
         <c:forEach items="${missionList}" var="mission">
-            <%--<tr onclick="location.href='board/detail?seq=${board.boardSeq}'" id="ajaxtr">--%>
-            <tr>
+            <tr onclick="location.href='/board/mission/detail/${mission.boardSeq}'">
                 <th>${mission.title}</th>
                 <td>작성자 불러오기</td>
                 <td>${mission.date}</td>

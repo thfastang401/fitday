@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 public class BoardDTO { 
 	int boardSeq, userSeq, viewCount, secret;
-	String category, date, boardType;
+	String category, date, file, boardType;
 	@NotNull(message = "제목을 입력하세요.")
 	@NotBlank(message = "공백 입력 불가")
 	String title;
@@ -18,7 +18,6 @@ public class BoardDTO {
 	@NotNull(message = "내용을 입력하세요.")
 	String content;
 
-	String file;
 
 
 	

@@ -3,6 +3,7 @@ package com.fittrio.fitday.controller;
 import java.util.*;
 
 
+import ch.qos.logback.core.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -169,13 +170,15 @@ public class BoardController {
 	@GetMapping("/mission/form")
 	public String insertMission() {return "board/mission/form";}
 
-	//게시글만 등록
-//	@PostMapping("/mission/form")
-//	public String insertMission(BoardDTO dto) {
-//		boardService.insertMission(dto);
-//		return "redirect:/board/mission/list";
-//	}
 
+	@GetMapping("/mission/detail/{seq}")
+	public ModelAndView getOneMission(@PathVariable int seq) {
+		ModelAndView mv = new ModelAndView();
+		BoardDTO dto = boardService.getOneBoard(seq);
+		mv.addObject("mission", dto);
+		mv.setViewName("board/mission/detail");
+		return mv;
+	}
 
     
     
