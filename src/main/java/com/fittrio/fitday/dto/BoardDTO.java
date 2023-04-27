@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 public class BoardDTO { 
 	int boardSeq, userSeq, viewCount, secret;
-	String category, date, file, boardType;
+	String category, date, boardType;
 	@NotNull(message = "제목을 입력하세요.")
 	@NotBlank(message = "공백 입력 불가")
 	String title;
@@ -18,7 +18,9 @@ public class BoardDTO {
 	@NotNull(message = "내용을 입력하세요.")
 	String content;
 
-	
+	String file;
+
+
 	
 	public int getBoardSeq() {
 		return boardSeq;
@@ -71,8 +73,8 @@ public class BoardDTO {
 	public String getFile() {
 		return file;
 	}
-	public void setFile(String file) {
-		this.file = file;
+	public void setFile(MultipartFile file) {
+		this.file = String.valueOf(file);
 	}
 	public String getBoardType() {
 		return boardType;
@@ -80,5 +82,7 @@ public class BoardDTO {
 	public void setBoardType(String boardType) {
 		this.boardType = boardType;
 	}
+
+
 
 }

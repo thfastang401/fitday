@@ -171,12 +171,12 @@ public class BoardController {
 
 	//게시글만 등록
 //	@PostMapping("/mission/form")
-//	public ModelAndView insertMission(BoardDTO dto){
-//		ModelAndView mv = new ModelAndView();
+//	public String insertMission(BoardDTO dto) {
 //		boardService.insertMission(dto);
-//		mv.setViewName("redirect:/board/mission/list");
-//		return mv;
+//		return "redirect:/board/mission/list";
 //	}
+
+
     
     
     
