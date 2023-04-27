@@ -21,6 +21,7 @@ height: 190px;
 	<h1><a href="<%=request.getContextPath()%>/">FITDAY</a></h1>
 	<p>
 		<a href="<%=request.getContextPath()%>/board/list/1">커뮤니티</a>
+		<a href="<%=request.getContextPath()%>/board/mission/list">오운완 인증</a>
 	</p>
 	<%-- <c:choose>
 		<c:when test="${not empty currentUser}"> --%>

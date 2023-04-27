@@ -1,8 +1,6 @@
 package com.fittrio.fitday.config;
 
 
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -39,12 +37,6 @@ public class UserSecurityService implements UserDetailsService{
 		
 		customUser.update(siteUser);
 		
-//		customUser.setEmail(siteUser.getEmail());
-//		customUser.setPassword(siteUser.getPassword());
-//		customUser.setNickname(siteUser.getNickname());
-//		customUser.setFitType(siteUser.getFitType());
-//		customUser.setGoal(siteUser.getGoal());
-//		customUser.setEnable(true);
 		customUser.setAuthority(authorities);
 		
 //		System.out.println(authorities);
