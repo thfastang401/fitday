@@ -131,7 +131,7 @@ public class BoardController {
     public ModelAndView deleteBoard(@PathVariable("boardSeq") int boardSeq) {
     	ModelAndView mv = new ModelAndView();
     	boardService.deleteBoard(boardSeq);
-    	mv.setViewName("redirect:/board/list");
+    	mv.setViewName("redirect:/board/list/1");
     	return mv;
     }
     

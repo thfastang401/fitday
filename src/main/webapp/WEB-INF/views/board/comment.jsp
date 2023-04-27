@@ -8,6 +8,14 @@
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+.contentClass{
+height:50px;
+}
+#secretStrong{
+color:grey;
+}
+</style>
 </head>
 <body>
 <strong>comments</strong> 
@@ -19,7 +27,7 @@
 				<tr>
 					<td>
 						<input type="text" placeholder="댓글을 입력하세요." name="content" id="content">&nbsp;
-						<input type="checkbox" value="1" name="secret" id="secret">비밀댓글 
+						<input type="checkbox" value="1" name="secret" id="secret">비밀댓글
 						<input type="submit" value="등록" onclick="insertCommentAjax(${board.boardSeq})">
 						<input type="hidden" value="${currentUser.getUserSeq()}" name="userSeq" id="userSeq">
 						<input type="hidden" value="${board.boardSeq}" name="boardSeq" id="boardSeq">
@@ -39,7 +47,7 @@
 <script type="text/javascript">
 const boardSeq = $("#boardSeq").val();
 
-window.onload = function(){
+window.onload = function(){ //창이 열리면 자동 로드
 	commentList(boardSeq);
 }
 
@@ -68,7 +76,7 @@ window.onload = function(){
 					alert("댓글이 등록되었습니다.");
 					$('#content').val('');
 					commentList(boardSeq);
-	// 				location.reload();
+					location.reload();
 				},
 				error: function(request, status, error){
 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -85,13 +93,11 @@ window.onload = function(){
 	    url: "/comment/list/" + boardSeq,
 	    type: "POST",
 	    dataType: "json",
-	    success: function(data) {
-	    // 서버에서 받아온 데이터를 이용하여 댓글 목록을 생성하고 화면에 출력하는 코드
+	    success: function(data) {// 서버에서 받아온 데이터를 이용하여 댓글 목록을 생성하고 화면에 출력하는 코드
 	    	var commentList = data.commentList; // 댓글 리스트
 			var commentNicknameList = data.commentNicknameList; // 댓글 작성자 리스트
 			var boardUserSeq = data.boardUserSeq;//게시글 작성자 유저번호
 	    	var commentArea = $("#commentArea"); // 댓글 목록이 출력될 HTML 요소 선택
-
 	    	commentArea.empty(); // 댓글 목록 초기화
 	    	
 	    	if(commentList.length==0){//댓글이 없을 경우 append() 사용해서 문구 추가하기
@@ -101,43 +107,40 @@ window.onload = function(){
 		    	for(var i=0; i<commentList.length; i++) {//댓글 내용 보여줘야 하니까 길이만큼 반복문
 		    	  var comment = commentList[i];
 				  var commentNickname = commentNicknameList[i];
-				  console.log("댓글작성자"+comment.userSeq);
-				  console.log("로그인"+userSeq);
-				  console.log("게시글"+boardUserSeq);
 				  
 				  //비밀댓글
 				  if(comment.secret == 1){
 					  if(userSeq != comment.userSeq && userSeq != boardUserSeq && userSeq != 1){//비밀댓글이고 댓글 작성자나 글 작성자가 아닌 경우
 						  var html = 
-							"<tr><td>" + commentNickname + "&nbsp;" + comment.date + "&nbsp;&nbsp;"
-						  + "<tr><td>비밀댓글입니다.</td></tr>"  
+							"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='/resources/images/lock.png' alt='자물쇠'>"
+						  + "<tr class='contentClass'><td><strong id='secretStrong'>비밀댓글입니다.</strong></td></tr>"  
 						  commentArea.append(html);
 					  }else{ //비밀 댓글이고 댓글 작성자나 관리자일 경우에 보여야 함.
 						  if(userSeq == comment.userSeq || userSeq == 1){
 							  var html = 
-							    "<tr><td>" + commentNickname + "&nbsp;" + comment.date + "&nbsp;&nbsp;"
+							    "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
 							  + "<input type='button' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;"  
 					    	  + "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
-					    	  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+					    	  + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 					    	  commentArea.append(html);							  
 						  }else if(userSeq == boardUserSeq ){//비밀 댓글이고 게시글 작성자는 댓글 내용만 확인 가능
 							  var html = 
-								"<tr><td>" + commentNickname + "&nbsp;" + comment.date + "&nbsp;&nbsp;"
-						   	  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+								"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
+						   	  + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 						   	  commentArea.append(html);			
 						  }
 					  }
 				  }else{//비밀댓글이 아닐경우
 					  if(userSeq == comment.userSeq || userSeq == 1){//로그인 유저가 댓글 작성자이거나 관리자일 경우
-						  var html = "<tr><td>" + commentNickname + "&nbsp;" + comment.date + "&nbsp;&nbsp;"
+						  var html = "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
 					      + "<input type='button' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;" 
 					      + "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
-					      + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+					      + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 					      commentArea.append(html); // 댓글 목록에 댓글 HTML 추가
 					  }else{
 						  var html = 
-							"<tr><td>" + commentNickname + "&nbsp;" + comment.date + "&nbsp;&nbsp;"
-						  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+							"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
+						  + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 						  commentArea.append(html);		
 					  }
 					  

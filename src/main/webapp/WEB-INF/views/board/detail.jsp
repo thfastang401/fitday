@@ -30,9 +30,11 @@
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
 				<td>
 					<input type="hidden" value="${board.boardSeq}" name="boardSeq">
-					<input type="submit" value="수정" id="updateBtn">
+					<c:if test="${currentUser.getUserSeq() == board.userSeq}">
+						<input type="submit" value="수정" id="updateBtn">
+						<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard(${board.boardSeq})">					
+					</c:if>
 					<input type="button" value="목록" id="goListBtn" onclick="goList()">
-					<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard(${board.boardSeq})">
 				</td>
 			</tr>
 			<tr>
