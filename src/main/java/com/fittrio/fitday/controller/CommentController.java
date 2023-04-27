@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fittrio.fitday.dto.CommentDTO;
+import com.fittrio.fitday.service.BoardService;
 import com.fittrio.fitday.service.CommentService;
 import com.fittrio.fitday.service.UserService;
 
@@ -30,6 +31,10 @@ public class CommentController {
 	@Qualifier("userService")
 	UserService userService;
 	
+	@Autowired
+	@Qualifier("boardService")
+	BoardService boardService;
+	
 	//코멘트 등록
 //	@PostMapping("/insert")
 //	public ModelAndView insert(CommentDTO commentDto) {
@@ -39,14 +44,15 @@ public class CommentController {
 //		return mv;
 //	}
 	//코멘트 리스트
-	@GetMapping(value={"/list/{boardSeq}"})
+	@PostMapping(value={"/list/{boardSeq}"})
 	public @ResponseBody Map<String, Object>  list(@PathVariable("boardSeq") int boardSeq){
 		Map<String, Object> map = new HashMap<>();
 		List<CommentDTO> commentList = commentService.getCommentListByBoardSeq(boardSeq);
 		List<String> commentNicknameList = userService.getNickNameJoinComment(boardSeq);
-		
+		int boardUserSeq = boardService.getBoardUserSeq(boardSeq);
 		map.put("commentList", commentList);//댓글 리스트
 		map.put("commentNicknameList", commentNicknameList);//댓글작성자 리스트 map에 넣어서 ajax로 보내기
+		map.put("boardUserSeq",boardUserSeq);
 		return map;
 	}
 	

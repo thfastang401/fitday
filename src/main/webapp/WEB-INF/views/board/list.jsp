@@ -34,12 +34,28 @@
 			<c:set var="i" value="${i+1}" />
 				<tr>
 					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;</td>
-					<td>[${list.category}]
-						<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>
+					<c:choose>
+						<c:when test="${list.secret == 1}">
+						<td>[${list.category}]
+							<c:choose>
+								<c:when test="${currentUser.getUserSeq() == 1 || currentUser.getUserSeq() == list.userSeq }">
+									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a>									
+								</c:when>
+								<c:otherwise>
+									비밀글입니다.
+								</c:otherwise>
+							</c:choose>
+						</td>
+						</c:when>
+						<c:otherwise>
+							<td>[${list.category}]&nbsp;<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>						
+						</c:otherwise>
+					</c:choose>
 					<td>&nbsp;&nbsp;${nickName}&nbsp;&nbsp;</td>
 					<td>${list.date}&nbsp;&nbsp;</td>
 					<td>${list.viewCount}</td>
 				</tr>
+			
 			</c:forEach>
 		</table>
 		<!-- 페이징 -->
