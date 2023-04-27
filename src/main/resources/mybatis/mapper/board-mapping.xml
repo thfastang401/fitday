@@ -23,8 +23,8 @@
 	</select>
 	
 	<insert id="insertBoard" parameterType="boarddto">
-		insert into board(user_seq,category,title,content,DATE,board_type)
-			values(#{userSeq},#{category},#{title},#{content},now(),#{boardType})
+		insert into board(user_seq,category,title,content,DATE,board_type,secret)
+			values(#{userSeq},#{category},#{title},#{content},now(),#{boardType},#{secret})
 	</insert>
 	
 	<delete id="deleteBoard" parameterType="int">
@@ -56,4 +56,9 @@
 	<delete id="deleteBoardByUserSeq" parameterType="int">
 		delete from board where user_seq=#{userSeq}
 	</delete>
+	
+	<select id="getBoardUserSeq" parameterType="int" resultType="int">
+		SELECT user_seq FROM board
+		WHERE board_seq=#{boardSeq}
+	</select>
 </mapper>

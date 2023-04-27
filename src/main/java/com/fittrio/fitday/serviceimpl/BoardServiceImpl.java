@@ -69,4 +69,9 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteBoardByUserSeq(int userSeq) {
 		dao.deleteBoardByUserSeq(userSeq);
 	}
+
+	@Override
+	public int getBoardUserSeq(int boardSeq) {
+		return dao.getBoardUserSeq(boardSeq);
+	}
 }

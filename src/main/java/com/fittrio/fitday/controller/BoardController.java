@@ -115,6 +115,7 @@ public class BoardController {
 //			return mv;
 //		}
 //    	try {
+    	System.out.println(dto.getSecret());
     		boardService.insertBoard(dto);
     		mv.setViewName("redirect:list");    		
 //    	}catch (Exception e) {
@@ -132,7 +133,7 @@ public class BoardController {
     public ModelAndView deleteBoard(@PathVariable("boardSeq") int boardSeq) {
     	ModelAndView mv = new ModelAndView();
     	boardService.deleteBoard(boardSeq);
-    	mv.setViewName("redirect:/board/list");
+    	mv.setViewName("redirect:/board/list/1");
     	return mv;
     }
     
