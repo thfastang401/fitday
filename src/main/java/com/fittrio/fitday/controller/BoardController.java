@@ -114,6 +114,7 @@ public class BoardController {
 //			return mv;
 //		}
 //    	try {
+    	System.out.println(dto.getSecret());
     		boardService.insertBoard(dto);
     		mv.setViewName("redirect:list");    		
 //    	}catch (Exception e) {
