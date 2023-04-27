@@ -31,4 +31,6 @@ public interface BoardDAO {
 	void insertMission(BoardDTO dto);
 	
 	void deleteBoardByUserSeq(int userSeq);
+
+	int getBoardUserSeq(int boardSeq);
 }

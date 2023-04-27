@@ -56,4 +56,9 @@
 	<delete id="deleteBoardByUserSeq" parameterType="int">
 		delete from board where user_seq=#{userSeq}
 	</delete>
+	
+	<select id="getBoardUserSeq" parameterType="int" resultType="int">
+		SELECT user_seq FROM board
+		WHERE board_seq=#{boardSeq}
+	</select>
 </mapper>

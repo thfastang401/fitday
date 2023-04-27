@@ -14,8 +14,8 @@
 </select>	
 
 <insert id="insertComment" parameterType="commentdto">
-	insert into comment(board_seq, user_seq, content, date) 
-		values(#{boardSeq},#{userSeq},#{content},now())
+	insert into comment(board_seq, user_seq, content, date, secret) 
+		values(#{boardSeq},#{userSeq},#{content},now(),#{secret})
 </insert>
 
 <delete id="deleteCommentByBoardSeq" parameterType="int">
