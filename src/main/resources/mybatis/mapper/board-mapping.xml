@@ -14,6 +14,7 @@
 
 	<select id="getAllBoardList" resultType="boarddto" parameterType="int">
 		select * from board
+		WHERE board_type = "talk"
 		order by board_seq desc
 		limit #{limit},10
 	</select>

@@ -5,7 +5,7 @@
 </head>
 <body>
 <h3>게시글 등록</h3>
-<form action="form" method="post" encType = "multipart/form-data" >
+<form action="/board/mission/form" method="post" encType = "multipart/form-data" >
     <input id="title" type="text" name="title" placeholder="제목을 입력해주세요."><br>
 
     <textarea id="content" name="content" placeholder="내용을 입력해주세요.">

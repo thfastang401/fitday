@@ -8,9 +8,26 @@
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style type="text/css">
 #listTbl {
 	border: 1px solid black;
+	width:80%;
+	margin: auto;
+	vertical-align: middle;
+}
+a{
+color:black;
+}
+
+#paging{
+width:30%;
+	margin: auto;
+	vertical-align: middle;
+}
+#formBtn{
+float: right;
 }
 </style>
 </head>
@@ -21,7 +38,7 @@
 	</div>
 	<div>질문|추천|공유</div>
 	<div id="list">
-		<table id="listTbl">
+		<table id="listTbl" class="table table-bordered">
 			<tr>
 				<th>No.</th>
 				<th>제목</th>
@@ -35,19 +52,19 @@
 				<tr>
 					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;</td>
 					<c:choose>
-						<c:when test="${list.secret == 1}">
+						<c:when test="${list.secret == 1}"><!-- 비밀글일때 -->
 						<td>[${list.category}]
 							<c:choose>
-								<c:when test="${currentUser.getUserSeq() == 1 || currentUser.getUserSeq() == list.userSeq }">
-									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a>									
+								<c:when test="${currentUser.getUserSeq() == 1 || currentUser.getUserSeq() == list.userSeq }"><!-- 관리자거나 작성자일때 -->
+									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">[비밀글] ${list.title}</a>	<!-- 내용 보임 -->							
 								</c:when>
-								<c:otherwise>
-									비밀글입니다.
+								<c:otherwise><!-- 작성자나 관리자가 아닐때 안보임 -->
+									<strong>비밀글입니다.</strong>
 								</c:otherwise>
 							</c:choose>
 						</td>
 						</c:when>
-						<c:otherwise>
+						<c:otherwise><!-- 비밀글 아닐때 내용 보여짐 -->
 							<td>[${list.category}]&nbsp;<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>						
 						</c:otherwise>
 					</c:choose>
@@ -62,15 +79,15 @@
 		<div id="testArea"></div>
 		<div id="paging">
           <% int totalCnt = (int) request.getAttribute("boardCnt");
-             int totalPage = 0;
-             if (totalCnt % 10 == 0) {
-                 totalPage = totalCnt / 10;
-             } else {
-                 totalPage = totalCnt / 10 + 1;
-             }
-             int pageCnt = 10;
-             int pageNum = 1;
-             %> 
+              int totalPage = 0; 
+              if (totalCnt % 10 == 0) { 
+                  totalPage = totalCnt / 10; 
+             } else { 
+                  totalPage = totalCnt / 10 + 1; 
+              } 
+              int pageCnt = 10; 
+              int pageNum = 1; 
+              %>  
 			<c:set var="totalPage" value="<%=totalPage %>"/>
 			<c:choose>
 				<c:when test="${page!=1}">
@@ -93,11 +110,11 @@
 					<a href="#" class="next_link">다음</a>	
 				</c:otherwise>
 			</c:choose>
-			
     	</div>
-		<input type="button" value="글작성" onclick="location.href='/board/form'" id="formBtn">
+
+		<input type="button" value="글작성" onclick="location.href='/board/form'" id="formBtn" class="btn btn-primary btn-ghost">
 	</div>
-	
+	<jsp:include page="../footer.jsp"/>
 <script type="text/javascript">
 
 

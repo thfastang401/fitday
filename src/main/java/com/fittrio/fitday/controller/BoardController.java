@@ -42,7 +42,7 @@ public class BoardController {
 
     //커뮤니티게시판 목록
     @GetMapping(value = {"/list/{page}"})
-    public @ResponseBody ModelAndView list(@RequestBody @PathVariable("page") int page) {
+    public ModelAndView list(@PathVariable("page") int page) {
     	ModelAndView mv = new ModelAndView();
     	int boardCnt = boardService.getAllBoardCnt();//총 게시글 갯수 가져오기
     	int limit = (page - 1)*10; //페이징
@@ -51,6 +51,7 @@ public class BoardController {
     	mv.addObject("boardCnt", boardCnt);
     	mv.addObject("nickNameList",nickNameList);
     	mv.addObject("boardList",boardList);
+    	System.out.println(page);
     	mv.setViewName("board/list");
     	return mv;
     }
@@ -116,7 +117,6 @@ public class BoardController {
 //			return mv;
 //		}
 //    	try {
-    	System.out.println(dto.getSecret());
     		boardService.insertBoard(dto);
     		mv.setViewName("redirect:list");    		
 //    	}catch (Exception e) {
