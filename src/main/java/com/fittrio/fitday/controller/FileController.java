@@ -6,12 +6,14 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
@@ -52,7 +54,8 @@ public class FileController {
             file.transferTo(uploadedFile);
 
             // 파일 업로드 성공 시 메시지 전달
-            dto.setFile(file);
+            dto.setFileName(uploadedFile.getName());
+            dto.setFilePath(uploadedFile.getPath());
             boardService.insertMission(dto);
 
             redirectAttributes.addFlashAttribute("message", "파일과 게시글이 성공적으로 업로드 되었습니다!");
@@ -72,5 +75,6 @@ public class FileController {
         redirectAttributes.addFlashAttribute("message", "10MB 이하 파일만 업로드 가능합니다.");
         return "redirect:/board/mission/form";
     }
+
 }
 

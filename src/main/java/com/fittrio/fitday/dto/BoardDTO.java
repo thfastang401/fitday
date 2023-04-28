@@ -8,19 +8,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
-public class BoardDTO { 
+public class BoardDTO {
 	int boardSeq, userSeq, viewCount, secret;
-	String category, date, file, boardType;
+	String category, date, boardType, fileName, filePath;
 	@NotNull(message = "제목을 입력하세요.")
 	@NotBlank(message = "공백 입력 불가")
 	String title;
-	
+
 	@NotNull(message = "내용을 입력하세요.")
 	String content;
 
+	// 파일 업로드를 위한 멤버 변수
+	//MultipartFile multipartFile;
 
-
-	
 	public int getBoardSeq() {
 		return boardSeq;
 	}
@@ -69,12 +69,6 @@ public class BoardDTO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile file) {
-		this.file = String.valueOf(file);
-	}
 	public String getBoardType() {
 		return boardType;
 	}
@@ -82,6 +76,28 @@ public class BoardDTO {
 		this.boardType = boardType;
 	}
 
+//	public MultipartFile getMultipartFile() {
+//		return multipartFile;
+//	}
+//
+//	public void setMultipartFile(MultipartFile multipartFile) {
+//		this.multipartFile = multipartFile;
+//	}
 
 
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
 }

@@ -49,8 +49,8 @@
 	</select>
 
 	<insert id="insertMission" parameterType="boarddto">
-		insert into board(user_seq,title,content,DATE,board_type,file)
-		values(#{userSeq},#{title},#{content},now(),'mission',#{file})
+		insert into board(user_seq,title,content,DATE,board_type,fileName, filePath)
+		values(#{userSeq},#{title},#{content},now(),'mission',#{fileName},#{filePath})
 	</insert>
 	
 	<delete id="deleteBoardByUserSeq" parameterType="int">

@@ -1,7 +1,10 @@
 package com.fittrio.fitday.serviceimpl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +13,7 @@ import com.fittrio.fitday.dao.BoardDAO;
 import com.fittrio.fitday.dao.CommentDAO;
 import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.service.BoardService;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -73,5 +77,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int getBoardUserSeq(int boardSeq) {
 		return dao.getBoardUserSeq(boardSeq);
+	}
+
+	@Override
+	public void uploadFile(BoardDTO dto, MultipartFile file) throws IOException {
+		String projectPath = System.getProperty("user.dir")+"/src/main/resources/uploads";
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid + "_" + file.getOriginalFilename();
+		File saveFile = new File(projectPath, fileName);
+		file.transferTo(saveFile);
+		dto.setFileName(fileName);
+		dto.setFilePath("/files/"+fileName);
+
 	}
 }
