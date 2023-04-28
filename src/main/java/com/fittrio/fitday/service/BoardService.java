@@ -31,6 +31,6 @@ public interface BoardService {
 
 	int getBoardUserSeq(int boardSeq);
 
-	void uploadFile(BoardDTO dto, MultipartFile file) throws IOException;
+	//void uploadFile(BoardDTO dto, MultipartFile file) throws IOException;
 
 }

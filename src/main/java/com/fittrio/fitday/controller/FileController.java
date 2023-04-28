@@ -44,7 +44,7 @@ public class FileController {
 
         try {
             // 업로드된 파일을 저장할 디렉토리 생성
-            File uploadDir = new File("src/main/resources/uploads");
+            File uploadDir = new File("src/main/resources/static/uploads");
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }

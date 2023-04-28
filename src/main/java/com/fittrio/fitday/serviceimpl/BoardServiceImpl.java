@@ -79,15 +79,15 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getBoardUserSeq(boardSeq);
 	}
 
-	@Override
-	public void uploadFile(BoardDTO dto, MultipartFile file) throws IOException {
-		String projectPath = System.getProperty("user.dir")+"/src/main/resources/uploads";
-		UUID uuid = UUID.randomUUID();
-		String fileName = uuid + "_" + file.getOriginalFilename();
-		File saveFile = new File(projectPath, fileName);
-		file.transferTo(saveFile);
-		dto.setFileName(fileName);
-		dto.setFilePath("/files/"+fileName);
-
-	}
+//	@Override
+//	public void uploadFile(BoardDTO dto, MultipartFile file) throws IOException {
+//		String projectPath = System.getProperty("user.dir")+"/src/main/resources/uploads";
+//		UUID uuid = UUID.randomUUID();
+//		String fileName = uuid + "_" + file.getOriginalFilename();
+//		File saveFile = new File(projectPath, fileName);
+//		file.transferTo(saveFile);
+//		dto.setFileName(fileName);
+//		dto.setFilePath("/files/"+fileName);
+//
+//	}
 }
