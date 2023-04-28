@@ -45,6 +45,11 @@ public class SecurityConfig {
 	                .and()
 	                .exceptionHandling()  // 에러 페이지 핸들링
 	                	.accessDeniedPage("/error")
+	                .and()
+		            .rememberMe()
+		                .key("key")
+		                .rememberMeParameter("rememberMe")
+		                .tokenValiditySeconds(3600*24*365)
 	                ;	
 	        	
 	        return http.build();
