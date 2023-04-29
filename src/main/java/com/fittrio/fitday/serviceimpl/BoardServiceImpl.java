@@ -79,6 +79,11 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getBoardUserSeq(boardSeq);
 	}
 
+	@Override
+	public List<BoardDTO> getSearchList(String keyword) {
+		return dao.getSearchResult(keyword);
+	}
+
 //	@Override
 //	public void uploadFile(BoardDTO dto, MultipartFile file) throws IOException {
 //		String projectPath = System.getProperty("user.dir")+"/src/main/resources/uploads";

@@ -157,6 +157,19 @@ public class BoardController {
     	
     	return "redirect:/board/detail/"+boardSeq;
     }
+    
+    //검색결과
+    @GetMapping(value= {"/searchResult"})
+    public ModelAndView searchResult(String keyword) {
+    	ModelAndView mv = new ModelAndView();
+    	List<BoardDTO> searchList = boardService.getSearchList(keyword);//검색 내용 리스트 불러오기
+    	List<String> searchNickNameList = userService.getNickNameJoinBoard(searchList);//검색시 작성자 닉네임 가져오기
+//    	int boardCnt = boardService.get
+    	mv.addObject("seachList", searchList);
+    	mv.addObject("searchNickNameList", searchNickNameList);
+    	mv.setViewName("redirect:/board/search");
+    	return mv;
+    }
 
 	//missionList 가져오기
     @GetMapping("/mission/list")

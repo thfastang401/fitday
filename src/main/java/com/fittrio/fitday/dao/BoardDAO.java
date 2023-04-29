@@ -33,4 +33,6 @@ public interface BoardDAO {
 	void deleteBoardByUserSeq(int userSeq);
 
 	int getBoardUserSeq(int boardSeq);
+
+	List<BoardDTO> getSearchResult(String keyword);
 }

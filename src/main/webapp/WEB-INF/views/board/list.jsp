@@ -29,6 +29,11 @@ width:30%;
 #formBtn{
 float: right;
 }
+
+#lock{
+width:20px;
+height: 20px;
+}
 </style>
 </head>
 <body>
@@ -38,6 +43,7 @@ float: right;
 	</div>
 	<div>질문|추천|공유</div>
 	<div id="list">
+	<form action="<%=request.getContextPath()%>/board/searchResult">
 		<table id="listTbl" class="table table-bordered">
 			<tr>
 				<th>No.</th>
@@ -56,10 +62,10 @@ float: right;
 						<td>[${list.category}]
 							<c:choose>
 								<c:when test="${currentUser.getUserSeq() == 1 || currentUser.getUserSeq() == list.userSeq }"><!-- 관리자거나 작성자일때 -->
-									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">[비밀글] ${list.title}</a>	<!-- 내용 보임 -->							
+									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}"><img src='/images/lock.png' alt='자물쇠' id='lock'>${list.title}</a>	<!-- 내용 보임 -->							
 								</c:when>
 								<c:otherwise><!-- 작성자나 관리자가 아닐때 안보임 -->
-									<strong>비밀글입니다.</strong>
+									<strong><img src='/images/lock.png' alt='자물쇠' id='lock'>비밀글입니다.</strong>
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -75,6 +81,11 @@ float: right;
 			
 			</c:forEach>
 		</table>
+		<div>
+			<input type="text" placeholder="검색어를 입력하세요." name="keyword">
+			<input type="submit" value="검색" id="serchBtn">
+		</div>
+		</form>
 		<!-- 페이징 -->
 		<div id="testArea"></div>
 		<div id="paging">
@@ -116,7 +127,7 @@ float: right;
 	</div>
 	<jsp:include page="../footer.jsp"/>
 <script type="text/javascript">
-
+//검색버튼 눌렀을때 검색창 이동 필요
 
 // $(document).ready(function(){
 // 	var pageCount = ${totalPage};
