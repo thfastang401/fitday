@@ -33,8 +33,10 @@ text-align: center;
 }
 
 #content{
+resize: none;
 float:left;
 width:70%;
+outline-color: #E1BEE7;
 }
 
 </style>

@@ -63,6 +63,10 @@ text-align: left;
 outline-color: #E1BEE7;
 }
 
+.form-control{
+width:100px;
+display: inline;
+}
 </style>
 </head>
 <body>
@@ -74,11 +78,11 @@ outline-color: #E1BEE7;
 			<tr>
 				<td>
 				<div id="typeDiv">
-					<select name="boardType" id="boardType">
+					<select name="boardType" id="boardType" class="form-control">
 						<option value="talk">커뮤니티</option>
 						<option value="excercise">인증</option>
 					</select>
-					<select name="category" id="category">
+					<select name="category" id="category" class="form-control">
 						<option value="공유">공유</option>
 						<option value="추천">추천</option>
 						<option value="잡담">잡담</option>

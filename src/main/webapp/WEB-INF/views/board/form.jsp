@@ -60,6 +60,11 @@ text-align: left;
 outline-color: #E1BEE7;
 }
 
+.form-control{
+width:100px;
+display: inline;
+}
+
 </style>
 </head>
 <body>
@@ -71,12 +76,12 @@ outline-color: #E1BEE7;
 					<tr>
 						<td>
 						<div id="typeDiv">
-							<select name="boardType" id="boardType">
+							<select name="boardType" id="boardType" class="form-control">
 							<!-- 컨트롤러에서 불러오기. if로 talk면 커뮤니티, excercise면 운동으로 -->
 								<option value="talk">커뮤니티</option>
 								<option value="mission">인증</option>
 							</select>
-							<select name="category" id="category">
+							<select name="category" id="category" class="form-control">
 								<option value="공유">공유</option>
 								<option value="추천">추천</option>
 								<option value="잡담">잡담</option> 
@@ -108,7 +113,7 @@ outline-color: #E1BEE7;
 	function cancelForm(){
 		let check = confirm('글작성을 취소하시겠습니까?');
 		if(check==true){
-			location.href="/board/list";
+			location.href="/board/list/1";
 		}
 	}
 	

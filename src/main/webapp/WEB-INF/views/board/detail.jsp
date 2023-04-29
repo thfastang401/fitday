@@ -10,6 +10,7 @@
 <link href="/css/font.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style type="text/css">
+
 #allDiv{
 margin-top:40px;
 height: auto;
@@ -40,7 +41,7 @@ white-space: pre-wrap;
 				<td><h2>[${board.category}]${board.title}</h2></td>
 			</tr>
 			<tr>
-				<td>${nickName}&nbsp;&nbsp;커뮤니티&nbsp;&nbsp;${board.date}&nbsp;&nbsp;조회수${board.viewCount}</td>
+				<td>${nickName}&nbsp;|&nbsp;커뮤니티&nbsp;|&nbsp;${board.date}&nbsp;|&nbsp;조회수${board.viewCount}</td>
 			</tr>
 			<tr>
 				<td><div id="d"><hr><br>${board.content}<br><br></div></td>
