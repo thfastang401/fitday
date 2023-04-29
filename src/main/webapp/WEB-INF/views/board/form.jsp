@@ -115,9 +115,9 @@ outline-color: #E1BEE7;
 	$("#submitBtn").click(function(e){
 			var title = $("#title").val();
 			var content = $("#content").val();
-			content = content.replace(/(?:\r\n|\r|\n)/g, '<br>');//줄바꿈일 경우 <br>태그로 치환
-			content = content.replace(/(?:\s)/g, '&nbsp;');//공백일 경우 &nbsp;로 치환
-			$("#content").val(content);
+// 			content = content.replace(/(?:\r\n|\r|\n)/g, '<br>');//줄바꿈일 경우 <br>태그로 치환
+// 			content = content.replace(/(?:\s)/g, '&nbsp;');//공백일 경우 &nbsp;로 치환
+			$("#content").html(content);
 			if ($('#secretCheck').is(":checked")) {//체크박스 값 가져오기
 				$("#secret").val(parseInt("1")); //hidden 태그에 1 넣어주기. 그냥 넣으면 String이라 형변환 필요
 			}

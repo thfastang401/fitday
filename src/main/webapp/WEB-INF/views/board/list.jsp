@@ -94,7 +94,7 @@ color:grey;
 			<c:set var="nickName" value="${nickNameList[nickStatus.index]}"/>
 			<c:set var="i" value="${i+1}" />
 				<tr>
-					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;${list.boardSeq }</td>
+					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;</td>
 					<c:choose>
 						<c:when test="${list.secret == 1}"><!-- 비밀글일때 -->
 						<td>[${list.category}]

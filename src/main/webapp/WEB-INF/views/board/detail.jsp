@@ -12,7 +12,7 @@
 <style type="text/css">
 #allDiv{
 margin-top:40px;
-height: 600px;
+height: auto;
 width: 100%;
 font-family: 'BMJUA';
 font-size: 15px;
@@ -22,6 +22,11 @@ font-size: 15px;
 width: 80%;
 margin:auto;
 text-align: center;
+}
+
+#d{
+
+white-space: pre-wrap;
 }
 </style>
 </head>
@@ -38,7 +43,7 @@ text-align: center;
 				<td>${nickName}&nbsp;&nbsp;커뮤니티&nbsp;&nbsp;${board.date}&nbsp;&nbsp;조회수${board.viewCount}</td>
 			</tr>
 			<tr>
-				<td><hr><br>${board.content}<br><br></td>
+				<td><div id="d"><hr><br>${board.content}<br><br></div></td>
 			</tr>
 			<tr>
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
@@ -61,17 +66,18 @@ text-align: center;
 	<!-- 댓글 불러오기 -->
 	<%@ include file="../board/comment.jsp" %>
 	</div>
+<jsp:include page="../footer.jsp"/>
 <script type="text/javascript">
-	$("#updateBtn").click(function(){
-		 // 글 제목과 내용 가져오기
-		  var title = $("#title").val();
-		  var content = $("#content").val();
+// 	$("#updateBtn").click(function(){
+// 		 // 글 제목과 내용 가져오기
+// 		  var title = $("#title").val();
+// 		  var content = $("#content").val();
 
-		  // 1. &lt;br&gt; 제거, &amp;nbsp;를 스페이스바로 치환
-		  content = content.replace(/&lt;br&gt;/g, '');
-		  content = content.replace(/&amp;nbsp;/g, ' ');
-		  $("#content").val(content);
-	});
+// 		  // 1. &lt;br&gt; 제거, &amp;nbsp;를 스페이스바로 치환
+// 		  content = content.replace(/&lt;br&gt;/g, '');
+// 		  content = content.replace(/&amp;nbsp;/g, ' ');
+// 		  $("#content").val(content);
+// 	});
 
 	//목록버튼
 	function goList(){
