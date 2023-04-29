@@ -48,8 +48,8 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public List<Integer> getCommentCntByboardSeq(List<BoardDTO> boardList) {
-		return dao.getCommentCntByboardSeq(boardList);
+	public List<Integer> getCommentCntByboardSeq() {
+		return dao.getCommentCntByboardSeq();
 	}
 	
 }

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/css/font.css" rel="stylesheet">
 <!-- <link href="resources/css/header.css" rel="stylesheet"> -->
 <style type="text/css">
 #header{
@@ -16,12 +17,7 @@ height: 190px;
 font-family: 'BMJUA';
 font-size: 20px;
 }
-@font-face {
-    font-family: 'BMJUA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+
 </style>
 </head>
 <body>

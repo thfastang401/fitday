@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="/css/font.css" rel="stylesheet">
 <style type="text/css">
 #title{
 width:500px;
@@ -63,6 +64,9 @@ width:500px;
 		var title = $("#title").val();
 		var content = $("#content").val();
 		var boardSeq = $("#boardSeq").val();
+		content = content.replace(/(?:\r\n|\r|\n)/g, '<br>');
+		content = content.replace(/(?:\s)/g, '&nbsp;');//공백일 경우 &nbsp;로 치환
+		$("#content").val(content);
 		if ($('#secretCheck').is(":checked")) {//체크박스 값 가져오기
 			$("#secret").val(parseInt("1")); //hidden 태그에 1 넣어주기. 그냥 넣으면 String이라 형변환 필요
 		}

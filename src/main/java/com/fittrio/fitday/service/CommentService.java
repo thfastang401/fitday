@@ -13,5 +13,5 @@ public interface CommentService {
     void updateComment(CommentDTO commentDto);
     void deleteCommentByUserSeq(int userSeq);
     void deleteBoardCommentByUserSeq(int userSeq);
-	List<Integer> getCommentCntByboardSeq(List<BoardDTO> boardList);
+	List<Integer> getCommentCntByboardSeq();
 }

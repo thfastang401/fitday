@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
-<link href="/css/header.css" rel="stylesheet">
+<link href="/css/font.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style type="text/css">
@@ -67,13 +67,17 @@ height:40px;
 border-radius: 20px;
 outline-color: #E1BEE7;
 }
+
+strong{
+color:grey;
+}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <div id="allDiv">
 	<div class="title">
-		<h2><strong>커뮤니티 게시판</strong></h2>
+		<h2>커뮤니티 게시판</h2>
 	</div>
 	<div class="title">질문|추천|공유</div>
 	<div id="list">
@@ -88,17 +92,16 @@ outline-color: #E1BEE7;
 			</tr>
 			<c:forEach items="${boardList}" var="list" varStatus="nickStatus">
 			<c:set var="nickName" value="${nickNameList[nickStatus.index]}"/>
-			<c:set var="commentCnt" value="${commentCntList[nickStatus.index]}"/>
 			<c:set var="i" value="${i+1}" />
 				<tr>
-					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;</td>
+					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;${list.boardSeq }</td>
 					<c:choose>
 						<c:when test="${list.secret == 1}"><!-- 비밀글일때 -->
 						<td>[${list.category}]
 							<c:choose>
 								<c:when test="${currentUser.getUserSeq() == 1 || currentUser.getUserSeq() == list.userSeq }"><!-- 관리자거나 작성자일때 -->
 									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}"><img src='/images/lock.png' alt='자물쇠' id='lock'>${list.title}</a>	<!-- 내용 보임 -->							
-									${commentCnt}
+									댓글수${commentCntList[nickStatus.index]}
 								</c:when>
 								<c:otherwise><!-- 작성자나 관리자가 아닐때 안보임 -->
 									<strong><img src='/images/lock.png' alt='자물쇠' id='lock'>비밀글입니다.</strong>

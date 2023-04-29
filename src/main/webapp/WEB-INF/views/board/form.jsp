@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>글 작성</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="/css/font.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style type="text/css">
 a{
@@ -42,8 +43,8 @@ height: 20px;
 
 #typeDiv{
 width:650px;
-	margin: auto;
-	text-align: left;
+margin: auto;
+text-align: left;
 } 
 
 #boardType, #category{
@@ -57,12 +58,6 @@ height: 30px;
 margin:auto auto 20px;
 text-align: left;
 outline-color: #E1BEE7;
-}
-@font-face {
-    font-family: 'BMJUA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 }
 
 </style>
@@ -120,6 +115,9 @@ outline-color: #E1BEE7;
 	$("#submitBtn").click(function(e){
 			var title = $("#title").val();
 			var content = $("#content").val();
+			content = content.replace(/(?:\r\n|\r|\n)/g, '<br>');//줄바꿈일 경우 <br>태그로 치환
+			content = content.replace(/(?:\s)/g, '&nbsp;');//공백일 경우 &nbsp;로 치환
+			$("#content").val(content);
 			if ($('#secretCheck').is(":checked")) {//체크박스 값 가져오기
 				$("#secret").val(parseInt("1")); //hidden 태그에 1 넣어주기. 그냥 넣으면 String이라 형변환 필요
 			}
