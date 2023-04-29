@@ -2,6 +2,7 @@ package com.fittrio.fitday.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -34,5 +35,5 @@ public interface BoardDAO {
 
 	int getBoardUserSeq(int boardSeq);
 
-	List<BoardDTO> getSearchResult(String keyword);
+	List<BoardDTO> getSearchResult(Map<String, Object> map);
 }

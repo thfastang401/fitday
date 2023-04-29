@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,8 +81,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> getSearchList(String keyword) {
-		return dao.getSearchResult(keyword);
+	public List<BoardDTO> getSearchList(Map<String, Object> map) {
+		return dao.getSearchResult(map);
 	}
 
 //	@Override
