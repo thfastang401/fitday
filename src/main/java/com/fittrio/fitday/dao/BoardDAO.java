@@ -38,4 +38,6 @@ public interface BoardDAO {
 	List<BoardDTO> getSearchResult(Map<String, Object> map);
 
 	int getSearchListCnt(String keyword);
+
+
 }

@@ -3,6 +3,7 @@ package com.fittrio.fitday.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.dto.CommentDTO;
 
 public interface CommentService {
@@ -12,4 +13,5 @@ public interface CommentService {
     void updateComment(CommentDTO commentDto);
     void deleteCommentByUserSeq(int userSeq);
     void deleteBoardCommentByUserSeq(int userSeq);
+	List<Integer> getCommentCntByboardSeq(List<BoardDTO> boardList);
 }

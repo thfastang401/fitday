@@ -42,6 +42,12 @@
 	where b.user_seq=#{userSeq}
 </delete>
 
-
+	<select id="getCommentCntByboardSeq" parameterType="boarddto" resultType="int">
+		select count(*) from comment
+		where board_seq in
+		<foreach item="board" collection="list" open="(" separator="," close=")">
+			#{board.boardSeq}
+		</foreach>
+	</select>
 
 </mapper>

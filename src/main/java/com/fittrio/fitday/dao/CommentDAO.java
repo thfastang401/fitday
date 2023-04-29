@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.dto.CommentDTO;
 
 @Mapper
@@ -19,4 +20,5 @@ public interface CommentDAO {
 	void updateComment(CommentDTO commentDto);
 	void deleteCommentByUserSeq(int userSeq);
 	void deleteBoardCommentByUserSeq(int userSeq);
+	List<Integer> getCommentCntByboardSeq(List<BoardDTO> boardList);
 }

@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
+<link href="/css/header.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style type="text/css">
 #listTbl {
@@ -34,20 +34,48 @@ float: right;
 #lock{
 width:20px;
 height: 20px;
-}
+} 
 
 #allDiv{
+margin-top:40px;
 height: 600px;
+font-family: 'BMJUA';
+font-size: 15px;
+}
+
+.title{
+	width:80%;
+	margin: auto;
+	vertical-align: middle;
+}
+
+#writeDiv{
+width:80%;
+margin:20px auto 0;
+text-align: right;
+}
+
+#search, #paging{
+  width:80%;
+  margin:20px auto 0;
+  text-align: center;
+}
+
+#keyword{ 
+width:280px;
+height:40px;
+border-radius: 20px;
+outline-color: #E1BEE7;
 }
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <div id="allDiv">
-	<div id="title">
-		<h2>커뮤니티 게시판</h2>
+	<div class="title">
+		<h2><strong>커뮤니티 게시판</strong></h2>
 	</div>
-	<div>질문|추천|공유</div>
+	<div class="title">질문|추천|공유</div>
 	<div id="list">
 	<form action="<%=request.getContextPath()%>/board/searchResult/1">
 		<table id="listTbl" class="table table-bordered">
@@ -60,6 +88,7 @@ height: 600px;
 			</tr>
 			<c:forEach items="${boardList}" var="list" varStatus="nickStatus">
 			<c:set var="nickName" value="${nickNameList[nickStatus.index]}"/>
+			<c:set var="commentCnt" value="${commentCntList[nickStatus.index]}"/>
 			<c:set var="i" value="${i+1}" />
 				<tr>
 					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;</td>
@@ -69,6 +98,7 @@ height: 600px;
 							<c:choose>
 								<c:when test="${currentUser.getUserSeq() == 1 || currentUser.getUserSeq() == list.userSeq }"><!-- 관리자거나 작성자일때 -->
 									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}"><img src='/images/lock.png' alt='자물쇠' id='lock'>${list.title}</a>	<!-- 내용 보임 -->							
+									${commentCnt}
 								</c:when>
 								<c:otherwise><!-- 작성자나 관리자가 아닐때 안보임 -->
 									<strong><img src='/images/lock.png' alt='자물쇠' id='lock'>비밀글입니다.</strong>
@@ -87,9 +117,9 @@ height: 600px;
 			
 			</c:forEach>
 		</table>
-		<div>
-			<input type="text" placeholder="검색어를 입력하세요." name="keyword">
-			<input type="submit" value="검색" id="serchBtn">
+		<div id="search">
+			<input type="text" placeholder=" 검색어를 입력하세요." name="keyword" id="keyword">
+			<input type="submit" value="검색" id="serchBtn" class="btn btn-primary btn-ghost">
 		</div>
 		</form>
 		<!-- 페이징 -->
@@ -129,7 +159,9 @@ height: 600px;
 			</c:choose>
     	</div>
 
+		<div id="writeDiv">
 		<input type="button" value="글작성" onclick="location.href='/board/form'" id="formBtn" class="btn btn-primary btn-ghost">
+		</div>
 	</div>
 </div>
 	<jsp:include page="../footer.jsp"/>

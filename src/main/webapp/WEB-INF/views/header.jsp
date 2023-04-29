@@ -13,6 +13,14 @@
 background-color: grey;
 width: 100%;
 height: 190px;
+font-family: 'BMJUA';
+font-size: 20px;
+}
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 </style>
 </head>
