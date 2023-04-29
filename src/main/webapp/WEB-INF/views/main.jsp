@@ -6,15 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 <title>FIT DAY</title>
-<jsp:include page="header.jsp"/>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
+	<div class="container">
+ 		<div class="row justify-content-center">
+ 			<div class="col-xl-10 col-lg-12 col-md-9">
 <h3>메인페이지 입니다.</h3>
-<%-- 	<c:choose>
-		<c:when test="${not empty loginId}"> --%>
 		<sec:authorize access="isAuthenticated()"> 
-			<div>
+			<%-- <div>
 				로그인 이메일 : ${loginId } : ${currentUser.getUsername()}
 			</div>
 			<div>
@@ -22,19 +27,18 @@
 			</div>
 			<div>
 				닉네임 : ${loginNickname }
-			</div>
+			</div> --%>
 			<div>
 	        	<button onclick="location.href='/logout'" class="btn btn-primary">로그 아웃</button>
 			</div>  
-		<%-- </c:when> --%>
 		</sec:authorize>
-<%-- 		<c:otherwise> --%>
 		<sec:authorize access="isAnonymous()">
 			<div>
 	        	<button onclick="location.href='/user/login'" class="btn btn-primary">로그인</button>
 			</div> 
 		</sec:authorize>
-	<%-- 	</c:otherwise> 
-	</c:choose> --%>
+		</div>
+	</div>
+	</div>
 </body>
 </html>
