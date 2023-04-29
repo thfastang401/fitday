@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String nicknameCheack(String nickname, @AuthenticationPrincipal CustomUser customUser) {
+	public String nicknameCheck(String nickname, @AuthenticationPrincipal CustomUser customUser) {
 		Optional<UserDTO> byNickname = Optional.ofNullable(dao.findUserByNickname(nickname));
 
 		if (byNickname.isPresent() && customUser.getNickname().equals(nickname)) {
@@ -88,6 +88,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<String> getNickNameJoinBoard(List<BoardDTO> boardList) {
 		return dao.getNickNameJoinBoard(boardList);
+	}
+
+	@Override
+	public List<String> getNicknameMission(List<BoardDTO> missionList) {
+		return dao.getNicknameMission(missionList);
 	}
 
 	@Override

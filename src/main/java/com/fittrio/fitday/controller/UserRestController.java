@@ -45,8 +45,8 @@ public class UserRestController {
     @PostMapping("/user/mypage/nickname")
     public @ResponseBody String nicknameCheck(@RequestParam("nickname") String nickname, @AuthenticationPrincipal CustomUser customUser) {
 //    	System.out.println("nickname = "+ nickname );
-    	String checkResult = service.nicknameCheack(nickname, customUser);
-    	
+    	String checkResult = service.nicknameCheck(nickname, customUser);
+
     	return checkResult;
     }
     

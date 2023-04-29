@@ -50,6 +50,7 @@
 
 	<select id="getAllMissionList" resultType="boarddto">
 		select * from board where board_type='mission'
+		order by board_seq desc
 	</select>
 
 	<insert id="insertMission" parameterType="boarddto">

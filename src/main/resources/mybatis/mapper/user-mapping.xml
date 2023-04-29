@@ -55,6 +55,18 @@
 		order by board_seq desc
 	</select>
 
+	<select id="getNicknameMission" resultType="String" parameterType="boarddto">
+		SELECT nickname FROM user u
+		JOIN board b ON u.user_seq = b.user_seq
+		WHERE b.board_seq IN
+		<foreach item="board" collection="list" open="(" separator="," close=")">
+			#{board.boardSeq}
+		</foreach>
+		AND b.board_type = 'mission'
+		ORDER BY b.board_seq DESC
+	</select>
+
+
 	<update id="updatePasswordInfo" parameterType="userDto">
 		UPDATE user
 		SET password=#{password}
@@ -75,6 +87,8 @@
 	<delete id="deleteUserByUserSeq" parameterType="int">
 		delete from user where user_seq=#{userSeq}
 	</delete>
+
+
 
 
 </mapper>

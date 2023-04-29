@@ -23,7 +23,7 @@ public interface UserService {
 	
 	void updateUserInfo(UserDTO dto);
 	
-	String nicknameCheack(String nickname, CustomUser customUser);
+	String nicknameCheck(String nickname, CustomUser customUser);
 	
 	UserDTO findUserByNickname(String nickname);
 	
@@ -31,9 +31,12 @@ public interface UserService {
 
 	List<String> getNickNameJoinBoard(List<BoardDTO> boardList);
 
+	List<String> getNicknameMission(List<BoardDTO> missionList);
+
 	void updatePasswordInfo(UserDTO dto);
 
 	List<String> getNickNameJoinComment(int boardSeq);
 	
 	void deleteUserByUserSeq(int UserSeq);
+
 }
