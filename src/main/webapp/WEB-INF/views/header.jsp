@@ -11,12 +11,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <title>Insert title here</title>
+<link href="/css/font.css" rel="stylesheet">
+<!-- <link href="resources/css/header.css" rel="stylesheet"> -->
 <style type="text/css">
 #header{
 background-color: grey;
 width: 100%;
 height: 190px;
+font-family: 'BMJUA';
+font-size: 20px;
 }
+
 </style>
 </head>
 <body>

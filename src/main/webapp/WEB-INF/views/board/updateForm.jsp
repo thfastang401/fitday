@@ -7,38 +7,90 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="/css/font.css" rel="stylesheet">
 <style type="text/css">
+a{
+color:black;
+}
+
+#allDiv{
+margin-top:40px;
+height: 600px;
+width: 100%;
+font-family: 'BMJUA';
+font-size: 15px;
+}
+
+#writeTbl{
+width: 80%;
+margin:auto;
+text-align: center;
+}
+
+textarea{
+width: 650px;
+height: 500px;
+resize: none;
+margin:auto;
+text-align: left;
+border-color: grey;
+outline-color: #E1BEE7;
+} 
+
+#lock{
+width:20px;
+height: 20px;
+}
+
+#typeDiv{
+width:650px;
+margin: auto;
+text-align: left;
+} 
+
+#boardType, #category{
+height: 30px;
+margin-bottom: 8px;
+}
+
 #title{
-width:500px;
+width: 650px; 
+height: 30px;
+margin:auto auto 20px;
+text-align: left;
+outline-color: #E1BEE7;
 }
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-	<h2>상세화면 수정</h2>
-	<div>
+	<strong>상세화면 수정</strong>
+	<div id="allDiv"> 
 	<form action="<%=request.getContextPath()%>/board/update/${board.boardSeq}" method="post">
-		<table>
+		<table id="writeTbl">
 			<tr>
 				<td>
-					<select name="boardType">
+				<div id="typeDiv">
+					<select name="boardType" id="boardType">
 						<option value="talk">커뮤니티</option>
 						<option value="excercise">인증</option>
 					</select>
-					<select name="category">
+					<select name="category" id="category">
 						<option value="공유">공유</option>
 						<option value="추천">추천</option>
 						<option value="잡담">잡담</option>
 					</select>
 					<input type="checkbox" value=1 id="secretCheck">비밀글 
+				</div>
 				</td>
 			</tr>
 			<tr>
 				<td><input type="text" value="${board.title}" name="title" id="title"></td>
 			</tr>
 			<tr>
-				<td><hr><br>
+				<td><br>
 				<textarea rows="20" cols="70" id="content" name="content">${board.content}</textarea><br><br></td>
 			</tr>
 			<tr>
@@ -46,8 +98,8 @@ width:500px;
 				<td>
 					<input type="hidden" id="secret" name="secret" value=0>
 					<input type="hidden" value="${board.boardSeq}" id="boardSeq" name="boardSeq">
-					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})">
-					<input type="submit" value="등록하기" id="submitBtn">
+					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})" class="btn btn-primary btn-ghost">
+					<input type="submit" value="등록하기" id="submitBtn" class="btn btn-primary btn-ghost">
 				</td>
 			</tr>
 		</table>
@@ -63,6 +115,9 @@ width:500px;
 		var title = $("#title").val();
 		var content = $("#content").val();
 		var boardSeq = $("#boardSeq").val();
+		content = content.replace(/(?:\r\n|\r|\n)/g, '<br>');
+		content = content.replace(/(?:\s)/g, '&nbsp;');//공백일 경우 &nbsp;로 치환
+		$("#content").val(content);
 		if ($('#secretCheck').is(":checked")) {//체크박스 값 가져오기
 			$("#secret").val(parseInt("1")); //hidden 태그에 1 넣어주기. 그냥 넣으면 String이라 형변환 필요
 		}

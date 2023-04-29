@@ -7,21 +7,35 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
+<link href="/css/font.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style type="text/css">
+#allDiv{
+margin-top:40px;
+height: 600px;
+width: 100%;
+font-family: 'BMJUA';
+font-size: 15px;
+}
+
+#detailTbl{
+width: 80%;
+margin:auto;
+text-align: center;
+}
+</style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-	<h2>게시글 상세화면</h2>
-	<div>
+	<div id="allDiv">
+<!-- 	<h2>게시글 상세화면</h2> -->
 	<form action="<%=request.getContextPath()%>/board/updateForm/${board.boardSeq}" method="post">
-		<table>
+		<table id="detailTbl">
 			<tr>
 				<td><h2>[${board.category}]${board.title}</h2></td>
 			</tr>
 			<tr>
-				<td>${nickName}</td>
-			</tr>
-			<tr>
-				<td>커뮤니티&nbsp;&nbsp;${board.date}&nbsp;&nbsp;조회수${board.viewCount}</td>
+				<td>${nickName}&nbsp;&nbsp;커뮤니티&nbsp;&nbsp;${board.date}&nbsp;&nbsp;조회수${board.viewCount}</td>
 			</tr>
 			<tr>
 				<td><hr><br>${board.content}<br><br></td>
@@ -31,10 +45,10 @@
 				<td>
 					<input type="hidden" value="${board.boardSeq}" name="boardSeq">
 					<c:if test="${currentUser.getUserSeq() == board.userSeq}">
-						<input type="submit" value="수정" id="updateBtn">
-						<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard(${board.boardSeq})">					
+						<input type="submit" value="수정" id="updateBtn" class="btn btn-primary btn-ghost">
+						<input type="button" value="삭제" id="deleteBtn" onclick="deleteBoard(${board.boardSeq})" class="btn btn-primary btn-ghost">					
 					</c:if>
-					<input type="button" value="목록" id="goListBtn" onclick="goList()">
+					<input type="button" value="목록" id="goListBtn" onclick="goList()" class="btn btn-primary btn-ghost">
 				</td>
 			</tr>
 			<tr>
@@ -44,10 +58,21 @@
 			</tr>
 		</table>
 	</form>
-	</div>
 	<!-- 댓글 불러오기 -->
 	<%@ include file="../board/comment.jsp" %>
+	</div>
 <script type="text/javascript">
+	$("#updateBtn").click(function(){
+		 // 글 제목과 내용 가져오기
+		  var title = $("#title").val();
+		  var content = $("#content").val();
+
+		  // 1. &lt;br&gt; 제거, &amp;nbsp;를 스페이스바로 치환
+		  content = content.replace(/&lt;br&gt;/g, '');
+		  content = content.replace(/&amp;nbsp;/g, ' ');
+		  $("#content").val(content);
+	});
+
 	//목록버튼
 	function goList(){
 		location.href="${pageContext.request.contextPath}/board/list/1";

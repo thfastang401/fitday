@@ -7,11 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">
-.contentClass{
-height:50px;
-}
 #secretStrong{
 color:grey;
 }
@@ -19,21 +17,40 @@ color:grey;
 #lock{
 width:20px;
 height: 20px;
+} 
+
+#label, .commentTbl{
+width: 80%;
+margin:auto;
+text-align: center;
+
 }
+
+#commentArea{
+width: 80%;
+margin-top:30px;
+text-align: center;
+}
+
+#content{
+float:left;
+width:70%;
+}
+
 </style>
 </head>
 <body>
-<strong>comments</strong> 
-	<div>
+<strong id="label">comments</strong>  
+<div>
 <!-- 		<!-- 댓글창 -->
 		<form id="commentForm">
 		<div>
-			<table>
+			<table class="commentTbl">
 				<tr>
 					<td>
-						<input type="text" placeholder="댓글을 입력하세요." name="content" id="content">&nbsp;
+						<textarea rows="3" cols="4" placeholder="댓글을 입력하세요." name="content" id="content" >&nbsp;</textarea>
 						<input type="checkbox" value="1" name="secret" id="secret">비밀댓글
-						<input type="submit" value="등록" onclick="insertCommentAjax(${board.boardSeq})">
+						<input type="submit" value="등록" onclick="insertCommentAjax(${board.boardSeq})" class="btn btn-primary btn-ghost">
 						<input type="hidden" value="${currentUser.getUserSeq()}" name="userSeq" id="userSeq">
 						<input type="hidden" value="${board.boardSeq}" name="boardSeq" id="boardSeq">
 						<input type="hidden" value="${nickName}" name="nickName" id="nickName">
@@ -118,20 +135,20 @@ window.onload = function(){ //창이 열리면 자동 로드
 					  if(userSeq != comment.userSeq && userSeq != boardUserSeq && userSeq != 1){//비밀댓글이고 댓글 작성자나 글 작성자가 아닌 경우
 						  var html = 
 							"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
-						  + "<tr class='contentClass'><td><strong id='secretStrong'>비밀댓글입니다.</strong></td></tr>"  
+						  + "<tr><td><strong id='secretStrong'>비밀댓글입니다.</strong></td></tr>"  
 						  commentArea.append(html);
 					  }else{ //비밀 댓글이고 댓글 작성자나 관리자일 경우에 보여야 함.
 						  if(userSeq == comment.userSeq || userSeq == 1){
 							  var html = 
-							    "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
+							    "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
 							  + "<input type='button' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;"  
 					    	  + "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
-					    	  + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+					    	  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 					    	  commentArea.append(html);							  
 						  }else if(userSeq == boardUserSeq ){//비밀 댓글이고 게시글 작성자는 댓글 내용만 확인 가능
 							  var html = 
-								"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
-						   	  + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+								"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
+						   	  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 						   	  commentArea.append(html);			
 						  }
 					  }
@@ -140,12 +157,12 @@ window.onload = function(){ //창이 열리면 자동 로드
 						  var html = "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
 					      + "<input type='button' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;" 
 					      + "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
-					      + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+					      + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 					      commentArea.append(html); // 댓글 목록에 댓글 HTML 추가
 					  }else{
 						  var html = 
 							"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
-						  + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+						  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 						  commentArea.append(html);		
 					  }
 					  

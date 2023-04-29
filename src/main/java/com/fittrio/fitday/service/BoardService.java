@@ -34,6 +34,9 @@ public interface BoardService {
 
 	List<BoardDTO> getSearchList(Map<String, Object> map);
 
+	int getSearchListCnt(String keyword);
+
+
 	//void uploadFile(BoardDTO dto, MultipartFile file) throws IOException;
 
 }
