@@ -77,9 +77,6 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUser userPrincipal = (CustomUser) authentication.getPrincipal();
         UserDTO userAccount = service.findUserByEmail(customUser.getEmail());
-//        userPrincipal.setNickname(userAccount.getNickname());
-//        userPrincipal.setFitType(userAccount.getFitType());
-//        userPrincipal.setGoal(userAccount.getGoal());
         userPrincipal.update(userAccount);
     	UsernamePasswordAuthenticationToken newToken = new UsernamePasswordAuthenticationToken(userPrincipal,authentication.getCredentials(),userPrincipal.getAuthorities()); 
         SecurityContextHolder.getContext().setAuthentication(newToken);

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,6 @@
 	margin: auto;
 	vertical-align: middle;
 }
-
 a{
 color:black;
 }
@@ -27,13 +27,14 @@ width:30%;
 	margin: auto;
 	vertical-align: middle;
 }
-#formBtn{
+#formBtn, #backBtn{
 float: right;
 }
 
-#lock{
-width:20px;
-height: 20px;
+#seachTd{
+padding:50px;
+text-align: center;
+font-size: 20px; 
 }
 
 #allDiv{
@@ -45,7 +46,7 @@ height: 600px;
 <jsp:include page="../header.jsp"/>
 <div id="allDiv">
 	<div id="title">
-		<h2>커뮤니티 게시판</h2>
+		<h2>"${keyword}" 검색 결과</h2>
 	</div>
 	<div>질문|추천|공유</div>
 	<div id="list">
@@ -58,57 +59,48 @@ height: 600px;
 				<th>작성일</th>
 				<th>조회수</th>
 			</tr>
-			<c:forEach items="${boardList}" var="list" varStatus="nickStatus">
-			<c:set var="nickName" value="${nickNameList[nickStatus.index]}"/>
+			
+				<c:if test="${empty searchList}">
+					<tr><td colspan="5" id="seachTd"><strong>검색 결과가 없습니다.</strong></td></tr>
+				</c:if>
+			
+			<c:forEach items="${searchList}" var="list" varStatus="nickStatus">
+			<c:set var="nickName" value="${searchNickNameList[nickStatus.index]}"/>
 			<c:set var="i" value="${i+1}" />
+			<c:set var="c" value="${searchCnt}" />
+			
 				<tr>
-					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;</td>
-					<c:choose>
-						<c:when test="${list.secret == 1}"><!-- 비밀글일때 -->
-						<td>[${list.category}]
-							<c:choose>
-								<c:when test="${currentUser.getUserSeq() == 1 || currentUser.getUserSeq() == list.userSeq }"><!-- 관리자거나 작성자일때 -->
-									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}"><img src='/images/lock.png' alt='자물쇠' id='lock'>${list.title}</a>	<!-- 내용 보임 -->							
-								</c:when>
-								<c:otherwise><!-- 작성자나 관리자가 아닐때 안보임 -->
-									<strong><img src='/images/lock.png' alt='자물쇠' id='lock'>비밀글입니다.</strong>
-								</c:otherwise>
-							</c:choose>
-						</td>
-						</c:when>
-						<c:otherwise><!-- 비밀글 아닐때 내용 보여짐 -->
-							<td>[${list.category}]&nbsp;<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>						
-						</c:otherwise>
-					</c:choose>
+					<td>${i }&nbsp;</td>
+					<td>[${list.category}]&nbsp;<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}">${list.title}</a></td>						
 					<td>&nbsp;&nbsp;${nickName}&nbsp;&nbsp;</td>
 					<td>${list.date}&nbsp;&nbsp;</td>
 					<td>${list.viewCount}</td>
 				</tr>
-			
 			</c:forEach>
+			
 		</table>
 		<div>
 			<input type="text" placeholder="검색어를 입력하세요." name="keyword">
-			<input type="submit" value="검색" id="serchBtn">
+			<input type="submit" value="검색">
 		</div>
 		</form>
 		<!-- 페이징 -->
 		<div id="testArea"></div>
 		<div id="paging">
-          <% int totalCnt = (int) request.getAttribute("boardCnt");
-              int totalPage = 0; 
-              if (totalCnt % 10 == 0) { 
-                  totalPage = totalCnt / 10; 
-             } else { 
-                  totalPage = totalCnt / 10 + 1; 
-              } 
-              int pageCnt = 10; 
-              int pageNum = 1; 
-              %>  
+          <% int totalCnt = (int) request.getAttribute("searchCnt");
+               int totalPage = 0; 
+               if (totalCnt % 10 == 0) { 
+                   totalPage = totalCnt / 10;  
+              } else {  
+                   totalPage = totalCnt / 10 + 1;  
+               }  
+               int pageCnt = 10; 
+               int pageNum = 1;  
+               %>   
 			<c:set var="totalPage" value="<%=totalPage %>"/>
 			<c:choose>
 				<c:when test="${page!=1}">
-				    <a href="${page-1}" class="prev_link">이전</a>				
+				    <a href="<%=request.getContextPath()%>/board/searchResult/${page-1}?keyword=${keyword}" class="prev_link">이전</a>				
 				</c:when>
 				<c:otherwise>
 					<a href="#" class="prev_link">이전</a>	
@@ -116,12 +108,12 @@ height: 600px;
 			</c:choose>
 			
 		    <c:forEach var="page" begin="1" end="${totalPage}">
-		        <a href="<%=request.getContextPath()%>/board/list/${page}" class="page_link">${page}</a>
+		        <a href="<%=request.getContextPath()%>/board/searchResult/${page}?keyword=${keyword}" class="page_link">${page}</a>
 		    </c:forEach>
 		    
 		    <c:choose>
 				<c:when test="${page!=totalPage}">
-				    <a href="${page+1}" class="next_link">다음</a>				
+				    <a href="<%=request.getContextPath()%>/board/searchResult/${page+1}?keyword=${keyword}" class="next_link">다음</a>				
 				</c:when>
 				<c:otherwise>
 					<a href="#" class="next_link">다음</a>	
@@ -130,11 +122,12 @@ height: 600px;
     	</div>
 
 		<input type="button" value="글작성" onclick="location.href='/board/form'" id="formBtn" class="btn btn-primary btn-ghost">
+		<input type="button" value="글목록" onclick="location.href='/board/list/1'" id="backBtn" class="btn btn-primary btn-ghost">
 	</div>
 </div>
 	<jsp:include page="../footer.jsp"/>
 <script type="text/javascript">
-//검색버튼 눌렀을때 검색창 이동 필요
+
 
 // $(document).ready(function(){
 // 	var pageCount = ${totalPage};

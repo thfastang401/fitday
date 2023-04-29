@@ -31,6 +31,7 @@ width:500px;
 						<option value="추천">추천</option>
 						<option value="잡담">잡담</option>
 					</select>
+					<input type="checkbox" value=1 id="secretCheck">비밀글 
 				</td>
 			</tr>
 			<tr>
@@ -43,6 +44,7 @@ width:500px;
 			<tr>
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
 				<td>
+					<input type="hidden" id="secret" name="secret" value=0>
 					<input type="hidden" value="${board.boardSeq}" id="boardSeq" name="boardSeq">
 					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})">
 					<input type="submit" value="등록하기" id="submitBtn">
@@ -61,13 +63,14 @@ width:500px;
 		var title = $("#title").val();
 		var content = $("#content").val();
 		var boardSeq = $("#boardSeq").val();
-		console.log(title);
-		console.log(content);
+		if ($('#secretCheck').is(":checked")) {//체크박스 값 가져오기
+			$("#secret").val(parseInt("1")); //hidden 태그에 1 넣어주기. 그냥 넣으면 String이라 형변환 필요
+		}
 		//공백 검색
 		if(title.trim().length === 0 ||content.trim().length === 0){
 			alert('내용을 입력하세요');
 			e.preventDefault();
-		}	
+		}
 		
 	});
 </script>

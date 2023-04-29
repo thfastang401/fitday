@@ -3,6 +3,7 @@ package com.fittrio.fitday.service;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fittrio.fitday.dto.BoardDTO;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +31,8 @@ public interface BoardService {
 	void deleteBoardByUserSeq(int userSeq);
 
 	int getBoardUserSeq(int boardSeq);
+
+	List<BoardDTO> getSearchList(Map<String, Object> map);
 
 	//void uploadFile(BoardDTO dto, MultipartFile file) throws IOException;
 
