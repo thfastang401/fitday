@@ -15,6 +15,11 @@ height:50px;
 #secretStrong{
 color:grey;
 }
+
+#lock{
+width:20px;
+height: 20px;
+}
 </style>
 </head>
 <body>
@@ -112,7 +117,7 @@ window.onload = function(){ //창이 열리면 자동 로드
 				  if(comment.secret == 1){
 					  if(userSeq != comment.userSeq && userSeq != boardUserSeq && userSeq != 1){//비밀댓글이고 댓글 작성자나 글 작성자가 아닌 경우
 						  var html = 
-							"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='/resources/static/images/lock.png' alt='자물쇠'>"
+							"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
 						  + "<tr class='contentClass'><td><strong id='secretStrong'>비밀댓글입니다.</strong></td></tr>"  
 						  commentArea.append(html);
 					  }else{ //비밀 댓글이고 댓글 작성자나 관리자일 경우에 보여야 함.

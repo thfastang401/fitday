@@ -1,21 +1,17 @@
 package com.fittrio.fitday.controller;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-
-import ch.qos.logback.core.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fittrio.fitday.dto.BoardDTO;
@@ -51,7 +47,6 @@ public class BoardController {
     	mv.addObject("boardCnt", boardCnt);
     	mv.addObject("nickNameList",nickNameList);
     	mv.addObject("boardList",boardList);
-    	System.out.println(page);
     	mv.setViewName("board/list");
     	return mv;
     }
@@ -157,6 +152,31 @@ public class BoardController {
     	
     	return "redirect:/board/detail/"+boardSeq;
     }
+    
+    //검색결과
+    @GetMapping(value= {"/searchResult/{page}"})
+    public ModelAndView searchResult(String keyword, @PathVariable("page") int page) {
+    	ModelAndView mv = new ModelAndView();
+    	Map<String, Object> map = new HashMap<>();
+    	List<String> searchNickNameList = new ArrayList<>();
+    	int limit = (page - 1)*10;
+    	map.put("keyword", keyword);
+    	map.put("limit", limit);
+    	List<BoardDTO> searchList = boardService.getSearchList(map);//검색 내용 리스트 불러오기
+    	if(searchList.size()!= 0) {
+    		searchNickNameList = userService.getNickNameJoinBoard(searchList);//검색시 작성자 닉네임 가져오기
+    		mv.addObject("searchNickNameList", searchNickNameList);
+    	}else {
+    		mv.addObject("searchNickNameList", null);
+    	}
+    	mv.addObject("searchCnt", searchList.size());
+    	mv.addObject("keyword",keyword);
+    	mv.addObject("searchList", searchList);
+    	mv.setViewName("board/search");
+    	return mv;
+    }
+    
+   
 
 	//missionList 가져오기
     @GetMapping("/mission/list")
