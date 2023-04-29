@@ -10,15 +10,62 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="/css/font.css" rel="stylesheet">
 <style type="text/css">
+a{
+color:black;
+}
+
+#allDiv{
+margin-top:40px;
+height: 600px;
+width: 100%;
+font-family: 'BMJUA';
+}
+
+#writeTbl{
+width: 80%;
+margin:auto;
+text-align: center;
+}
+
+textarea{
+width: 650px;
+height: 500px;
+resize: none;
+margin:auto;
+text-align: left;
+border-color: grey;
+outline-color: #E1BEE7;
+} 
+
+#lock{
+width:20px;
+height: 20px;
+}
+
+#typeDiv{
+width:650px;
+margin: auto;
+text-align: left;
+} 
+
+#boardType, #category{
+height: 30px;
+margin-bottom: 8px;
+}
+
 #title{
-width:500px;
+width: 650px; 
+height: 30px;
+margin:auto auto 20px;
+text-align: left;
+outline-color: #E1BEE7;
 }
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-	<h2>상세화면 수정</h2>
-	<div>
+	<strong>상세화면 수정</strong>
+	<div id="allDiv"> 
 	<form action="<%=request.getContextPath()%>/board/update/${board.boardSeq}" method="post">
 		<table>
 			<tr>

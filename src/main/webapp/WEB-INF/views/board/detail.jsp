@@ -61,9 +61,16 @@ text-align: center;
 	<%@ include file="../board/comment.jsp" %>
 	</div>
 <script type="text/javascript">
-//<br> => enter
-var content = $('#content').val();
-content = content.split('<br>').join("\r\n");
+	$("#updateBtn").click(function(){
+		 // 글 제목과 내용 가져오기
+		  var title = $("#title").val();
+		  var content = $("#content").val();
+
+		  // 1. &lt;br&gt; 제거, &amp;nbsp;를 스페이스바로 치환
+		  content = content.replace(/&lt;br&gt;/g, '');
+		  content = content.replace(/&amp;nbsp;/g, ' ');
+		  $("#content").val(content);
+	});
 
 	//목록버튼
 	function goList(){
