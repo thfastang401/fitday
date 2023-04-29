@@ -8,8 +8,10 @@
 	<!-- <select id="insertComment" parameterType="commentdto"> insert into 
 		comment </select> -->
 
+<!-- 커뮤니티 -->
 	<select id="getAllBoardCnt" resultType="int">
 		select count(*) from board
+		WHERE board_type = "talk"
 	</select>
 
 	<select id="getAllBoardList" resultType="boarddto" parameterType="int">
@@ -70,5 +72,11 @@
 		and secret = 0
 		order by board_seq desc
 		limit #{limit},10
+	</select>
+	
+	<select id="getSearchListCnt" parameterType="String" resultType="int">
+		select count(*) from board
+		where title like concat('%',#{keyword},'%')
+		and secret = 0
 	</select>
 </mapper>

@@ -169,9 +169,12 @@ public class BoardController {
     	}else {
     		mv.addObject("searchNickNameList", null);
     	}
-    	mv.addObject("searchCnt", searchList.size());
+    	int searchCnt = boardService.getSearchListCnt(keyword);
+    	
+    	mv.addObject("searchCnt", searchCnt);
     	mv.addObject("keyword",keyword);
     	mv.addObject("searchList", searchList);
+    	mv.addObject("page", page);
     	mv.setViewName("board/search");
     	return mv;
     }

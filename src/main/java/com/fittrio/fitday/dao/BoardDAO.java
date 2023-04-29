@@ -36,4 +36,6 @@ public interface BoardDAO {
 	int getBoardUserSeq(int boardSeq);
 
 	List<BoardDTO> getSearchResult(Map<String, Object> map);
+
+	int getSearchListCnt(String keyword);
 }

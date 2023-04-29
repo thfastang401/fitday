@@ -123,14 +123,14 @@ window.onload = function(){ //창이 열리면 자동 로드
 					  }else{ //비밀 댓글이고 댓글 작성자나 관리자일 경우에 보여야 함.
 						  if(userSeq == comment.userSeq || userSeq == 1){
 							  var html = 
-							    "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
+							    "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
 							  + "<input type='button' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;"  
 					    	  + "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
 					    	  + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 					    	  commentArea.append(html);							  
 						  }else if(userSeq == boardUserSeq ){//비밀 댓글이고 게시글 작성자는 댓글 내용만 확인 가능
 							  var html = 
-								"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
+								"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
 						   	  + "<tr class='contentClass'><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
 						   	  commentArea.append(html);			
 						  }
