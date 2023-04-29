@@ -14,7 +14,7 @@
     </div>
         <div>
             <button type="button">수정하기</button>
-            <button type="button">삭제하기</button>
+            <button type="button" onclick="location.href='/board/mission/delete/${mission.boardSeq}'">삭제하기</button>
         </div>
 
 </div>

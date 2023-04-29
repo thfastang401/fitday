@@ -8,15 +8,15 @@
 <body>
 <div>
     <jsp:include page="../../header.jsp"/>
-    <div>
+    <div style="text-align: center;">
         <c:forEach items="${missionList}" var="mission" varStatus="status">
             <div style="display:inline-block; width: 30%; margin: 5px;">
                 <div onclick="location.href='/board/mission/detail/${mission.boardSeq}'">
                     <img src="<%=request.getContextPath()%>/uploads/${mission.fileName}" onerror="this.src='<%=request.getContextPath()%>/images/missionDefault.png'" width="100%">
                     <div>
-                        <h4>${mission.title}</h4>
+                        <h3>${mission.title}</h3>
                         <h5>${mission.date}</h5>
-                        <h6>작성자</h6>
+                        <h6>${nicknameList[status.index]}</h6>
                     </div>
                 </div>
             </div>

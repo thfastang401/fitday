@@ -31,9 +31,12 @@ public interface UserService {
 
 	List<String> getNickNameJoinBoard(List<BoardDTO> boardList);
 
+	List<String> getNicknameMission(List<BoardDTO> missionList);
+
 	void updatePasswordInfo(UserDTO dto);
 
 	List<String> getNickNameJoinComment(int boardSeq);
 	
 	void deleteUserByUserSeq(int UserSeq);
+
 }

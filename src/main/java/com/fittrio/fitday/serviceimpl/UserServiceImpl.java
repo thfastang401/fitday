@@ -91,6 +91,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<String> getNicknameMission(List<BoardDTO> missionList) {
+		return dao.getNicknameMission(missionList);
+	}
+
+	@Override
 	public void updatePasswordInfo(UserDTO dto) {
 		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
 		dao.updatePasswordInfo(dto);

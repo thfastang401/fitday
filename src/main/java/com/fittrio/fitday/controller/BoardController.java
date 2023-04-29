@@ -8,10 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fittrio.fitday.dto.BoardDTO;
@@ -178,20 +175,23 @@ public class BoardController {
     
    
 
-	//missionList 가져오기
+	//인증 게시글 목록 조회
     @GetMapping("/mission/list")
 	public ModelAndView missionList(){
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> missionList = boardService.getAllMissionList();
+		List<String> nicknameList = userService.getNicknameMission(missionList);
 		mv.addObject("missionList",missionList);
+		mv.addObject("nicknameList",nicknameList);
 		mv.setViewName("board/mission/list");
 		return mv;
 	}
 
+	//인증 게시글 작성
 	@GetMapping("/mission/form")
 	public String insertMission() {return "board/mission/form";}
 
-
+	//인증 게시글 상세 조회
 	@GetMapping("/mission/detail/{seq}")
 	public ModelAndView getOneMission(@PathVariable int seq) {
 		ModelAndView mv = new ModelAndView();
@@ -200,6 +200,14 @@ public class BoardController {
 		mv.setViewName("board/mission/detail");
 		return mv;
 	}
+
+	//인증 게시글 삭제
+	@GetMapping("/mission/delete/{boardSeq}")
+	public String deleteMission(@PathVariable("boardSeq") int boardSeq){
+		boardService.deleteBoard(boardSeq);
+		return "redirect:/board/mission/list";
+	}
+
 
     
     
