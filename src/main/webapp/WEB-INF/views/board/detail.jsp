@@ -15,6 +15,7 @@ margin-top:40px;
 height: 600px;
 width: 100%;
 font-family: 'BMJUA';
+font-size: 15px;
 }
 
 #detailTbl{

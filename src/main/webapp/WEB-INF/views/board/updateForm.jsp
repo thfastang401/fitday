@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="/css/font.css" rel="stylesheet">
 <style type="text/css">
@@ -19,6 +20,7 @@ margin-top:40px;
 height: 600px;
 width: 100%;
 font-family: 'BMJUA';
+font-size: 15px;
 }
 
 #writeTbl{
@@ -67,26 +69,28 @@ outline-color: #E1BEE7;
 	<strong>상세화면 수정</strong>
 	<div id="allDiv"> 
 	<form action="<%=request.getContextPath()%>/board/update/${board.boardSeq}" method="post">
-		<table>
+		<table id="writeTbl">
 			<tr>
 				<td>
-					<select name="boardType">
+				<div id="typeDiv">
+					<select name="boardType" id="boardType">
 						<option value="talk">커뮤니티</option>
 						<option value="excercise">인증</option>
 					</select>
-					<select name="category">
+					<select name="category" id="category">
 						<option value="공유">공유</option>
 						<option value="추천">추천</option>
 						<option value="잡담">잡담</option>
 					</select>
 					<input type="checkbox" value=1 id="secretCheck">비밀글 
+				</div>
 				</td>
 			</tr>
 			<tr>
 				<td><input type="text" value="${board.title}" name="title" id="title"></td>
 			</tr>
 			<tr>
-				<td><hr><br>
+				<td><br>
 				<textarea rows="20" cols="70" id="content" name="content">${board.content}</textarea><br><br></td>
 			</tr>
 			<tr>
@@ -94,8 +98,8 @@ outline-color: #E1BEE7;
 				<td>
 					<input type="hidden" id="secret" name="secret" value=0>
 					<input type="hidden" value="${board.boardSeq}" id="boardSeq" name="boardSeq">
-					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})">
-					<input type="submit" value="등록하기" id="submitBtn">
+					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})" class="btn btn-primary btn-ghost">
+					<input type="submit" value="등록하기" id="submitBtn" class="btn btn-primary btn-ghost">
 				</td>
 			</tr>
 		</table>
