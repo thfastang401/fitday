@@ -48,7 +48,7 @@ height: 600px;
 font-family: 'BMJUA';
 font-size: 15px;
 }
-
+ 
 .title{
 align-items:flex-end; /* 수직 중앙 정렬 */
 max-width: 1140px;
@@ -113,7 +113,6 @@ color:grey;
 							<c:choose>
 								<c:when test="${currentUser.getUserSeq() == 1 || currentUser.getUserSeq() == list.userSeq }"><!-- 관리자거나 작성자일때 -->
 									<a href="<%=request.getContextPath()%>/board/detail/${list.boardSeq}"><img src='/images/lock.png' alt='자물쇠' id='lock'>${list.title}</a>	<!-- 내용 보임 -->							
-									댓글수${commentCntList[nickStatus.index]}
 								</c:when>
 								<c:otherwise><!-- 작성자나 관리자가 아닐때 안보임 -->
 									<strong><img src='/images/lock.png' alt='자물쇠' id='lock'>비밀글입니다.</strong>

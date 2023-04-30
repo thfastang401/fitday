@@ -49,7 +49,9 @@ text-align: left;
 } 
 
 #boardType, #category{
+display:inline;
 height: 30px;
+width:80px;
 margin-bottom: 8px;
 }
 
