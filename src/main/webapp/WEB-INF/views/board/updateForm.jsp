@@ -88,7 +88,7 @@ display: inline;
 							<option value="잡담">잡담</option>
 						</select>
 					</div>
-					<input type="checkbox" value=1 id="secretCheck">비밀글 
+					<input type="checkbox" value="${board.secret}" id="secretCheck">비밀글 
 				</div>
 				</td>
 			</tr>
@@ -113,6 +113,11 @@ display: inline;
 	</form>
 	</div>
 <script type="text/javascript">
+	var secret = $("#secretCheck").val();
+	if(secret == "1"){
+		$("#secretCheck").prop("checked",true);
+	}
+
 	$("#boardType").on("change", function() {
 	  if($(this).val() == 'talk'){
 	    $("#hideDiv").show();

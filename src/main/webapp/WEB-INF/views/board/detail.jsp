@@ -12,9 +12,10 @@
 <style type="text/css">
 
 #allDiv{
-margin-top:40px;
+margin:auto;
 height: auto;
-width: 100%;
+/* width: 100%; */
+max-width: 1140px;
 font-family: 'BMJUA';
 font-size: 15px;
 }

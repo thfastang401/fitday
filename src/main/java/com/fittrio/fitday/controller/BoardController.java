@@ -146,6 +146,7 @@ public class BoardController {
     public String update(@PathVariable("boardSeq") int boardSeq, BoardDTO dto) {
     	HashMap<String, Object> map = new HashMap<String, Object>();
     	map.put("dto", dto);
+    	map.put("secret", dto.getSecret());
     	map.put("boardSeq", boardSeq);
     	boardService.updateBoard(map);
     	
