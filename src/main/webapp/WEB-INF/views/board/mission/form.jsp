@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>인증 게시글 작성</title>
 </head>
 <body>
 <h3>게시글 등록</h3>
@@ -15,7 +15,7 @@
     <input type="file" name="file" id="file">
 
     <div>
-        <button type="button" onclick="location.href='/'">취소</button>
+        <button type="button" onclick="location.href='/board/mission/list'">취소</button>
         <button type="submit" id="insertBtn">등록</button>
     </div>
     <input type="hidden" name="userSeq" value=${currentUser.getUserSeq()}>

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>인증 게시판 상세 조회</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
         <img src="<%=request.getContextPath()%>/uploads/${mission.fileName}" onerror="this.src='<%=request.getContextPath()%>/images/missionDefault.png'" width="600">
     </div>
         <div>
-            <button type="button">수정하기</button>
+            <button type="button" onclick="location.href='/board/mission/update/${mission.boardSeq}'">수정하기</button>
             <button type="button" onclick="location.href='/board/mission/delete/${mission.boardSeq}'">삭제하기</button>
         </div>
 

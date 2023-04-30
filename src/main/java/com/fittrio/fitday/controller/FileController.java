@@ -2,13 +2,16 @@ package com.fittrio.fitday.controller;
 
 import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.service.BoardService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
@@ -69,6 +72,32 @@ public class FileController {
 
 
     }
+
+    //파일 수정
+    @PostMapping("/mission/update/form")
+    public String updateMission(
+            @ModelAttribute BoardDTO dto,
+            @RequestParam("file") MultipartFile file,
+            HttpSession session
+    ) throws IOException {
+        // 기존 파일 삭제
+        if (!StringUtils.isEmpty(dto.getFileName())) {
+            String filePath = dto.getFilePath();
+            File targetFile = new File(filePath);
+            if (targetFile.exists()) {
+                targetFile.delete();
+            }
+        }
+        // 새 파일 저장
+        if (!file.isEmpty()) {
+            //String fileName = boardService.upload(file);
+            //dto.setFileName(fileName);
+            
+        }
+        //boardService.updateMission(dto);
+        return "redirect:/board/mission/detail/" + dto.getBoardSeq();
+    }
+
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public String handleMaxSizeException(RedirectAttributes redirectAttributes) {

@@ -208,6 +208,17 @@ public class BoardController {
 		return "redirect:/board/mission/list";
 	}
 
+	//인증 게시글 수정
+	@GetMapping("/mission/update/{seq}")
+	public ModelAndView updateMission(@PathVariable("seq") int seq){
+		ModelAndView mv = new ModelAndView();
+		BoardDTO mission = boardService.getOneBoard(seq);
+		mv.addObject("mission",mission);
+		mv.setViewName("board/mission/update");
+		return mv;
+	}
+
+
 
     
     
