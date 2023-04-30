@@ -14,51 +14,126 @@
 color:grey;
 }
 
+#allDiv{
+margin:auto;
+height: auto;
+/* width: 100%; */
+max-width: 1140px;
+font-family: 'BMJUA';
+font-size: 15px;
+}
 #lock{
 width:20px;
 height: 20px;
 } 
 
-#label, .commentTbl{
-width: 80%;
-margin:auto;
+#commentArea{
+width: 100%;
+margin:30px 0 0 114px;
 text-align: center;
-
+white-space: pre-wrap;
 }
 
-#commentArea{
-width: 80%;
-margin-top:30px;
-text-align: center;
+#contentDiv{
+margin:auto;
+height: auto;
+max-width: 1140px;
+resize: none;
+border-radius:10px;
+outline-color: #E1BEE7;
 }
 
 #content{
-float:left;
-width:70%;
+margin:auto;
+height: auto;
+width:80%;
+max-width: 1140px;
+resize: none;
+border-radius:10px;
+outline-color: #E1BEE7;
 }
 
-</style>
+#updateContent{
+resize: none;
+width: 80%;
+margin:auto;
+border-radius: 10px;
+/* margin: 10px 0 10px 153px; */
+/* text-align: center; */
+outline-color: #E1BEE7;
+}
+
+.divTd{
+width:100%; 
+margin-top: 20px;
+text-align: left;
+}
+
+.container{
+display: flex; /* 컨테이너를 플렉스 박스로 설정 */
+align-items:flex-end; ; /* 수직 중앙 정렬 */
+max-width: 1140px;
+margin: 10px 0 20px 77%; 
+}
+/* #commentSubmit{ */
+/* width:50px; */
+/* text-align: inherit; */
+/* } */
+#noComment{
+text-align: center;
+}
+
+#commentLabel{
+margin: 40px 0 10px 155px;
+width: 100%;
+}
+
+.commentTbl{
+width: 80%;
+margin:auto;
+/* margin: 10px 0 10px 153px; */
+text-align: center;
+
+}
+
+.align{
+width:100%;
+text-align: left;
+}
+
+/* .commentDiv{ */
+/* width: 80%;  */
+/* margin:0 0 0 50px; */
+/* height: auto; */
+/* max-width: 1140px; */
+/* text-align: left; */
+/* } */
+</style> 
 </head>
 <body>
-<strong id="label">comments</strong>  
+<div id="allDiv">
+<div id="commentLabel">
+<strong>comments</strong>
+</div>  
 <div>
 <!-- 		<!-- 댓글창 -->
 		<form id="commentForm">
 		<div>
 			<table class="commentTbl">
-				<tr>
-					<td>
-						<textarea rows="3" cols="4" placeholder="댓글을 입력하세요." name="content" id="content" >&nbsp;</textarea>
+				<tr><td><div id="contentDiv"><textarea rows="3" cols="4" placeholder="댓글을 입력하세요." name="content" id="content" ></textarea></div></td></tr>
+				<tr><td>
+					<div class="container">
 						<input type="checkbox" value="1" name="secret" id="secret">비밀댓글
-						<input type="submit" value="등록" onclick="insertCommentAjax(${board.boardSeq})" class="btn btn-primary btn-ghost">
+						<input type="submit" value="등록" id="commentSubmit" onclick="insertCommentAjax(${board.boardSeq})" class="btn btn-primary btn-ghost">
+					</div>
 						<input type="hidden" value="${currentUser.getUserSeq()}" name="userSeq" id="userSeq">
 						<input type="hidden" value="${board.boardSeq}" name="boardSeq" id="boardSeq">
 						<input type="hidden" value="${nickName}" name="nickName" id="nickName">
 					</td>
-				</tr>
+				</tr> 
 				<tr>
 					<td>
-						<div id="commentArea">
+						<div id="commentArea" class="commentDiv"> 
 						</div>
 					</td>
 				</tr>
@@ -66,6 +141,7 @@ width:70%;
 			</div>
 		</form>
 	</div>
+</div>	
 <script type="text/javascript">
 const boardSeq = $("#boardSeq").val();
 
@@ -77,7 +153,9 @@ window.onload = function(){ //창이 열리면 자동 로드
 	function insertCommentAjax(boardSeq) {
 		var secret;
 		const userSeq = $("#userSeq").val();
-		const content = $("#content").val();
+		var content = $("#content").val();
+		$("#content").html(content);
+		content = $("#content").val();
 		if ($('#secret').is(":checked")) {//체크박스 값 가져오기
 			secret = $("#secret").val(); //여기서 선언, 초기화 하면 if문 끝나자마자 secret변수도 사라짐. 미리 선언 필요
 		}
@@ -97,8 +175,8 @@ window.onload = function(){ //창이 열리면 자동 로드
 				success: function(data){
 					alert("댓글이 등록되었습니다.");
 					$('#content').val('');
-					commentList(boardSeq);
 					location.reload();
+					commentList(boardSeq);
 				},
 				error: function(request, status, error){
 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -134,35 +212,35 @@ window.onload = function(){ //창이 열리면 자동 로드
 				  if(comment.secret == 1){
 					  if(userSeq != comment.userSeq && userSeq != boardUserSeq && userSeq != 1){//비밀댓글이고 댓글 작성자나 글 작성자가 아닌 경우
 						  var html = 
-							"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
-						  + "<tr><td><strong id='secretStrong'>비밀댓글입니다.</strong></td></tr>"  
+							"<tr><td><div class='divTd'><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
+						  + "<tr><td class='align'><strong id='secretStrong'>비밀댓글입니다.</strong></div></td></tr>"  
 						  commentArea.append(html);
 					  }else{ //비밀 댓글이고 댓글 작성자나 관리자일 경우에 보여야 함.
 						  if(userSeq == comment.userSeq || userSeq == 1){
 							  var html = 
-							    "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
-							  + "<input type='button' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;"  
-					    	  + "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
-					    	  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+							    "<tr><td><div class='divTd'><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
+							  + "<input type='button' value='수정' id='updateAjaxBtn' class='btn btn-primary btn-ghost' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;"  
+					    	  + "<input type='button' value='삭제' class='btn btn-primary btn-ghost' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
+					    	  + "<tr><td class='align' id='contentArea" + comment.commentSeq +"'>" + comment.content + "</div></td></tr>";
 					    	  commentArea.append(html);							  
 						  }else if(userSeq == boardUserSeq ){//비밀 댓글이고 게시글 작성자는 댓글 내용만 확인 가능
 							  var html = 
-								"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
-						   	  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+								"<tr><td><div class='divTd'><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;<img src='${pageContext.request.contextPath}/images/lock.png' alt='자물쇠' id='lock'>"
+						   	  + "<tr><td class='align' id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</div></td></tr>";
 						   	  commentArea.append(html);			
 						  }
 					  }
 				  }else{//비밀댓글이 아닐경우
 					  if(userSeq == comment.userSeq || userSeq == 1){//로그인 유저가 댓글 작성자이거나 관리자일 경우
-						  var html = "<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
-					      + "<input type='button' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;" 
-					      + "<input type='button' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
-					      + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+						  var html = "<tr><td><div class='divTd'><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
+					      + "<input type='button' class='btn btn-primary btn-ghost' value='수정' id='updateAjaxBtn' onclick='updateCommentAjax(" + boardSeq + ",\"" + comment.content + "\"," +comment.commentSeq + ")'>&nbsp;" 
+					      + "<input type='button' class='btn btn-primary btn-ghost' value='삭제' onclick='deleteCommentAjax(" + boardSeq + "," + comment.commentSeq + ")'></td></tr>"  
+					      + "<tr><td class='align' id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</div></td></tr>";
 					      commentArea.append(html); // 댓글 목록에 댓글 HTML 추가
 					  }else{
 						  var html = 
-							"<tr><td><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
-						  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</td></tr>";
+							"<tr><td><div class='divTd'><strong>" + commentNickname + "</strong>&nbsp;" + comment.date + "&nbsp;&nbsp;"
+						  + "<tr><td id='contentArea"+ comment.commentSeq +"'>" + comment.content + "</div></td></tr>";
 						  commentArea.append(html);		
 					  }
 					  
@@ -179,9 +257,9 @@ window.onload = function(){ //창이 열리면 자동 로드
 	
 	//댓글 수정
 	function updateCommentAjax(boardSeq, content, commentSeq){
-		var inputBox = $('<input type="text" name="updateContent" value="' + content + '">'); //content내용을 담고있는 input 박스만들기
-		var updateBtn = $('<input type="button" value="수정하기">');
-		var cancleBtn = $('<input type="button" id="cancle" value="수정취소">'); 
+		var inputBox = $('<textarea rows="3" cols="4" id="updateContent" name="updateContent">' + content + '</textarea>'); //content내용을 담고있는 input 박스만들기
+		var updateBtn = $('<input type="button" class="btn btn-primary btn-ghost" value="수정하기">');
+		var cancleBtn = $('<input type="button" class="btn btn-primary btn-ghost" id="cancle" value="수정취소" >'); 
 		
 		$('#contentArea'+commentSeq).empty().append(inputBox).append(updateBtn).append(cancleBtn);
 		

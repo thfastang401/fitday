@@ -12,8 +12,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <style type="text/css">
 #listTbl {
+align-items:flex-end; ; /* 수직 중앙 정렬 */
+max-width: 1140px;
+/* margin: 10px 0 20px 77%;  */
 	border: 1px solid black;
-	width:80%;
+/* 	width:80%; */
 	margin: auto;
 	vertical-align: middle;
 }
@@ -37,21 +40,30 @@ height: 20px;
 } 
 
 #allDiv{
-margin-top:40px;
+align-items:flex-end; ; /* 수직 중앙 정렬 */
+max-width: 1140px;
+margin: auto;
+/* margin-top:40px; */
 height: 600px;
 font-family: 'BMJUA';
 font-size: 15px;
 }
 
 .title{
-	width:80%;
-	margin: auto;
+align-items:flex-end; /* 수직 중앙 정렬 */
+max-width: 1140px;
+margin: auto;
+/* 	width:80%; */
+/* 	margin: auto; */
 	vertical-align: middle;
 }
 
 #writeDiv{
-width:80%;
-margin:20px auto 0;
+align-items:flex-end;
+max-width: 1140px;
+margin: auto;
+/* width:80%; */
+/* margin:20px auto 0; */
 text-align: right;
 }
 
@@ -94,7 +106,7 @@ color:grey;
 			<c:set var="nickName" value="${nickNameList[nickStatus.index]}"/>
 			<c:set var="i" value="${i+1}" />
 				<tr>
-					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;${list.boardSeq }</td>
+					<td>${boardCnt+1-((page-1)*10 + i)} &nbsp;</td>
 					<c:choose>
 						<c:when test="${list.secret == 1}"><!-- 비밀글일때 -->
 						<td>[${list.category}]

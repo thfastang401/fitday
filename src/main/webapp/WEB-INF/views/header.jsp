@@ -15,7 +15,7 @@
 <!-- <link href="resources/css/header.css" rel="stylesheet"> -->
 <style type="text/css">
 #header{
-background-color: grey;
+background-color: #FFF59D;
 width: 100%;
 height: 190px;
 font-family: 'BMJUA';

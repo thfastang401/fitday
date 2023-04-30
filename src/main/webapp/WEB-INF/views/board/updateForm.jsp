@@ -62,27 +62,33 @@ margin:auto auto 20px;
 text-align: left;
 outline-color: #E1BEE7;
 }
+
+.form-control{
+width:100px;
+display: inline;
+}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-	<strong>상세화면 수정</strong>
 	<div id="allDiv"> 
 	<form action="<%=request.getContextPath()%>/board/update/${board.boardSeq}" method="post">
 		<table id="writeTbl">
 			<tr>
 				<td>
 				<div id="typeDiv">
-					<select name="boardType" id="boardType">
+					<select name="boardType" id="boardType" class="form-control">
 						<option value="talk">커뮤니티</option>
-						<option value="excercise">인증</option>
+						<option value="mission">인증</option>
 					</select>
-					<select name="category" id="category">
-						<option value="공유">공유</option>
-						<option value="추천">추천</option>
-						<option value="잡담">잡담</option>
-					</select>
-					<input type="checkbox" value=1 id="secretCheck">비밀글 
+					<div id="hideDiv" style="display: inline;">
+						<select name="category" id="category" class="form-control">
+							<option value="공유">공유</option>
+							<option value="추천">추천</option>
+							<option value="잡담">잡담</option>
+						</select>
+					</div>
+					<input type="checkbox" value="${board.secret}" id="secretCheck">비밀글 
 				</div>
 				</td>
 			</tr>
@@ -96,6 +102,7 @@ outline-color: #E1BEE7;
 			<tr>
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
 				<td>
+					<div id="fileDiv" style="display: none"><input type="file" name="file" id="file"></div>		
 					<input type="hidden" id="secret" name="secret" value=0>
 					<input type="hidden" value="${board.boardSeq}" id="boardSeq" name="boardSeq">
 					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})" class="btn btn-primary btn-ghost">
@@ -106,6 +113,22 @@ outline-color: #E1BEE7;
 	</form>
 	</div>
 <script type="text/javascript">
+	var secret = $("#secretCheck").val();
+	if(secret == "1"){
+		$("#secretCheck").prop("checked",true);
+	}
+
+	$("#boardType").on("change", function() {
+	  if($(this).val() == 'talk'){
+	    $("#hideDiv").show();
+	    $("#fileDiv").hide();
+	  }else{
+	    $("#hideDiv").hide();
+	    $("#fileDiv").show();
+	    $("#f").attr("enctype", "multipart/form-data");
+	  }
+	});
+
 	//목록버튼
 	function goBack(boardSeq){
 		location.href="${pageContext.request.contextPath}/board/detail/"+boardSeq;
@@ -113,11 +136,13 @@ outline-color: #E1BEE7;
 	
 	$("#submitBtn").click(function(e){
 		var title = $("#title").val();
-		var content = $("#content").val();
 		var boardSeq = $("#boardSeq").val();
-		content = content.replace(/(?:\r\n|\r|\n)/g, '<br>');
-		content = content.replace(/(?:\s)/g, '&nbsp;');//공백일 경우 &nbsp;로 치환
-		$("#content").val(content);
+// 		var content = $("#content").val();
+// 		content = content.replace(/(?:\r\n|\r|\n)/g, '<br>');
+// 		content = content.replace(/(?:\s)/g, '&nbsp;');//공백일 경우 &nbsp;로 치환
+// 		$("#content").val(content);
+		var content = $("#content").val();
+		$("#content").html(content);
 		if ($('#secretCheck').is(":checked")) {//체크박스 값 가져오기
 			$("#secret").val(parseInt("1")); //hidden 태그에 1 넣어주기. 그냥 넣으면 String이라 형변환 필요
 		}
