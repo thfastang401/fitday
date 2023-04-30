@@ -71,7 +71,6 @@ display: inline;
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-	<strong>상세화면 수정</strong>
 	<div id="allDiv"> 
 	<form action="<%=request.getContextPath()%>/board/update/${board.boardSeq}" method="post">
 		<table id="writeTbl">
@@ -80,13 +79,15 @@ display: inline;
 				<div id="typeDiv">
 					<select name="boardType" id="boardType" class="form-control">
 						<option value="talk">커뮤니티</option>
-						<option value="excercise">인증</option>
+						<option value="mission">인증</option>
 					</select>
-					<select name="category" id="category" class="form-control">
-						<option value="공유">공유</option>
-						<option value="추천">추천</option>
-						<option value="잡담">잡담</option>
-					</select>
+					<div id="hideDiv" style="display: inline;">
+						<select name="category" id="category" class="form-control">
+							<option value="공유">공유</option>
+							<option value="추천">추천</option>
+							<option value="잡담">잡담</option>
+						</select>
+					</div>
 					<input type="checkbox" value=1 id="secretCheck">비밀글 
 				</div>
 				</td>
@@ -101,6 +102,7 @@ display: inline;
 			<tr>
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->
 				<td>
+					<div id="fileDiv" style="display: none"><input type="file" name="file" id="file"></div>		
 					<input type="hidden" id="secret" name="secret" value=0>
 					<input type="hidden" value="${board.boardSeq}" id="boardSeq" name="boardSeq">
 					<input type="button" value="뒤로가기" id="goBackBtn" onclick="goBack(${board.boardSeq})" class="btn btn-primary btn-ghost">
@@ -111,6 +113,17 @@ display: inline;
 	</form>
 	</div>
 <script type="text/javascript">
+	$("#boardType").on("change", function() {
+	  if($(this).val() == 'talk'){
+	    $("#hideDiv").show();
+	    $("#fileDiv").hide();
+	  }else{
+	    $("#hideDiv").hide();
+	    $("#fileDiv").show();
+	    $("#f").attr("enctype", "multipart/form-data");
+	  }
+	});
+
 	//목록버튼
 	function goBack(boardSeq){
 		location.href="${pageContext.request.contextPath}/board/detail/"+boardSeq;
