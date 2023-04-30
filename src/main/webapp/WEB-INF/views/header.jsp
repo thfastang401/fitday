@@ -29,7 +29,7 @@ font-size: 20px;
 
 <div class="container" style="">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <h2><a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+      <h2><a href="/" class="d-flex align-items-center col-md-auto mb-2 mb-md-0 text-dark text-decoration-none">
         <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
         FITDAY
       </a></h2>
@@ -42,12 +42,12 @@ font-size: 20px;
         <li><a href="#" class="nav-link px-2 link-dark">About</a></li> -->
       </ul>
 
-      <div class="col-md-3 text-center">
+      <div class="col-md-auto text-center">
       
       <sec:authorize access="isAuthenticated()"> 
      	 <sec:authentication property="principal.Nickname" />님 안녕하세요! <br>
 	     	 <sec:authorize access="hasAnyAuthority('USER')">
-	        	<button onclick="location.href='/user/mypage'" class="btn btn-primary">마이페이지</button>
+	        	<button onclick="location.href='/user/mypage'" class="btn btn-primary">👤</button>
 			</sec:authorize>
 			<sec:authorize access="hasAuthority('ADMIN')">
 	        	<button onclick="location.href='/admin'" class="btn btn-primary">관리자 페이지</button>
