@@ -57,7 +57,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form action="/user/login" method="post">
+                                    <form class="user" action="/user/login" method="post">
                                         <% if (request.getParameter("error") != null) { %>
             								<div class="alert alert-danger">
                 								사용자ID 또는 비밀번호를 확인해 주세요.
@@ -109,6 +109,6 @@
     </div>
 
 
-
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

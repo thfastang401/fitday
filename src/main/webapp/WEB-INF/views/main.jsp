@@ -17,7 +17,7 @@
 	<div class="container">
  		<div class="row justify-content-center">
  			<div class="col-xl-10 col-lg-12 col-md-9">
-<h3>메인페이지 입니다.</h3>
+				<h3>메인페이지 입니다.</h3>
 		<sec:authorize access="isAuthenticated()"> 
 			<%-- <div>
 				로그인 이메일 : ${loginId } : ${currentUser.getUsername()}
@@ -40,5 +40,6 @@
 		</div>
 	</div>
 	</div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

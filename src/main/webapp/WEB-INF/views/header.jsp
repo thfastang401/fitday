@@ -12,6 +12,7 @@
     <meta name="author" content="">
 <title>Insert title here</title>
 <link href="/css/font.css" rel="stylesheet">
+<link href="/css/sb-admin-2.css" rel="stylesheet">
 <!-- <link href="resources/css/header.css" rel="stylesheet"> -->
 <style type="text/css">
 #header{
@@ -25,7 +26,46 @@ font-size: 20px;
 </style>
 </head>
 <body>
-<div id="header">
+
+<div class="container" style="">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <h2><a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+        FITDAY
+      </a></h2>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-decoration-none">
+        <li><a href="/" class="nav-link px-2 link-secondary">홈</a></li>
+        <li><a href="<%=request.getContextPath()%>/board/list/1" class="nav-link px-2 link-dark">커뮤니티</a></li>
+        <li><a href="<%=request.getContextPath()%>/board/mission/list" class="nav-link px-2 link-dark">인증 게시판</a></li>
+       <!--  <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">About</a></li> -->
+      </ul>
+
+      <div class="col-md-3 text-center">
+      
+      <sec:authorize access="isAuthenticated()"> 
+     	 <sec:authentication property="principal.Nickname" />님 안녕하세요! <br>
+	     	 <sec:authorize access="hasAnyAuthority('USER')">
+	        	<button onclick="location.href='/user/mypage'" class="btn btn-primary">마이페이지</button>
+			</sec:authorize>
+			<sec:authorize access="hasAuthority('ADMIN')">
+	        	<button onclick="location.href='/admin'" class="btn btn-primary">관리자 페이지</button>
+			</sec:authorize>
+     	 	<button onclick="location.href='/logout'" class="btn btn-primary">로그 아웃</button>
+     	 </sec:authorize>
+     	 
+      <sec:authorize access="isAnonymous()">
+        <button type="button" onclick="location.href='/user/login'" class="btn btn-outline-primary me-2">로그인</button>
+        <button type="button" onclick="location.href='/register'" class="btn btn-primary">회원가입</button>
+      </sec:authorize>
+      </div>
+    </header>
+  </div>
+
+
+
+<%-- <div id="header">
 	<h1><a href="<%=request.getContextPath()%>/">FITDAY</a></h1>
 	<p>
 		<a href="<%=request.getContextPath()%>/board/list/1">커뮤니티</a>
@@ -49,8 +89,7 @@ font-size: 20px;
 		</sec:authorize>
 		<sec:authorize access="hasAuthority('ADMIN')">
         	<button onclick="location.href='/admin'" class="btn btn-primary">관리자 페이지</button>
-		</sec:authorize>
+		</sec:authorize> --%>
 
-</div>
 </body>
 </html>
