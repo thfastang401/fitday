@@ -14,7 +14,9 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div>
+<div  class="text-center">
     <h2>회원 가입</h2>
+</div>
      <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -127,6 +129,9 @@
                         type="button">로그인</button>
 
     </form> --%>
+    
+    
+ <jsp:include page="footer.jsp"/>
 </div>
 </body>
 </html>

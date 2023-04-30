@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/js/mypage/userInfo.js"></script>
+
 <meta charset="UTF-8">
 <title>${currentUser.getNickname()}님의 회원정보 수정</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -33,10 +33,16 @@
 								<label for="email">가입 이메일</label>		
 								<h4><sec:authentication property="principal.Username" /></h4> 
 							</div>
-							<div class="form-group">
-								<label for="nickname">닉네임</label>	
-								<input type="text"  class="form-control form-control-user" id="nickname" name="nickname" onblur="nicknameCheck()" onkeydown="nicknameCheck()" value="<sec:authentication property="principal.Nickname" />"> 
-								<br><span id="checkResult"></span>
+									<label for="nickname">닉네임</label>	
+							<div class="form-group row">
+								<div class="col-sm-6 mb-3 mb-sm-0">
+									<input type="text"  class="form-control form-control-user" id="nickname" name="nickname" value="<sec:authentication property="principal.Nickname" />"> 
+									<br><span id="checkResult"></span>
+								</div>
+								 <div class="col-sm-6">
+									<label for="nickname">   </label>	
+									<button type="button" onclick="nicknameCheck()" class="btn btn-primary btn-user"> 중복확인 </button>
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="password">비밀번호</label>	
@@ -57,7 +63,8 @@
 								<input type="text" class="form-control form-control-user"id="goal" name="goal" value="<sec:authentication property="principal.Goal" />"> 	
 							</div>
 							<div>
-						      	<button type="submit" onclick="return memberUpdate()" id="infoBtn" class="btn btn-primary btn-user btn-block">수정 완료</button>
+						      	<button type="submit" onclick="memberUpdate()" id="infoBtn" class="btn btn-primary btn-user btn-block" disabled="disabled">수정 완료</button>
+								<br><span id="nicknmaeDoubleCheck" style="color:red;" class="row justify-content-center">닉네임 중복확인이 필요합니다.</span>
 							</div>
 						</form>
 						</div>
@@ -70,8 +77,9 @@
 </div>
 	
 
-
+<jsp:include page="../footer.jsp"/>
 
 
 </body>
+<script src="/js/mypage/userInfo.js"></script>
 </html>
