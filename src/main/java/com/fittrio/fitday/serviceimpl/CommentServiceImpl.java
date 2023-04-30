@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fittrio.fitday.dao.CommentDAO;
+import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.dto.CommentDTO;
 import com.fittrio.fitday.service.CommentService;
 
@@ -44,6 +45,11 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public void deleteBoardCommentByUserSeq(int userSeq) {
 		dao.deleteBoardCommentByUserSeq(userSeq);
+	}
+
+	@Override
+	public List<Integer> getCommentCntByboardSeq() {
+		return dao.getCommentCntByboardSeq();
 	}
 	
 }

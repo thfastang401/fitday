@@ -41,7 +41,9 @@ public class BoardController {
     	int limit = (page - 1)*10; //페이징
     	List<BoardDTO> boardList= boardService.getAllBoardList(limit);//모든 게시글 내용 가져오기
     	List<String> nickNameList = userService.getNickNameJoinBoard(boardList);
+    	List<Integer> commentCntList = commentService.getCommentCntByboardSeq(); 
     	mv.addObject("boardCnt", boardCnt);
+    	mv.addObject("commentCntList",commentCntList);
     	mv.addObject("nickNameList",nickNameList);
     	mv.addObject("boardList",boardList);
     	mv.setViewName("board/list");
@@ -166,9 +168,12 @@ public class BoardController {
     	}else {
     		mv.addObject("searchNickNameList", null);
     	}
-    	mv.addObject("searchCnt", searchList.size());
+    	int searchCnt = boardService.getSearchListCnt(keyword);
+    	
+    	mv.addObject("searchCnt", searchCnt);
     	mv.addObject("keyword",keyword);
     	mv.addObject("searchList", searchList);
+    	mv.addObject("page", page);
     	mv.setViewName("board/search");
     	return mv;
     }

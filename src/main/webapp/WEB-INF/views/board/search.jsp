@@ -86,41 +86,42 @@ height: 600px;
 		</form>
 		<!-- 페이징 -->
 		<div id="testArea"></div>
-		<div id="paging">
-          <% int totalCnt = (int) request.getAttribute("searchCnt");
-               int totalPage = 0; 
-               if (totalCnt % 10 == 0) { 
-                   totalPage = totalCnt / 10;  
-              } else {  
-                   totalPage = totalCnt / 10 + 1;  
-               }  
-               int pageCnt = 10; 
-               int pageNum = 1;  
-               %>   
-			<c:set var="totalPage" value="<%=totalPage %>"/>
-			<c:choose>
-				<c:when test="${page!=1}">
-				    <a href="<%=request.getContextPath()%>/board/searchResult/${page-1}?keyword=${keyword}" class="prev_link">이전</a>				
-				</c:when>
-				<c:otherwise>
-					<a href="#" class="prev_link">이전</a>	
-				</c:otherwise>
-			</c:choose>
-			
-		    <c:forEach var="page" begin="1" end="${totalPage}">
-		        <a href="<%=request.getContextPath()%>/board/searchResult/${page}?keyword=${keyword}" class="page_link">${page}</a>
-		    </c:forEach>
-		    
-		    <c:choose>
-				<c:when test="${page!=totalPage}">
-				    <a href="<%=request.getContextPath()%>/board/searchResult/${page+1}?keyword=${keyword}" class="next_link">다음</a>				
-				</c:when>
-				<c:otherwise>
-					<a href="#" class="next_link">다음</a>	
-				</c:otherwise>
-			</c:choose>
-    	</div>
-
+		<c:if test="${Integer.parseInt(searchCnt) != 0}">
+			<div id="paging">
+		          <% int totalCnt = (int) request.getAttribute("searchCnt");
+		              int totalPage = 0; 
+		              if (totalCnt % 10 == 0) { 
+		                  totalPage = totalCnt / 10; 
+		             } else { 
+		                  totalPage = totalCnt / 10 + 1; 
+		              } 
+		              int pageCnt = 10; 
+		              int pageNum = 1; 
+		              %>  
+					<c:set var="totalPage" value="<%=totalPage %>"/>
+					<c:choose>
+						<c:when test="${page!=1}">
+						    <a href="${page-1}" class="prev_link">이전</a>				
+						</c:when>
+						<c:otherwise>
+							<a href="#" class="prev_link">이전</a>	
+						</c:otherwise>
+					</c:choose>
+					
+				    <c:forEach var="page" begin="1" end="${totalPage}">
+				        <a href="<%=request.getContextPath()%>/board/searchResult/${page}?keyword=${keyword}" class="page_link">${page}</a>
+				    </c:forEach>
+				    
+				    <c:choose>
+						<c:when test="${page!=totalPage}">
+						    <a href="${page+1}" class="next_link">다음</a>				
+						</c:when>
+						<c:otherwise>
+							<a href="#" class="next_link">다음</a>	
+						</c:otherwise>
+					</c:choose>
+		    	</div>
+			</c:if>
 		<input type="button" value="글작성" onclick="location.href='/board/form'" id="formBtn" class="btn btn-primary btn-ghost">
 		<input type="button" value="글목록" onclick="location.href='/board/list/1'" id="backBtn" class="btn btn-primary btn-ghost">
 	</div>
