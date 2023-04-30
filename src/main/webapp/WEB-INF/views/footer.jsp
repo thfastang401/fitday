@@ -10,7 +10,7 @@
 <!-- <link href="resources/css/header.css" rel="stylesheet"> -->
 <style type="text/css">
 #footer{
-background-color: grey;
+background-color: #FFF59D;
 width: 100%;
 height: 190px;
 margin-top:60px;
