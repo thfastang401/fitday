@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
 <link href="/css/font.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 <style type="text/css">
 
 #allDiv{

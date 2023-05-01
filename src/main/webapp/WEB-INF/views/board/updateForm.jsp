@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FITDAY 커뮤니티 게시판</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="/css/font.css" rel="stylesheet">
 <style type="text/css">
@@ -51,14 +51,17 @@ text-align: left;
 } 
 
 #boardType, #category{
+display:inline;
 height: 30px;
+width:110px;
 margin-bottom: 8px;
+font-size: 14px;
 }
 
 #title{
 width: 650px; 
 height: 30px;
-margin:auto auto 20px;
+margin:auto auto;
 text-align: left;
 outline-color: #E1BEE7;
 }
@@ -66,6 +69,10 @@ outline-color: #E1BEE7;
 .form-control{
 width:100px;
 display: inline;
+}
+
+#content{
+resize: none;
 }
 </style>
 </head>
@@ -93,11 +100,11 @@ display: inline;
 				</td>
 			</tr>
 			<tr>
-				<td><input type="text" value="${board.title}" name="title" id="title"></td>
+				<td><input type="text" placeholder=" 제목을 입력하세요." value="${board.title}" name="title" id="title"></td>
 			</tr>
 			<tr>
 				<td><br>
-				<textarea rows="20" cols="70" id="content" name="content">${board.content}</textarea><br><br></td>
+				<textarea rows="20" cols="70" id="content" name="content" placeholder=" 내용을 입력하세요.">${board.content}</textarea><br><br></td>
 			</tr>
 			<tr>
 <!-- 			로그인 상태&본인 게시글인 경우 수정, 삭제 버튼 활성화 필요 -->

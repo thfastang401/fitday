@@ -69,7 +69,7 @@ margin-top: 20px;
 text-align: left;
 }
 
-.container{
+.containerDiv{
 display: flex; /* 컨테이너를 플렉스 박스로 설정 */
 align-items:flex-end; ; /* 수직 중앙 정렬 */
 max-width: 1140px;
@@ -122,7 +122,7 @@ text-align: left;
 			<table class="commentTbl">
 				<tr><td><div id="contentDiv"><textarea rows="3" cols="4" placeholder="댓글을 입력하세요." name="content" id="content" ></textarea></div></td></tr>
 				<tr><td>
-					<div class="container">
+					<div class="containerDiv">
 						<input type="checkbox" value="1" name="secret" id="secret">비밀댓글
 						<input type="submit" value="등록" id="commentSubmit" onclick="insertCommentAjax(${board.boardSeq})" class="btn btn-primary btn-ghost">
 					</div>
