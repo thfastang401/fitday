@@ -90,6 +90,16 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getSearchListCnt(keyword);
 	}
 
+	@Override
+	public List<BoardDTO> getRecentCommunityList() {
+		return dao.getRecentCommunityList();
+	}
+
+	@Override
+	public List<BoardDTO> getRecentMissionList() {
+		return dao.getRecentMissionList();
+	}
+
 
 //	@Override
 //	public void uploadFile(BoardDTO dto, MultipartFile file) throws IOException {

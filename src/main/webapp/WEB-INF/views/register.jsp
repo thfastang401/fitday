@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>회원가입</title>
-    <link href="/css/sb-admin-2.css" rel="stylesheet">
+    <!-- <link href="/css/sb-admin-2.css" rel="stylesheet"> -->
 </head>
 <body>
 <jsp:include page="header.jsp"/>

@@ -13,12 +13,17 @@
 background-color: #FFF59D;
 width: 100%;
 height: 190px;
-margin-top:60px;
+margin-top:270px;
 }
 </style>
 </head>
 <body>
-<div id="footer">
+<div id="footer" class="row justify-content-center">
+ <div class="container my-auto">
+<div class="copyright text-center my-auto" >
+	<span style="color:#858796a6;">Copyright © FITDAY 2023 </span>
+</div>
+</div>
 <%-- 	<h1><a href="<%=request.getContextPath()%>/">FITDAY</a></h1> --%>
 <!-- 	<p> -->
 <%-- 		<a href="<%=request.getContextPath()%>/board/list/1">커뮤니티</a> --%>
