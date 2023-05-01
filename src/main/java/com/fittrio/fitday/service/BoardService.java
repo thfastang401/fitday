@@ -36,8 +36,9 @@ public interface BoardService {
 
 	int getSearchListCnt(String keyword);
 
-	List<BoardDTO> getRecentBoardList();
-
+	List<BoardDTO> getRecentCommunityList();
+	
+	List<BoardDTO> getRecentMissionList();
 
 	//void uploadFile(BoardDTO dto, MultipartFile file) throws IOException;
 

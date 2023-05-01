@@ -91,8 +91,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDTO> getRecentBoardList() {
-		return dao.getRecentBoardList();
+	public List<BoardDTO> getRecentCommunityList() {
+		return dao.getRecentCommunityList();
+	}
+
+	@Override
+	public List<BoardDTO> getRecentMissionList() {
+		return dao.getRecentMissionList();
 	}
 
 

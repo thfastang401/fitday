@@ -41,5 +41,9 @@ public interface BoardDAO {
 
 	List<BoardDTO> getRecentBoardList();
 
+	List<BoardDTO> getRecentCommunityList();
+
+	List<BoardDTO> getRecentMissionList();
+
 
 }

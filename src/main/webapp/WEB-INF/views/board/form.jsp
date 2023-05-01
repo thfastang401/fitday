@@ -69,6 +69,9 @@ width:100px;
 display: inline;
 }
 
+#content{
+resize: none;
+}
 </style>
 </head>
 <body>

@@ -81,9 +81,16 @@
 		and secret = 0
 	</select>
 	
-	<select id="getRecentBoardList" resultType="boarddto">
+	<select id="getRecentCommunityList" resultType="boarddto">
 		SELECT * FROM board
 		where board_type = "talk"
+		ORDER BY board_seq desc
+		LIMIT 0,5
+	</select>
+	
+	<select id="getRecentMissionList" resultType="boarddto">
+		SELECT * FROM board
+		where board_type = "mission"
 		ORDER BY board_seq desc
 		LIMIT 0,5
 	</select>

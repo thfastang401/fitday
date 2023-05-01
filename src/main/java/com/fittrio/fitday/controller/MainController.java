@@ -28,8 +28,10 @@ public class MainController {
 			model.addAttribute("loginNickname", customUser.getNickname());
 			model.addAttribute("loginRoles", customUser.getAuthorities());
 		}
-		List<BoardDTO> list = boardService.getRecentBoardList();
-		model.addAttribute("recentBoardList", list);
+		List<BoardDTO> communityList = boardService.getRecentCommunityList();
+		List<BoardDTO> missionList = boardService.getRecentMissionList();
+		model.addAttribute("recentcommunityList", communityList);
+		model.addAttribute("recentMissionList", missionList);
         return "main";
     }
 	
