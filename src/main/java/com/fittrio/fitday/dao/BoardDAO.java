@@ -39,5 +39,7 @@ public interface BoardDAO {
 
 	int getSearchListCnt(String keyword);
 
+	List<BoardDTO> getRecentBoardList();
+
 
 }

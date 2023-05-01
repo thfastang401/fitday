@@ -125,12 +125,12 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+        <h2 class="featurette-heading">멀리 가지말고 집에서 운동하자! <!-- <span class="text-muted">It’ll blow your mind.</span> --></h2>
+        <p class="lead">간단한 홈트레이닝 동작들을 알려드립니다!<br>돈과 시간 모두 아끼면서 건강챙겨보아요~ </p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><%-- <img width="100%" height="100%" src="<%=request.getContextPath()%>/images/human.jpg"> --%><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+<%--         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><img width="100%" height="100%" src="<%=request.getContextPath()%>/images/human.jpg"><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg> --%>
+<img src='/images/card_news2.png' alt='카드뉴스' id='card' class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style='width:"140px"; height:"140px";'>
       </div>
     </div>
 
@@ -142,8 +142,8 @@
         <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title> <rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+		
       </div>
     </div>
 
@@ -224,9 +224,17 @@
                                     <h6 class="m-0 font-weight-bold text-primary">커뮤니티</h6>
                                 </div>
                                 <div class="card-body">
-                                    The styling for this basic card example is created by using default Bootstrap
-                                    utility classes. By using utility classes, the style of the card component can be
-                                    easily modified with no need for any custom CSS!
+                                	<table>
+<!--                                 		<tr><td>최근 게시글</td></tr> -->
+                                		<c:forEach items="${recentBoardList}" var="board">                                		
+                                		<tr>
+                                			<td><a href="/board/detail/${board.boardSeq}">[${board.category}]&nbsp;&nbsp;${board.title}</a></td>
+                                		</tr>
+                                		</c:forEach>
+                                	</table>
+<!--                                     The styling for this basic card example is created by using default Bootstrap -->
+<!--                                     utility classes. By using utility classes, the style of the card component can be -->
+<!--                                     easily modified with no need for any custom CSS! -->
                                 </div>
                             </div>
 

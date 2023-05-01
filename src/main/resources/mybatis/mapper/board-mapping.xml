@@ -81,5 +81,11 @@
 		and secret = 0
 	</select>
 	
+	<select id="getRecentBoardList" resultType="boarddto">
+		SELECT * FROM board
+		where board_type = "talk"
+		ORDER BY board_seq desc
+		LIMIT 0,5
+	</select>
 
 </mapper>

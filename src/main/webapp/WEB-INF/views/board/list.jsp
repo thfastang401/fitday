@@ -9,7 +9,7 @@
 <title>FITDAY 커뮤니티 게시판</title>
 <link href="/css/font.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 <style type="text/css">
 #listTbl {
 align-items:flex-end; ; /* 수직 중앙 정렬 */
@@ -25,11 +25,6 @@ a{
 color:black;
 }
 
-#paging{
-width:30%;
-	margin: auto;
-	vertical-align: middle;
-}
 #formBtn{
 float: right;
 }
@@ -46,7 +41,7 @@ margin: auto;
 /* margin-top:40px; */
 height: 600px;
 font-family: 'BMJUA';
-font-size: 15px;
+font-size: 15px; 
 }
  
 .title{
@@ -66,7 +61,11 @@ margin: auto;
 /* margin:20px auto 0; */
 text-align: right;
 }
-
+/* #paging{ */
+/* width:30%; */
+/* margin: auto auto 80px; */
+/* vertical-align: middle; */
+/* } */
 #search, #paging{
   width:80%;
   margin:20px auto 0;
@@ -82,6 +81,10 @@ outline-color: #E1BEE7;
 
 strong{
 color:grey;
+}
+
+#list{
+height: auto;
 }
 </style>
 </head>

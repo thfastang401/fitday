@@ -8,7 +8,7 @@
 <title>글 작성</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="/css/font.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
 <style type="text/css">
 a{
 color:black;
@@ -51,8 +51,9 @@ text-align: left;
 #boardType, #category{
 display:inline;
 height: 30px;
-width:80px;
+width:110px;
 margin-bottom: 8px;
+font-size: 14px;
 }
 
 #title{
