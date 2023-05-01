@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>${currentUser.getNickname()}님의 MYPAGE</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link href="/css/sb-admin-2.css" rel="stylesheet">
+<!-- <link href="/css/sb-admin-2.css" rel="stylesheet"> -->
 </head>
 <body>
 <jsp:include page="../header.jsp"/>

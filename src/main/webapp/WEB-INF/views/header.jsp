@@ -12,7 +12,8 @@
     <meta name="author" content="">
 <title>Insert title here</title>
 <link href="/css/font.css" rel="stylesheet">
-<link href="/css/sb-admin-2.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link href="/css/sb-admin-3.css" rel="stylesheet">
 <!-- <link href="resources/css/header.css" rel="stylesheet"> -->
 <style type="text/css">
 #header{
