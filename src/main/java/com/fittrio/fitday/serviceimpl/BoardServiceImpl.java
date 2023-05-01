@@ -100,6 +100,11 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getRecentMissionList();
 	}
 
+	@Override
+	public void updateMission(HashMap<String, Object> map) {
+		dao.updateMission(map);
+	}
+
 
 //	@Override
 //	public void uploadFile(BoardDTO dto, MultipartFile file) throws IOException {

@@ -42,4 +42,6 @@ public interface BoardService {
 
 	//void uploadFile(BoardDTO dto, MultipartFile file) throws IOException;
 
+	void updateMission(HashMap<String,Object> map);
+
 }

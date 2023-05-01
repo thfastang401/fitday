@@ -45,5 +45,7 @@ public interface BoardDAO {
 
 	List<BoardDTO> getRecentMissionList();
 
+	void updateMission(HashMap<String, Object> map);
+
 
 }

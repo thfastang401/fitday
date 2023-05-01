@@ -2,6 +2,7 @@ package com.fittrio.fitday.controller;
 
 import com.fittrio.fitday.dto.BoardDTO;
 import com.fittrio.fitday.service.BoardService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 @Controller
 public class FileController {
@@ -62,6 +61,7 @@ public class FileController {
             boardService.insertMission(dto);
 
             redirectAttributes.addFlashAttribute("message", "파일과 게시글이 성공적으로 업로드 되었습니다!");
+
             return "redirect:/board/mission/list";
 
         } catch (IOException e) {
@@ -74,29 +74,55 @@ public class FileController {
     }
 
     //파일 수정
-    @PostMapping("/mission/update/form")
+    @PostMapping("/mission/update/{boardSeq}")
     public String updateMission(
-            @ModelAttribute BoardDTO dto,
-            @RequestParam("file") MultipartFile file,
-            HttpSession session
+            @RequestParam(name="file", required = false) MultipartFile file,
+            @PathVariable("boardSeq") int boardSeq, BoardDTO dto
     ) throws IOException {
-        // 기존 파일 삭제
-        if (!StringUtils.isEmpty(dto.getFileName())) {
-            String filePath = dto.getFilePath();
-            File targetFile = new File(filePath);
-            if (targetFile.exists()) {
-                targetFile.delete();
-            }
-        }
-        // 새 파일 저장
-        if (!file.isEmpty()) {
-            //String fileName = boardService.upload(file);
-            //dto.setFileName(fileName);
+
+        BoardDTO origin = boardService.getOneBoard(boardSeq);
+
+        if (file == null){
+            //새 파일이 없을 때
+            System.out.print(dto.toString());
+            System.out.print(dto.getFileName());
+//            dto.setFileName(dto.getFileName());
+//            dto.setFilePath(dto.getFilePath());
+            dto.setFileName(origin.getFileName());
+            dto.setFilePath(origin.getFilePath());
+
+        } else {
+            //새 파일이 있을 때
+                File f = new File(origin.getFilePath());
+
+                if (f.exists()) { // 파일이 존재하면
+                    f.delete(); // 파일 삭제
+                }
+
+//            UUID uuid = UUID.randomUUID();
+//            String fileName = uuid + "_" + file.getOriginalFilename();
+//            File saveFile = new File(projectPath, fileName);
+//            file.transferTo(saveFile);
+
+                File uploadDir = new File("src/main/resources/static/uploads");
+                File saveFile = new File(uploadDir.getAbsolutePath(), file.getOriginalFilename());
+                file.transferTo(saveFile);
+                System.out.print("TEST :: " + file.getOriginalFilename());
+
+                dto.setFileName(saveFile.getName());
+                dto.setFilePath(saveFile.getPath());
+
 
         }
-        //boardService.updateMission(dto);
-        return "redirect:/board/mission/detail/" + dto.getBoardSeq();
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("dto", dto);
+        map.put("boardSeq", boardSeq);
+        boardService.updateMission(map);
+        System.out.print(dto.toString());
+
+        return "redirect:/board/mission/list";
     }
+
 
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)

@@ -21,18 +21,19 @@
 <body>
 <jsp:include page="../../header.jsp"/>
 <div id="allDiv">
-    <form action="form" method="post" encType = "multipart/form-data" class="mx-auto">
+    <form action="form" method="post" enctype="multipart/form-data" class="mx-auto">
         <div class="form-group">
             <label for="title">제목</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력해주세요.">
         </div>
         <div class="form-group">
-            <label for="contents">내용</label>
-            <textarea class="form-control" id="contents" name="contents" rows="15"></textarea>
+            <label for="content">내용</label>
+            <textarea class="form-control" id="content" name="content" rows="15"></textarea>
         </div>
         <div class="form-group">
             <label for="file">첨부파일</label>
-            <input type="file" class="form-control-file" id="file">
+            <input type="file" class="form-control-file" id="file" name="file">
+
         </div>
         <div>
             <button type="button" class="btn btn-primary" onclick="location.href='/board/mission/list'">취소</button>
@@ -44,6 +45,18 @@
 
     <p>${message}</p>
 </div>
+<script>
+    window.onload = function (){
+      document.getElementById("insertBtn").onclick = function (e) {
+          let fileInfo = document.getElementById("file").files;
 
+          if(fileInfo.length == 0){
+              alert("파일을 등록해주세요.");
+              e.preventDefault();
+
+          }
+      };
+    };
+</script>
 </body>
 </html>

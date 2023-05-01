@@ -95,4 +95,16 @@
 		LIMIT 0,5
 	</select>
 
+	<update id="updateMission" parameterType="hashmap">
+		update board set
+						 category=#{dto.category},
+						 title=#{dto.title},
+						 content=#{dto.content},
+						 board_type='mission',
+						 secret=#{secret},
+						 fileName=#{dto.fileName},
+						 filePath=#{dto.filePath}
+		where board_seq=#{boardSeq}
+	</update>
+
 </mapper>

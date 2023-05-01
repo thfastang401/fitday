@@ -100,4 +100,21 @@ public class BoardDTO {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardDTO{" +
+				"boardSeq=" + boardSeq +
+				", userSeq=" + userSeq +
+				", viewCount=" + viewCount +
+				", secret=" + secret +
+				", category='" + category + '\'' +
+				", date='" + date + '\'' +
+				", boardType='" + boardType + '\'' +
+				", fileName='" + fileName + '\'' +
+				", filePath='" + filePath + '\'' +
+				", title='" + title + '\'' +
+				", content='" + content + '\'' +
+				'}';
+	}
 }
