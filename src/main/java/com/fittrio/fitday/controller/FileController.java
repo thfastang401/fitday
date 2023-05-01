@@ -93,11 +93,15 @@ public class FileController {
 
         } else {
             //새 파일이 있을 때
+
+            if(origin.getFilePath() != null){
                 File f = new File(origin.getFilePath());
 
                 if (f.exists()) { // 파일이 존재하면
                     f.delete(); // 파일 삭제
                 }
+            }
+
 
 //            UUID uuid = UUID.randomUUID();
 //            String fileName = uuid + "_" + file.getOriginalFilename();
