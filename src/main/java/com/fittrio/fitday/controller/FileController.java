@@ -92,7 +92,7 @@ public class FileController {
         if (!file.isEmpty()) {
             //String fileName = boardService.upload(file);
             //dto.setFileName(fileName);
-            
+
         }
         //boardService.updateMission(dto);
         return "redirect:/board/mission/detail/" + dto.getBoardSeq();
