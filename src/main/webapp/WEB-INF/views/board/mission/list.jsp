@@ -6,9 +6,14 @@
     <title>FITDAY 인증 게시판</title>
 </head>
 <body>
-<div>
+<div id="allDiv">
     <jsp:include page="../../header.jsp"/>
+
     <div style="text-align: center;">
+        <div style="text-align: right; margin-right: 185px">
+            <button type="button" class="btn btn-primary" onclick="location.href='/board/mission/form'" >글쓰기</button>
+        </div>
+
         <c:forEach items="${missionList}" var="mission" varStatus="status">
             <div style="display:inline-block; width: 30%; margin: 5px;">
                 <div onclick="location.href='/board/mission/detail/${mission.boardSeq}'">
@@ -26,7 +31,8 @@
         </c:forEach>
     </div>
 
-    <button type="button" onclick="location.href='/board/mission/form'">글쓰기</button>
+
 </div>
+<jsp:include page="../../footer.jsp"/>
 </body>
 </html>

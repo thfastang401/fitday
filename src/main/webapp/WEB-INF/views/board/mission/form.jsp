@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>인증 게시글 작성</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <style type="text/css">
         #allDiv{
             height: 600px;
@@ -45,6 +44,7 @@
 
     <p>${message}</p>
 </div>
+<jsp:include page="../../footer.jsp"/>
 <script>
     window.onload = function (){
       document.getElementById("insertBtn").onclick = function (e) {

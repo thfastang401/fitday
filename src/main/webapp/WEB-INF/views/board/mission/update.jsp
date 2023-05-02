@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>인증 게시글 수정</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <style type="text/css">
         #allDiv{
             height: 600px;
@@ -37,8 +36,6 @@
         <div class="form-group">
             <label for="file">첨부파일</label>
             <input type="file" class="form-control-file" id="file" name="file">
-            <p>기존 첨부파일: ${mission.fileName}</p>
-            <%--        <input type="hidden" name="currentFileName" value="${mission.fileName}">--%>
         </div>
 
         <div class="text-center">
@@ -55,7 +52,8 @@
     </form>
 
     <p>${message}</p>
-</div>
 
+</div>
+<jsp:include page="../../footer.jsp"/>
 </body>
 </html>
