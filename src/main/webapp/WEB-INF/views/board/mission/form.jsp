@@ -32,7 +32,6 @@
         <div class="form-group">
             <label for="file">첨부파일</label>
             <input type="file" class="form-control-file" id="file" name="file">
-
         </div>
         <div>
             <button type="button" class="btn btn-primary" onclick="location.href='/board/mission/list'">취소</button>

@@ -15,9 +15,9 @@
         </div>
 
         <c:forEach items="${missionList}" var="mission" varStatus="status">
-            <div style="display:inline-block; width: 30%; margin: 5px;">
+            <div style="display:inline-block; width: 25%;">
                 <div onclick="location.href='/board/mission/detail/${mission.boardSeq}'">
-                    <img src="<%=request.getContextPath()%>/uploads/${mission.fileName}" onerror="this.src='<%=request.getContextPath()%>/images/missionDefault.png'" width="100%">
+                    <img src="<%=request.getContextPath()%>/uploads/${mission.fileName}" onerror="this.src='<%=request.getContextPath()%>/images/missionDefault.png'" style="max-height: 300px; max-width: 300px;" >
                     <div>
                         <h3>${mission.title}</h3>
                         <h5>${mission.date}</h5>
