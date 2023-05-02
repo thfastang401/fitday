@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>인증 게시글 작성</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <style type="text/css">
         #allDiv{
             height: 600px;
@@ -33,7 +32,6 @@
         <div class="form-group">
             <label for="file">첨부파일</label>
             <input type="file" class="form-control-file" id="file" name="file">
-
         </div>
         <div>
             <button type="button" class="btn btn-primary" onclick="location.href='/board/mission/list'">취소</button>
@@ -45,6 +43,7 @@
 
     <p>${message}</p>
 </div>
+<jsp:include page="../../footer.jsp"/>
 <script>
     window.onload = function (){
       document.getElementById("insertBtn").onclick = function (e) {
