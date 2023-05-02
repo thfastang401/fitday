@@ -15,7 +15,7 @@
 <jsp:include page="header.jsp"/>
 <div>
 <div  class="text-center">
-    <h2>회원 가입</h2>
+    	
 </div>
      <div class="container">
 
@@ -27,19 +27,19 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">회원 가입</h1>
                             </div>
                             <form class="user" id ="form" action="<%=request.getContextPath()%>/register" method="post">
                                 <div class="form-group">
                                     <label for="email">이메일</label>
                                     <input type="email" class="form-control form-control-user" name="email" required id="email"
-                                        placeholder="Email Address">
+                                        placeholder="이메일 주소">
                                 </div>
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-3 mb-sm-0"> -->
                                       	<label for="password">비밀번호</label>
                                         <input type="password" class="form-control form-control-user"
-                                            id="password" name="password" required placeholder="Password">
+                                            id="password" name="password" required placeholder="6~12자리의 비밀번호 (문자, 숫자 필수)">
                                    <!--  </div> -->
                                    <!--  <div class="col-sm-6">
                                    		<label for="password">비밀번호 확인</label>
@@ -51,11 +51,11 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                     	<label for="nickname">닉네임</label>
                                         <input type="text" class="form-control form-control-user" name="nickname" required id="nickname"
-                                            placeholder="Nick Name">
+                                            placeholder="2~10자리 (특수 문자 불가능)">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="fitType">관심운동</label>
+                                    <label for="fitType">관심 운동</label>
 	                                    <select id="fitType" name="fitType" class="form-control" style="border-radius: 10rem;">
 							                <option value="테니스">테니스</option>
 							                <option value="헬스">헬스</option>
@@ -67,11 +67,11 @@
 							   <div class="form-group">
 							            <label for="goal">목표</label>
                                         <input type="text" class="form-control form-control-user" name="goal" id="goal"
-                                            placeholder="Goal">
+                                            placeholder="달성하고 싶은 목표가 있으신가요?">
                                     
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Register Account
+                                    회원 가입하기
                                 </button>
                                 <hr>
                               <!--   <a href="index.html" class="btn btn-google btn-user btn-block">
@@ -84,7 +84,7 @@
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div> -->
                             <div class="text-center">
-                                <a class="small" href="user/login">Already have an account? Login!</a>
+                                <a class="small" href="user/login">이미 회원이신가요? 로그인하세요!</a>
                             </div>
                         </div>
                     </div>
