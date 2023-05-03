@@ -281,3 +281,10 @@ body {
  .text-primary {
     color: #4e73df !important;
 }
+
+.bg-login-image {
+ /*  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800"); */
+  background: url("https://femina.wwmindia.com/content/2021/feb/fitness-thumb1613388461.jpg");
+  background-position: center;
+  background-size: cover;
+}

@@ -39,13 +39,20 @@
         <p>${mission.content}</p>
         <div id="buttonDiv">
             <button type="button" class="btn btn-primary" onclick="location.href='/board/mission/update/${mission.boardSeq}'">수정하기</button>
-            <button type="button" class="btn btn-primary" onclick="location.href='/board/mission/delete/${mission.boardSeq}'">삭제하기</button>
+            <button type="button" class="btn btn-primary" onclick="confirmDelete(${mission.boardSeq})">삭제하기</button>
         </div>
     </div>
 
 
 </div>
 <jsp:include page="../../footer.jsp"/>
-
+<script>
+    function confirmDelete(boardSeq){
+        if (confirm('삭제하시겠습니까?')){
+            location.href='/board/mission/delete/' + boardSeq;
+            alert("삭제되었습니다.")
+        }
+    }
+</script>
 </body>
 </html>
