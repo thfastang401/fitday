@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fittrio.fitday.dao.UserDAO">
+
+	<select id="getAllUserCnt" resultType="int">
+		select count(*) from user
+	</select>
+
+	<select id="getAllUserList" resultType="userdto">
+		select * from user
+	</select>
+	
+	<select id="findUserByEmail" parameterType="String" resultType="userdto">
+		select * from user where email=#{email}
+	</select>
+
+	<select id="findUserByNickname" parameterType="String" resultType="userdto">
+		select * from user where nickname=#{nickname}
+	</select>
+
+	<select id="getNickNameByUserSeq" parameterType="int" resultType="String">
+		select nickname from user where user_seq=#{userSeq}
+	</select>
+	
+	<select id="getCommentNickNameByBoardSeq" parameterType="int" resultType="String">
+		SELECT nickname
+		FROM comment c
+		JOIN user u
+		ON u.user_seq = c.user_seq
+		WHERE board_seq=#{boardSeq}
+	</select>
+
+	<insert id="insertUser" parameterType="userDto">
+		insert into user (email, password, nickname, fit_type, date, goal)
+		values(#{email}, #{password}, #{nickname}, #{fitType}, now(),#{goal})
+	</insert>
+	
+	<update id="updateUserInfo" parameterType="userDto">
+		UPDATE user
+		SET nickname=#{nickname}, fit_type=#{fitType}, goal=#{goal}
+		WHERE email=#{email}
+	</update>
+	
+
+	<select id="getNickNameJoinBoard" resultType="String" parameterType="boarddto">
+		SELECT nickname FROM user u
+		JOIN board b
+		ON u.user_seq = b.user_seq
+		where board_seq in
+		<foreach item="board" collection="list" open="(" separator="," close=")">
+			#{board.boardSeq}
+		</foreach>
+		order by board_seq desc
+	</select>
+
+	<select id="getNicknameMission" resultType="String" parameterType="boarddto">
+		SELECT nickname FROM user u
+		JOIN board b ON u.user_seq = b.user_seq
+		WHERE b.board_seq IN
+		<foreach item="board" collection="list" open="(" separator="," close=")">
+			#{board.boardSeq}
+		</foreach>
+		AND b.board_type = 'mission'
+		ORDER BY b.board_seq DESC
+	</select>
+
+
+	<update id="updatePasswordInfo" parameterType="userDto">
+		UPDATE user
+		SET password=#{password}
+		WHERE email=#{email}
+	</update>
+	
+	<select id="getNickNameJoinComment" resultType="String" parameterType="int">
+		SELECT nickname FROM user u
+		JOIN comment c
+		ON u.user_seq = c.user_seq
+		where board_seq = #{boardSeq} 
+<!-- 		and comment_seq in -->
+<!-- 		<foreach item="comment" collection="list" open="(" separator="," close=")"> -->
+<!-- 			#{comment.commentSeq} -->
+<!-- 		</foreach> -->
+	</select>
+  
+	<delete id="deleteUserByUserSeq" parameterType="int">
+		delete from user where user_seq=#{userSeq}
+	</delete>
+
+
+
+
+</mapper>

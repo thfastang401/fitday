@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fittrio.fitday.dao.CommentDAO">
+
+<!-- 코멘트 등록 -->
+	<!-- <select id="insertComment" parameterType="commentdto">
+		insert into comment
+	</select> -->
+
+<select id="getCommentListByBoardSeq" parameterType="int" resultType="commentdto">
+	select * from comment where board_seq=#{boardSeq}
+</select>	
+
+<insert id="insertComment" parameterType="commentdto">
+	insert into comment(board_seq, user_seq, content, date, secret) 
+		values(#{boardSeq},#{userSeq},#{content},now(),#{secret})
+</insert>
+
+<delete id="deleteCommentByBoardSeq" parameterType="int">
+	delete from comment where board_seq=#{boardSeq}
+</delete>
+
+<delete id="deleteComment" parameterType="int">
+	delete from comment where comment_seq=#{commentSeq}
+</delete>
+
+<update id="updateComment" parameterType="commentdto">
+	update comment set 
+	content=#{content}
+	where comment_seq = #{commentSeq}
+</update>
+
+<delete id="deleteCommentByUserSeq" parameterType="int">
+	delete from comment where user_seq=#{userSeq}
+</delete>
+
+<delete id="deleteBoardCommentByUserSeq" parameterType="int">
+	delete c FROM comment c 
+	JOIN board b ON c.board_seq = b.board_seq
+	where b.user_seq=#{userSeq}
+</delete>
+
+	<select id="getCommentCntByboardSeq" resultType="int">
+<!-- 		select count(board_seq) from comment -->
+<!-- 		group by board_seq -->
+<!-- 		order BY board_seq desc -->
+		
+		
+			SELECT COUNT(c.comment_seq) AS comment_count
+			FROM board b
+			LEFT OUTER JOIN comment c ON b.board_seq = c.board_seq
+			GROUP BY b.board_seq
+			ORDER BY b.board_seq DESC;
+
+		
+<!-- 		<foreach item="board" collection="list" open="(" separator="," close=")"> -->
+<!-- 			#{board.boardSeq} -->
+<!-- 		</foreach> -->
+	</select>
+
+</mapper>
